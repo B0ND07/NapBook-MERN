@@ -1,10 +1,12 @@
+import Navbar from "./components/Navbar";
 
 
 function App() {
   return (
     <div className="App">
  
-   ewaf
+  <Navbar/>
+  <hr className='border-t border-grey-400'/>
     </div>
   );
 }
