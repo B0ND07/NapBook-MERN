@@ -7,6 +7,7 @@ import DateRangeIcon from "@mui/icons-material/DateRange";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { Button, Modal } from "@mui/material";
+import DisplayHotels from "./DisplayHotels";
 
 const Home = () => {
   const [dateRange, setDateRange] = useState([
@@ -97,7 +98,7 @@ const Home = () => {
             <PersonIcon className="text-red-400 text-xl" />
             <span onClick={()=>setOpenOption(!openOption)}>{option.person} Person {option.room} Room</span>
             {openOption && 
-            <div className="w-44 md:w-3/12 absolute md:top-[238px] bg-red-400 shadow text-gray rounded top-[400px] ">
+            <div className="w-[94%] md:w-[23%] absolute md:top-[238px] bg-red-400 shadow text-gray rounded top-[415px] ">
               <div className=" flex gap-10 mx-2 ">
                 <span>Person</span>
                 <div className="flex items-center gap-5">
@@ -127,6 +128,7 @@ const Home = () => {
             </button>
           </div>
         </div>
+        <DisplayHotels/>
       </div>
     </>
   );
