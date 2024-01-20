@@ -1,18 +1,18 @@
 const express = require("express");
 const connect = require("./config/database");
-const authRoutes=require("./routes/auth")
-const hotelsRoutes=require("./routes/hotels")
-const roomsRoutes=require("./routes/rooms")
-const usersRoutes=require("./routes/users")
+const authRoute=require("./routes/authRoute")
+const hotelsRoute=require("./routes/hotelsRoute")
+const roomsRoute=require("./routes/roomsRoute")
+const usersRoute=require("./routes/usersRoute")
 
 const app = express();
 const env=require("dotenv").config()
 connect()
 app.use(express.json())
 
-app.use("/api/auth",authRoutes)
-app.use("/api/hotels",hotelsRoutes)
-app.use("/api/rooms",roomsRoutes)
-app.use("/api/users",usersRoutes)
+app.use("/api/auth",authRoute)
+app.use("/api/hotels",hotelsRoute)
+app.use("/api/rooms",roomsRoute)
+app.use("/api/users",usersRoute)
 
 app.listen(5006, console.log('server is running on http://localhost:5006'));
