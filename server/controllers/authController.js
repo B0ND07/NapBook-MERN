@@ -1,7 +1,5 @@
-
-
-const bcrypt=require("bcrypt")
-const jwt=require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const User = require("../models/UserSchema");
 
 exports.register = async (req, res, next) => {
@@ -17,20 +15,19 @@ exports.register = async (req, res, next) => {
     await newUser.save();
     res.status(200).send("User has been created.");
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 };
 exports.login = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    if (!user) return next(createError(404, "User not found!"));
+    if (!user) return res.json("User not found!");
 
     const isPasswordCorrect = await bcrypt.compare(
       req.body.password,
       user.password
     );
-    if (!isPasswordCorrect)
-      return res.json("Wrong password or username!")
+    if (!isPasswordCorrect) return res.json("Wrong password or username!");
 
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
@@ -45,7 +42,6 @@ exports.login = async (req, res, next) => {
       .status(200)
       .json({ details: { ...otherDetails }, isAdmin });
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 };
-    

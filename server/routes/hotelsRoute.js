@@ -13,7 +13,7 @@ router.delete("/:id",verifyAdmin,deleteHotel)
 
 router.get("/:id",verifyAdmin,getHotel)
 
-router.get("/",verifyAdmin,getHotels)
+router.get("/",getHotels)
 
 
 
