@@ -4,10 +4,13 @@ const authRoute=require("./routes/authRoute")
 const hotelsRoute=require("./routes/hotelsRoute")
 const roomsRoute=require("./routes/roomsRoute")
 const usersRoute=require("./routes/usersRoute")
+const cookieParser=require("cookie-parser")
 
 const app = express();
 const env=require("dotenv").config()
+
 connect()
+app.use(cookieParser())
 app.use(express.json())
 
 app.use("/api/auth",authRoute)

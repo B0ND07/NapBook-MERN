@@ -1,3 +1,5 @@
+const Hotel = require("../models/HotelSchema")
+
 exports.createHotel=async(req,res)=>{
 const newHotel=req.body
 const savedHotel=await Hotel.create(newHotel)
@@ -5,10 +7,12 @@ res.json(savedHotel)
 }
 
 exports.updateHotel=async(req,res)=>{
-    const newHotel=req.body
-    const id=req.params.id
-    const updateHotel=await Hotel.findByIdAndUpdate(id,newHotel)
-    res.json(updateHotel)
+    const updatedHotel = await Hotel.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true }
+      );
+      res.json(updatedHotel);
 }
 
 exports. deleteHotel=async(req,res)=>{

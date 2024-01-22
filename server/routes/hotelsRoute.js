@@ -1,18 +1,19 @@
 const express=require("express")
 const Hotel = require("../models/HotelSchema")
 const { createHotel, updateHotel, deleteHotel, getHotel, getHotels } = require("../controllers/hotelController")
+const verifyAdmin = require("../utils/verifyAdmin")
 
 const router=express.Router()
 
-router.post("/",createHotel)
+router.post("/",verifyAdmin,createHotel)
 
-router.put("/:id",updateHotel)
+router.put("/:id",verifyAdmin,updateHotel)
 
-router.delete("/:id",deleteHotel)
+router.delete("/:id",verifyAdmin,deleteHotel)
 
-router.get("/:id",getHotel)
+router.get("/:id",verifyAdmin,getHotel)
 
-router.get("/",getHotels)
+router.get("/",verifyAdmin,getHotels)
 
 
 
