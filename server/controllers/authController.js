@@ -21,13 +21,13 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    // if (!user) return res.json("User not found!");
+    if (!user) return res.json("User not found!");
 
     const isPasswordCorrect = await bcrypt.compare(
       req.body.password,
       user.password
     );
-    // if (!isPasswordCorrect) return res.json("Wrong password or username!");
+    if (!isPasswordCorrect) return res.json("Wrong password or username!");
 
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
@@ -46,3 +46,16 @@ exports.login = async (req, res, next) => {
     console.log(err);
   }
 };
+
+exports.logoutUser=async(req,res)=>{
+  res.cookie("access_token",null,{
+    expires: new Date(Date.now()),
+    httpOnly: true
+  })
+  res.json({
+    success: true,
+    message: "Logged Out"
+})
+}
+
+

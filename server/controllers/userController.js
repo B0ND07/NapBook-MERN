@@ -23,3 +23,5 @@ exports.getUsers = async (req, res) => {
   const getUsers = await User.find();
   res.json(getUsers);
 };
+
+

@@ -22,13 +22,12 @@ const userSlice=createSlice({
         clearError: (state, action) => {
             state.error = undefined;
         },
-        setSuccess: (state, action) => {
-            state.success = action.payload;
-        },
-        clearSuccess: (state, action) => {
-            state.success = undefined;
+        logoutUser: (state, action) => {
+            state.user = undefined;
+            state.isAuthenticated = false;
         }
+       
     }
 })
-export const { setUser,setError, setSuccess, clearError, clearSuccess } = userSlice.actions;
+export const { setUser,setError,clearError,logoutUser } = userSlice.actions;
 export default userSlice.reducer;
