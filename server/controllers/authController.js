@@ -7,13 +7,13 @@ exports.register = async (req, res, next) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
-    const newUser = new User({
+    const newUser = {
       ...req.body,
       password: hash,
-    });
+    };
 
-    await newUser.save();
-    res.status(200).send("User has been created.");
+    await User.create(newUser)
+    res.json({details:newUser});
   } catch (err) {
     console.log(err);
   }
@@ -21,13 +21,13 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    if (!user) return res.json("User not found!");
+    // if (!user) return res.json("User not found!");
 
     const isPasswordCorrect = await bcrypt.compare(
       req.body.password,
       user.password
     );
-    if (!isPasswordCorrect) return res.json("Wrong password or username!");
+    // if (!isPasswordCorrect) return res.json("Wrong password or username!");
 
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
@@ -42,6 +42,7 @@ exports.login = async (req, res, next) => {
       .status(200)
       .json({ details: { ...otherDetails }, isAdmin });
   } catch (err) {
+    res.json(err)
     console.log(err);
   }
 };

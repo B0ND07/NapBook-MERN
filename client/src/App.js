@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 function App() {
+
   return (
     <BrowserRouter>
       <div className="bg-slate-50 min-h-screen">
@@ -18,6 +19,7 @@ function App() {
           <Route path="/register" element={<Register/>}/>
 
         </Routes>
+  
       </div>
     </BrowserRouter>
   );

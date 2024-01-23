@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { loginAction } from '../redux/actions/userActions';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-
+    const error = useSelector((state) => state.userState.error);
+    // const user = useSelector((state) => state.userState.user);
 
     const loginHandler=(e)=>{
         e.preventDefault()
         dispatch(loginAction({username,password}))
+        
     }
   return (
     <div>
@@ -25,6 +27,11 @@ const Login = () => {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6">
+          {error && (
+              <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
+                <p>{error}</p>
+              </div>
+            )}
             <div>
               <label  className="block text-sm font-medium leading-6 text-gray-900">
                  Username
