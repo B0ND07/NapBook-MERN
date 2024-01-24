@@ -12,9 +12,22 @@ exports.register = async (req, res, next) => {
       password: hash,
     };
 
-    await User.create(newUser)
-    res.json({details:newUser});
+    const user=await User.create(newUser)
+    
+    const token = jwt.sign(
+      { id: user._id, isAdmin: user.isAdmin },
+      process.env.JWT
+    );
+
+    const { password, isAdmin, ...otherDetails } = user._doc;
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+      })
+      .status(200)
+      .json({ details: { ...otherDetails }, isAdmin });
   } catch (err) {
+    res.json(err)
     console.log(err);
   }
 };
