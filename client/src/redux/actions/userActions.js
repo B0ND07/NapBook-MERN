@@ -8,7 +8,6 @@ export const loginAction = (formData) => async (dispatch) => {
         const { data } = await axios.post('http://localhost:5006/api/auth/login', formData);
         if (data.details) {
         dispatch(setUser(data.details));
-        localStorage.setItem('user', JSON.stringify(data.details));
         dispatch(clearError());
      
     } else {
@@ -25,7 +24,6 @@ export const registerAction = (formData) => async (dispatch) => {
         const { data } = await axios.post('http://localhost:5006/api/auth/register', formData);
         console.log(data)
          dispatch(setUser(data.details));
-         localStorage.setItem('user', JSON.stringify(data.details));
     } catch (err) {
        
     }
@@ -35,7 +33,7 @@ export const logoutAction = () => async (dispatch) => {
     try {
       
         await axios.get('http://localhost:5006/api/auth/logout',);
-        localStorage.removeItem('user');
+
         dispatch(logoutUser());
        
     } catch (err) {
