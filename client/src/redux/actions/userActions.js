@@ -12,7 +12,6 @@ export const loginAction = (formData) => async (dispatch) => {
         console.log(data.user)
         if (data.user) {
         dispatch(setUser(data.user));
-        localStorage.setItem('user', JSON.stringify(data.details));
         dispatch(clearError());
      
     } else {
@@ -30,7 +29,7 @@ export const registerAction = (formData) => async (dispatch) => {
         const { data } = await axios.post('http://localhost:5006/api/auth/register', formData);
         console.log(data)
          dispatch(setUser(data.user));
-         localStorage.setItem('user', JSON.stringify(data.details));
+     
     } catch (err) {
        
     }
