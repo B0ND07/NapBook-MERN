@@ -4,9 +4,17 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { setUser } from "./redux/slices/userSlice";
+import { getUserAction } from "./redux/actions/userActions";
 
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserAction());
+}, [dispatch])
 
   return (
     <BrowserRouter>

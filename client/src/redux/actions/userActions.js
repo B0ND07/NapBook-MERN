@@ -1,13 +1,18 @@
 import axios from "axios";
 import { clearError, logoutUser, setError, setUser } from "../slices/userSlice";
 
+axios.defaults.withCredentials = true;
+
 //login
 export const loginAction = (formData) => async (dispatch) => {
 
     try {
+      
         const { data } = await axios.post('http://localhost:5006/api/auth/login', formData);
-        if (data.details) {
-        dispatch(setUser(data.details));
+        console.log(data.user)
+        if (data.user) {
+        dispatch(setUser(data.user));
+        localStorage.setItem('user', JSON.stringify(data.details));
         dispatch(clearError());
      
     } else {
@@ -21,9 +26,11 @@ export const loginAction = (formData) => async (dispatch) => {
 //register
 export const registerAction = (formData) => async (dispatch) => {
     try {
+    
         const { data } = await axios.post('http://localhost:5006/api/auth/register', formData);
         console.log(data)
-         dispatch(setUser(data.details));
+         dispatch(setUser(data.user));
+         localStorage.setItem('user', JSON.stringify(data.details));
     } catch (err) {
        
     }
@@ -31,9 +38,9 @@ export const registerAction = (formData) => async (dispatch) => {
 //logout
 export const logoutAction = () => async (dispatch) => {
     try {
-      
+       
         await axios.get('http://localhost:5006/api/auth/logout',);
-
+       
         dispatch(logoutUser());
        
     } catch (err) {
@@ -42,4 +49,16 @@ export const logoutAction = () => async (dispatch) => {
     }
 }
 
-
+export const getUserAction = () => async (dispatch) => {
+    try {
+      
+       
+        const { data } = await axios.get('http://localhost:5006/api/auth/me');
+        console.log(data)
+        dispatch(setUser(data.user));
+      
+        
+    } catch (err) {
+        console.log(err)
+    }
+}

@@ -13,7 +13,10 @@ const env=require("dotenv").config()
 connect()
 app.use(cookieParser())
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    credentials: true
+})) 
 
 app.use("/api/auth",authRoute)
 app.use("/api/hotels",hotelsRoute)
@@ -21,3 +24,4 @@ app.use("/api/rooms",roomsRoute)
 app.use("/api/users",usersRoute)
 
 app.listen(5006, console.log('server is running on http://localhost:5006'));
+
