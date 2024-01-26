@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setUser } from "./redux/slices/userSlice";
 import { getUserAction } from "./redux/actions/userActions";
+import Booking from "./pages/Booking";
+import Account from "./pages/Account";
 
 
 function App() {
@@ -23,9 +25,12 @@ function App() {
         <hr className="border-t border-grey-400" />
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/link" element={<Hotel/>}/>
+          {/* <Route path="/link" element={<Hotel/>}/> */}
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
+          <Route path="/hotel/:id" element={<Hotel />} />
+          <Route path="/room/:id/book" element={<><Booking /></>} />
+          <Route path="/account" element={ <Account /> } />
 
         </Routes>
   

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DateRange } from "react-date-range";
 import { addDays, format } from "date-fns";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
@@ -8,8 +8,18 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { Button, Modal } from "@mui/material";
 import DisplayHotels from "./DisplayHotels";
+import { useDispatch, useSelector } from 'react-redux';
+import { getFeturedHotels } from "../redux/actions/hotelActions";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const { hotels } = useSelector((state) => state.hotelState);
+  useEffect(() => {
+    
+            dispatch(getFeturedHotels())
+        
+    }, [dispatch])
+    
   const [dateRange, setDateRange] = useState([
     {
       startDate: new Date(Date.now()),
@@ -128,7 +138,8 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <DisplayHotels/>
+        {hotels?.map((hotel) => (
+        <DisplayHotels key={hotel._id} hotel={hotel}/> ))}
       </div>
     </>
   );

@@ -11,7 +11,7 @@ router.put("/:id",verifyAdmin,updateHotel)
 
 router.delete("/:id",verifyAdmin,deleteHotel)
 
-router.get("/:id",verifyAdmin,getHotel)
+router.get("/:id",getHotel)
 
 router.get("/",getHotels)
 

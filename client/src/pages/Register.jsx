@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { registerAction } from '../redux/actions/userActions'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
   const [username,setUsername]=useState('')
   const [password,setPassword]=useState('')
   const [email,setEmail]=useState("")
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
 
   const registerHandler=(e)=>{
     e.preventDefault()
     dispatch(registerAction({username,password,email}))
+    navigate("/")
   }
 
   return (

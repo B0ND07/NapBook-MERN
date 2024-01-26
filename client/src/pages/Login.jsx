@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux';
 import { loginAction } from '../redux/actions/userActions';
 
@@ -7,12 +7,15 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const error = useSelector((state) => state.userState.error);
     // const user = useSelector((state) => state.userState.user);
 
     const loginHandler=(e)=>{
         e.preventDefault()
         dispatch(loginAction({username,password}))
+        navigate("/")
+        
         
     }
   return (
