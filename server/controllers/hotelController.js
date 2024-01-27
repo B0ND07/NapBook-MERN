@@ -31,3 +31,13 @@ exports.getHotels = async (req, res) => {
   const updateHotel = await Hotel.find();
   res.json(updateHotel);
 };
+
+exports.searchHotels = async (req, res) => {
+  const { query } = req.params;
+  const foundHotels = await Hotel.find({city:query});
+  if (foundHotels.length === 0) {
+    return res.json("No hotels found in the specified city");
+  }
+  res.json(foundHotels);
+};
+

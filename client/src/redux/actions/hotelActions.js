@@ -1,6 +1,6 @@
 import axios from "axios";
 import { setError } from "../slices/userSlice";
-import { setHotel, setHotels } from "../slices/hotelSlice";
+import { SetSearch, setHasSearched, setHotel, setHotels } from "../slices/hotelSlice";
 axios.defaults.withCredentials = true;
 
 export const getFeturedHotels = () => async (dispatch) => {
@@ -21,6 +21,22 @@ export const getHotelAction = (id) => async (dispatch) => {
         const { data } = await axios.get(`http://localhost:5006/api/hotels/${id}`);
             console.log("hotel",data)
         dispatch(setHotel(data));
+      
+    } catch (err) {
+       
+        dispatch(setError(err.response.data.message));
+    }
+}
+
+
+export const getSearchAction = (query) => async (dispatch) => {
+    try {
+      
+        const { data } = await axios.get(`http://localhost:5006/api/hotels/search/${query}`);
+            console.log("search",data)
+        dispatch(SetSearch(data));
+        dispatch(setHasSearched(true));
+        console.log("search",data)
       
     } catch (err) {
        

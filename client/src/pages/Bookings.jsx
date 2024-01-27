@@ -46,8 +46,8 @@ const Bookings = () => {
       {booking.dates.map((date) => (
         <TableRow key={date._id}>
           <TableCell align='center'>{booking._id}</TableCell>
-          <TableCell align='center'>{booking.city}</TableCell>
           <TableCell align='center'>{booking.hotel}</TableCell>
+          <TableCell align='center'>{booking.city}</TableCell>
           <TableCell align='center'>{new Date(date.startDate).toLocaleDateString()}</TableCell>
           <TableCell align='center'>{new Date(date.endDate).toLocaleDateString()}</TableCell>
         </TableRow>
