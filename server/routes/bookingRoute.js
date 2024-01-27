@@ -5,7 +5,7 @@ const router=express.Router()
 
 
 
-router.route('/').get(getBookings);
+router.route('/:user').get(getBookings);
 router.route('/book').post(createBooking);
 
 module.exports=router

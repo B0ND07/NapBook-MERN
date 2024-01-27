@@ -7,6 +7,9 @@ const bookingSchema = new mongoose.Schema(
     hotel: {
       type: String,
     },
+    city: {
+      type: String,
+    },
     dates: [
         {
           startDate: { type: Date },

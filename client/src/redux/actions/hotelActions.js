@@ -7,7 +7,7 @@ export const getFeturedHotels = () => async (dispatch) => {
     try {
        
         const { data } = await axios.get('http://localhost:5006/api/hotels/');
-        console.log(data)
+        console.log("hotel",data)
         dispatch(setHotels(data));
        
     } catch (err) {
@@ -19,7 +19,7 @@ export const getHotelAction = (id) => async (dispatch) => {
     try {
       
         const { data } = await axios.get(`http://localhost:5006/api/hotels/${id}`);
-            console.log(data.name)
+            console.log("hotel",data)
         dispatch(setHotel(data));
       
     } catch (err) {

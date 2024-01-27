@@ -66,9 +66,11 @@ const Booking = () => {
     dispatch(
       newBookingAction({
         user: name,
-        hotel: id,
+        city: hotel?.city,
+        hotel: hotel?.name,
         roomno: roomno,
         dates: dateRange,
+        // hotelname:hotel?.name
       })
     );
     console.log("roomno", roomno);
@@ -122,12 +124,6 @@ const Booking = () => {
             </div>
             <div className="px-1 sm:px-3">
               <h2 className="text-xl font-medium mb-4 mt-16">hotel details:</h2>
-              <div className="ml-8 flex mb-4">
-                <span className="font-medium inline-block  w-28">
-                  Hotel Name:
-                </span>
-                <span className="font-mono">{hotel?.name}</span>
-              </div>
               <div className="ml-8 flex  mb-4">
                 <span className="font-medium inline-block  w-28">
                   hotel Name:

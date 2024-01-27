@@ -5,7 +5,8 @@ const initialState={
     isAuthenticated: false,
 
     error: undefined,
-    success: undefined
+    success: undefined,
+    bookings: undefined
 }
 
 const userSlice=createSlice({
@@ -25,9 +26,12 @@ const userSlice=createSlice({
         logoutUser: (state, action) => {
             state.user = undefined;
             state.isAuthenticated = false;
+        },
+        setBooking: (state, action) => {
+            state.bookings = action.payload;
         }
        
     }
 })
-export const { setUser,setError,clearError,logoutUser } = userSlice.actions;
+export const { setUser,setError,clearError,logoutUser,setBooking } = userSlice.actions;
 export default userSlice.reducer;
