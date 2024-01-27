@@ -35,7 +35,7 @@ const Account = () => {
                         <ArrowForwardIosIcon fontSize="small" className={user?.role !== "admin" ? "text-blue-400" : "text-blue-600"} />
                     </div>
                     <div className="h-12 flex items-center justify-between px-6 border-b border-solid border-gray-400 mb-2">
-                        <Link to="/me/bookings" className=" text-blue-600" >Your Bookings</Link>
+                        <Link to="/bookings" className=" text-blue-600" >Your Bookings</Link>
                         <ArrowForwardIosIcon fontSize="small" className="text-blue-600" />
                     </div>
                     <div className="mt-auto self-center mb-2 sm:mb-2 md:mb-6">

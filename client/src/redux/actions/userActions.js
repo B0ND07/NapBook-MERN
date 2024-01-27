@@ -61,3 +61,13 @@ export const getUserAction = () => async (dispatch) => {
         console.log(err)
     }
 }
+
+export const newBookingAction=(formData) => async () => {
+   
+    const { data } = await axios.post(`http://localhost:5006/api/bookings/book`,formData);
+    console.log(data)
+  
+}
+
+
+

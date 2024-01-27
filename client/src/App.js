@@ -10,6 +10,7 @@ import { setUser } from "./redux/slices/userSlice";
 import { getUserAction } from "./redux/actions/userActions";
 import Booking from "./pages/Booking";
 import Account from "./pages/Account";
+import Bookings from "./pages/Bookings";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/hotel/:id" element={<Hotel />} />
           <Route path="/room/:id/book" element={<><Booking /></>} />
           <Route path="/account" element={ <Account /> } />
+          <Route path="/bookings" element={<Bookings/>} />
 
         </Routes>
   

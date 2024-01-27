@@ -1,5 +1,5 @@
 const express=require("express")
-const Hotel = require("../models/HotelSchema")
+
 const { createHotel, updateHotel, deleteHotel, getHotel, getHotels } = require("../controllers/hotelController")
 const verifyAdmin = require("../utils/verifyAdmin")
 
