@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   clearError,
   logoutUser,
+  setAllBookings,
   setBooking,
   setError,
   setUser,
@@ -87,4 +88,11 @@ export const getAllUsersAction=()=>async(dispatch)=>{
 export const updateUserRoleAction=(id,role)=>async()=>{
   const {data}=await axios.put(`http://localhost:5006/api/users/${id}`,{"isAdmin":role});
   console.log(data)
+}
+
+export const getAllBookingsAction=()=>async(dispatch)=>{
+  const {data}=await axios.get("http://localhost:5006/api/bookings/allbookings/Booked")
+  console.log("booked",data)
+  dispatch(setAllBookings(data.bookings))
+
 }

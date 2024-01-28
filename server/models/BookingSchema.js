@@ -7,6 +7,10 @@ const bookingSchema = new mongoose.Schema(
     hotel: {
       type: String,
     },
+    Booked: {
+      type: String,
+      default: "yes",
+    },
     city: {
       type: String,
     },
@@ -16,12 +20,12 @@ const bookingSchema = new mongoose.Schema(
           endDate: { type: Date },
         },
       ],
-    totalPrice: {
-      type: Number,
-    },
-    phone: {
-      type: Number,
-    },
+    // totalPrice: {
+    //   type: Number,
+    // },
+    // phone: {
+    //   type: Number,
+    // },
     roomno: {
       type: Number,
     },

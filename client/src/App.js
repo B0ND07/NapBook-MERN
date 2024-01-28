@@ -14,6 +14,8 @@ import Bookings from "./pages/Bookings";
 import UpdateProfile from "./pages/UpdateProfile";
 import AdminDashboard from "./pages/AdminDashboard";
 import AllUsers from "./pages/AllUsers";
+import AllHotels from "./pages/AllHotels";
+import Allbookings from "./pages/Allbookings";
 
 
 function App() {
@@ -38,7 +40,9 @@ function App() {
           <Route path="/bookings" element={<Bookings/>} />
           <Route path="/me/update" element={<UpdateProfile/>} />
           <Route path="/admin/dashboard" element={ <AdminDashboard /> } />
-          <Route path="/admin/allusers" element={ <AllUsers /> } />
+          <Route path="/admin/users" element={ <AllUsers /> } />
+          <Route path="/admin/hotels" element={ <AllHotels /> } />
+          <Route path="/admin/bookings" element={ <Allbookings /> } />
 
         </Routes>
   

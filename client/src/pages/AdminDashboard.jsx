@@ -135,7 +135,7 @@ const open=first
         </ListItem> */}
         <ListItem disablePadding sx={{ display: "block" }}>
           <Tooltip title={open ? "" : "All Users"} placement="right">
-            <NavLink to="/admin/allusers">
+            <NavLink to="/admin/users">
               {({ isActive }) => (
                 <ListItemButton
                   selected={isActive}

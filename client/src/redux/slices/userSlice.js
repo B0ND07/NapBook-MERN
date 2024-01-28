@@ -7,6 +7,7 @@ const initialState={
     error: undefined,
     success: undefined,
     bookings: undefined,
+    allbookings:undefined,
     users:undefined
 }
 
@@ -33,9 +34,12 @@ const userSlice=createSlice({
         },
         setUsers:(state,action)=>{
             state.users=action.payload;
+        },
+        setAllBookings: (state, action) => {
+            state.allbookings = action.payload;
         }
        
     }
 })
-export const { setUser,setError,clearError,logoutUser,setBooking,setUsers } = userSlice.actions;
+export const { setUser,setError,clearError,logoutUser,setBooking,setAllBookings,setUsers } = userSlice.actions;
 export default userSlice.reducer;
