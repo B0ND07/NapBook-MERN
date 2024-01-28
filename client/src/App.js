@@ -11,6 +11,7 @@ import { getUserAction } from "./redux/actions/userActions";
 import Booking from "./pages/Booking";
 import Account from "./pages/Account";
 import Bookings from "./pages/Bookings";
+import UpdateProfile from "./pages/UpdateProfile";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/room/:id/book" element={<><Booking /></>} />
           <Route path="/account" element={ <Account /> } />
           <Route path="/bookings" element={<Bookings/>} />
+          <Route path="/me/update" element={<UpdateProfile/>} />
 
         </Routes>
   
