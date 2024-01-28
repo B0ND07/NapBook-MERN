@@ -5,6 +5,7 @@ import {
   setBooking,
   setError,
   setUser,
+  setUsers,
 } from "../slices/userSlice";
 
 axios.defaults.withCredentials = true;
@@ -75,3 +76,15 @@ export const getBookingsAction = (username) => async (dispatch) => {
   dispatch(setBooking(data.bookings));
   console.log("actionbook",data.bookings);
 };
+
+export const getAllUsersAction=()=>async(dispatch)=>{
+  const {data}=await axios.get("http://localhost:5006/api/users/");
+  dispatch(setUsers(data))
+  console.log(data)
+
+}
+
+export const updateUserRoleAction=(id,role)=>async()=>{
+  const {data}=await axios.put(`http://localhost:5006/api/users/${id}`,{"isAdmin":role});
+  console.log(data)
+}

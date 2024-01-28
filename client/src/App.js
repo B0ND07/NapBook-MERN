@@ -12,6 +12,8 @@ import Booking from "./pages/Booking";
 import Account from "./pages/Account";
 import Bookings from "./pages/Bookings";
 import UpdateProfile from "./pages/UpdateProfile";
+import AdminDashboard from "./pages/AdminDashboard";
+import AllUsers from "./pages/AllUsers";
 
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
           <Route path="/account" element={ <Account /> } />
           <Route path="/bookings" element={<Bookings/>} />
           <Route path="/me/update" element={<UpdateProfile/>} />
+          <Route path="/admin/dashboard" element={ <AdminDashboard /> } />
+          <Route path="/admin/allusers" element={ <AllUsers /> } />
 
         </Routes>
   

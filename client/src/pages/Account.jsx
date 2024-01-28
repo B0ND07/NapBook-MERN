@@ -31,8 +31,8 @@ const Account = () => {
                         <ArrowForwardIosIcon fontSize="small" className="text-blue-600" />
                     </div>
                     <div className="h-12 flex items-center justify-between px-6 border-b border-solid border-gray-400">
-                        <button onClick={() => navigate("/admin/dashboard")} className=" text-blue-600 disabled:text-blue-400" disabled={user?.role !== "admin" ? true : false}>Admin Panel</button>
-                        <ArrowForwardIosIcon fontSize="small" className={user?.role !== "admin" ? "text-blue-400" : "text-blue-600"} />
+                        <Link to='/admin/dashboard'><button className=" text-blue-600 disabled:text-blue-400" disabled={user?.role !== "admin" ? true : false}>Admin Panel</button>
+                        <ArrowForwardIosIcon fontSize="small" className={user?.role !== "admin" ? "text-blue-400" : "text-blue-600"} /></Link>
                     </div>
                     <div className="h-12 flex items-center justify-between px-6 border-b border-solid border-gray-400 mb-2">
                         <Link to="/bookings" className=" text-blue-600" >Your Bookings</Link>
