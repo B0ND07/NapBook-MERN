@@ -1,9 +1,7 @@
 import AdminDashboard from "./AdminDashboard";
 import { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import LaunchIcon from "@mui/icons-material/Launch";
-
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import {
@@ -14,7 +12,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  TableFooter,
   IconButton,
   Dialog,
   DialogContent,
@@ -26,11 +23,25 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import { getAllHotelsAction, updateHotelAction } from "../redux/actions/hotelActions";
+import {
+  deleteHotelAction,
+  getAllHotelsAction,
+  updateHotelAction,
+} from "../redux/actions/hotelActions";
+import { Link } from "react-router-dom";
 
 const AllHotels = () => {
   const [file, setFile] = useState("");
   const allhotels = useSelector((state) => state.hotelState.allhotels);
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [hotelRef, setHotelRef] = useState(undefined);
+
+  useEffect(() => {
+    dispatch(getAllHotelsAction());
+  }, [dispatch]);
+  console.log(allhotels);
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -43,33 +54,20 @@ const AllHotels = () => {
       formData,
       { withCredentials: false }
     );
+
     const { url } = uploadRes.data;
-
-    dispatch(updateHotelAction(hotelRef._id,{"photos":url}))
-
-
+    dispatch(updateHotelAction(hotelRef._id, { photos: url }));
     console.log(url);
-    
-
     console.log(uploadRes.data);
     setOpen(!open);
   };
 
-  const dispatch = useDispatch();
-
-  const [open, setOpen] = useState(false);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [hotelRef, setHotelRef] = useState(undefined);
-  
-
-
-  useEffect(() => {
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    dispatch(deleteHotelAction(hotelRef._id));
+    setIsDeleteOpen(!isDeleteOpen);
     dispatch(getAllHotelsAction());
-  }, [dispatch]);
-  console.log(allhotels);
-
-
-
+  };
 
   return (
     <Fragment>
@@ -81,7 +79,7 @@ const AllHotels = () => {
             <h2 className="text-2xl font-medium text-center my-8">
               All Hotels
             </h2>
-           
+
             <TableContainer component={Paper}>
               <Table className="min-w-[700px]">
                 <TableHead>
@@ -96,16 +94,11 @@ const AllHotels = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  
                   {allhotels?.map((hotel) => (
-                    <TableRow style={{ height: 72.8 }}>
+                    <TableRow key={hotel._id} style={{ height: 72.8 }}>
                       <TableCell align="center">{hotel._id}</TableCell>
                       <TableCell align="center">{hotel.name}</TableCell>
-                      <TableCell align="center">
-                        
-                        {hotel.rooms.length}
-                    
-                      </TableCell>
+                      <TableCell align="center">{hotel.rooms?hotel.rooms.length:0}</TableCell>
                       <TableCell align="center">
                         <IconButton
                           onClick={() => {
@@ -117,39 +110,31 @@ const AllHotels = () => {
                         </IconButton>
                       </TableCell>
                       <TableCell align="center">
-                      
                         <IconButton>
-                          <EditIcon />
+                        <Link to={`/admin/hotel/${hotel._id}/update`}><EditIcon /></Link>
                         </IconButton>
-                    
                       </TableCell>
                       <TableCell align="center">
                         <IconButton
                           onClick={() => {
                             setIsDeleteOpen(!isDeleteOpen);
-                            setHotelRef();
+                            setHotelRef(hotel);
                           }}
                         >
                           <DeleteIcon />
                         </IconButton>
                       </TableCell>
-                     
-                      
+
                       <TableCell align="center">
-                      
                         <IconButton>
-                          <LaunchIcon />
+                          <Link to={`/hotel/${hotel._id}`}>
+                            <LaunchIcon />
+                          </Link>
                         </IconButton>
-                      
                       </TableCell>
                     </TableRow>
                   ))}
-                 
-                 
                 </TableBody>
-                <TableFooter>
-                  <TableRow></TableRow>
-                </TableFooter>
               </Table>
             </TableContainer>
             <Dialog
@@ -163,23 +148,20 @@ const AllHotels = () => {
                   Upload Hotel Image
                 </DialogTitle>
                 <DialogContent className="m-4 flex justify-center items-center">
-                
                   <Button component="label">
                     <FileUploadIcon color="action" fontSize="large" />
                     <input
-                      
                       multiple
                       type="file"
                       onChange={(e) => setFile(e.target.files[0])}
                     />
                   </Button>
-                
                 </DialogContent>
                 <DialogActions className="mt-4">
                   <button
                     onClick={() => {
                       setOpen(!open);
-                     
+
                       setHotelRef(undefined);
                     }}
                     className="bg-red-400 hover:bg-red-500 py-2 rounded-lg w-24 text-center text-neutral-50  transition duration-200 font-semibold"
@@ -212,7 +194,10 @@ const AllHotels = () => {
                 >
                   Cancel
                 </button>
-                <button className=" border-red-400 text-red-400 hover:text-red-500 hover:border-red-500 hover:bg-red-200 border-solid border py-2 rounded-lg w-24 text-center transition duration-200 box-border">
+                <button
+                  className=" border-red-400 text-red-400 hover:text-red-500 hover:border-red-500 hover:bg-red-200 border-solid border py-2 rounded-lg w-24 text-center transition duration-200 box-border"
+                  onClick={handleDelete}
+                >
                   Delete
                 </button>
               </DialogActions>

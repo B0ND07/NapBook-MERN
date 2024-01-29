@@ -16,6 +16,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AllUsers from "./pages/AllUsers";
 import AllHotels from "./pages/AllHotels";
 import Allbookings from "./pages/Allbookings";
+import UpdateHotel from "./pages/UpdateHotel";
+import CreateHotel from "./pages/CreateHotel";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,19 +31,15 @@ function App() {
         <Navbar />
         <hr className="border-t border-grey-400" />
         <Routes>
+
+           <Route path="/test" element={<CreateHotel/>}/> 
+
+
           <Route path="/" element={<Home />} />
-          {/* <Route path="/link" element={<Hotel/>}/> */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/hotel/:id" element={<Hotel />} />
-          <Route
-            path="/room/:id/book"
-            element={
-              <>
-                <Booking />
-              </>
-            }
-          />
+          <Route path="/room/:id/book" element={<><Booking /></>}/>
           <Route path="/account" element={<Account />} />
           <Route path="/bookings" element={<Bookings />} />
           <Route path="/me/update" element={<UpdateProfile />} />
@@ -49,6 +47,8 @@ function App() {
           <Route path="/admin/users" element={<AllUsers />} />
           <Route path="/admin/hotels" element={<AllHotels />} />
           <Route path="/admin/bookings" element={<Allbookings />} />
+          <Route path="/admin/hotel/:id/update" element={<UpdateHotel />} />
+          <Route path="/admin/hotel/create" element={<CreateHotel />} />
         </Routes>
       </div>
     </BrowserRouter>

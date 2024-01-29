@@ -1,6 +1,6 @@
 import axios from "axios";
 import { setError } from "../slices/userSlice";
-import { SetSearch, setAllHotels, setHasSearched, setHotel, setHotels } from "../slices/hotelSlice";
+import { SetSearch, setAllHotels, setHasSearched, setHotel, setHotels, setIsHotelUpdated } from "../slices/hotelSlice";
 axios.defaults.withCredentials = true;
 
 export const getFeturedHotels = () => async (dispatch) => {
@@ -51,9 +51,35 @@ export const getAllHotelsAction=()=>async(dispatch)=>{
   
   }
 
-  export const updateHotelAction=(id,url)=>async()=>{
-    const {data}=await axios.put(`http://localhost:5006/api/hotels/${id}`,url);
+  export const updateHotelAction=(id,url)=>async(dispatch)=>{
+    const {data}=await axios.put(`http://localhost:5006/api/hotels/${id}`,url, { headers: { "Content-Type": "application/json" } });
+    dispatch(setIsHotelUpdated(true));
     console.log(data)
   }
 
+  export const deleteHotelAction=(id)=>async()=>{
+    const {data}=await axios.delete(`http://localhost:5006/api/hotels/${id}`)
+    
+    console.log(data)
+  }
+
+
+  export const createHotelAction=(url)=>async(dispatch)=>{
+    const {data}=await axios.post(`http://localhost:5006/api/hotels/`,url, { headers: { "Content-Type": "application/json" } });
+    dispatch(setIsHotelUpdated(true));
+    console.log(data)
+  }
+
+
+//   export const updateHotel = (formData, hotelId) => async (dispatch) => {
+    
+//         try {
+//             await axios.put(`http://localhost:5006/api/hotels/${hotelId}`, formData, { headers: { "Content-Type": "application/json" } });
+//             dispatch(setIsHotelUpdated(true));
+//         } catch (err) {
+//             dispatch(setError(err.response.data.message));
+        
+//         }
+//     }
+  
 
