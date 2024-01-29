@@ -5,7 +5,8 @@ const initialState = {
     hotels: undefined,
     hotel: undefined,
     searchHotel:undefined,
-    hasSearched:false
+    hasSearched:false,
+    allhotels:undefined
    
 }
 
@@ -24,10 +25,13 @@ const hotelSlice = createSlice({
         },
         setHasSearched: (state, action) => {
             state.hasSearched = action.payload;
+        },
+        setAllHotels: (state, action) => {
+            state.allhotels = action.payload;
         }
     }
 });
 
-export const {  setHotels,setHotel,SetSearch,setHasSearched} = hotelSlice.actions;
+export const {  setHotels,setHotel,SetSearch,setHasSearched,setAllHotels} = hotelSlice.actions;
 
 export default hotelSlice.reducer;

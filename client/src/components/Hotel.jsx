@@ -19,7 +19,7 @@ const Hotel = () => {
         <div className=' flex flex-col md:min-h-60 gap-8 bg-gray-200 pt-4 md:items-center'>
             <div className='h-60 md:w-7/12'>
                 <div className='h-60 -mr-[22.34px]'>
-                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/215955381.jpg?k=ff739d1d9e0c8e233f78ee3ced82743ef0355e925df8db7135d83b55a00ca07a&o=&hp=1" alt="" className='md:w-full w-[98vw] h-full object-cover'/>
+                    <img src={hotel?.photos} alt="" className='md:w-full w-[98vw] h-full object-cover'/>
                 </div>
             </div>
             <div className='md:w-7/12 mx-4 md:my-6 mb-6'>

@@ -17,12 +17,11 @@ import AllUsers from "./pages/AllUsers";
 import AllHotels from "./pages/AllHotels";
 import Allbookings from "./pages/Allbookings";
 
-
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserAction());
-}, [dispatch])
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
@@ -30,22 +29,27 @@ function App() {
         <Navbar />
         <hr className="border-t border-grey-400" />
         <Routes>
-          <Route path="/" element={<Home/>}/>
+          <Route path="/" element={<Home />} />
           {/* <Route path="/link" element={<Hotel/>}/> */}
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/register" element={<Register/>}/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/hotel/:id" element={<Hotel />} />
-          <Route path="/room/:id/book" element={<><Booking /></>} />
-          <Route path="/account" element={ <Account /> } />
-          <Route path="/bookings" element={<Bookings/>} />
-          <Route path="/me/update" element={<UpdateProfile/>} />
-          <Route path="/admin/dashboard" element={ <AdminDashboard /> } />
-          <Route path="/admin/users" element={ <AllUsers /> } />
-          <Route path="/admin/hotels" element={ <AllHotels /> } />
-          <Route path="/admin/bookings" element={ <Allbookings /> } />
-
+          <Route
+            path="/room/:id/book"
+            element={
+              <>
+                <Booking />
+              </>
+            }
+          />
+          <Route path="/account" element={<Account />} />
+          <Route path="/bookings" element={<Bookings />} />
+          <Route path="/me/update" element={<UpdateProfile />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/users" element={<AllUsers />} />
+          <Route path="/admin/hotels" element={<AllHotels />} />
+          <Route path="/admin/bookings" element={<Allbookings />} />
         </Routes>
-  
       </div>
     </BrowserRouter>
   );

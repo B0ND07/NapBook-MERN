@@ -1,6 +1,6 @@
 import axios from "axios";
 import { setError } from "../slices/userSlice";
-import { SetSearch, setHasSearched, setHotel, setHotels } from "../slices/hotelSlice";
+import { SetSearch, setAllHotels, setHasSearched, setHotel, setHotels } from "../slices/hotelSlice";
 axios.defaults.withCredentials = true;
 
 export const getFeturedHotels = () => async (dispatch) => {
@@ -43,3 +43,17 @@ export const getSearchAction = (query) => async (dispatch) => {
         dispatch(setError(err.response.data.message));
     }
 }
+
+export const getAllHotelsAction=()=>async(dispatch)=>{
+    const {data}=await axios.get("http://localhost:5006/api/hotels/");
+    dispatch(setAllHotels(data))
+    console.log(data)
+  
+  }
+
+  export const updateHotelAction=(id,url)=>async()=>{
+    const {data}=await axios.put(`http://localhost:5006/api/hotels/${id}`,url);
+    console.log(data)
+  }
+
+
