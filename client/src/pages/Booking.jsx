@@ -22,6 +22,7 @@ const Booking = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [dates, setDates] = useState([]);
+
   const [isDateOpen, setIsDateOpen] = useState(false);
   const [disableDates, setDisableDates] = useState([]);
   const [dateRange, setDateRange] = useState([
@@ -63,6 +64,10 @@ const Booking = () => {
   console.log(dateRange);
 
   const handleCheckout = () => {
+    if (!roomno) {
+      alert("Please select a room number before checkout");
+      return;
+    }
     dispatch(
       newBookingAction({
         user: name,
@@ -73,6 +78,8 @@ const Booking = () => {
         // hotelname:hotel?.name
       })
     );
+    alert("booked successfully");
+    navigate("/")
     console.log("roomno", roomno);
   };
 

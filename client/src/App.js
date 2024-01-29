@@ -18,6 +18,7 @@ import AllHotels from "./pages/AllHotels";
 import Allbookings from "./pages/Allbookings";
 import UpdateHotel from "./pages/UpdateHotel";
 import CreateHotel from "./pages/CreateHotel";
+import DefaultDashboard from "./pages/DefaultDashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function App() {
         <hr className="border-t border-grey-400" />
         <Routes>
 
-           <Route path="/test" element={<CreateHotel/>}/> 
+           <Route path="/test" element={<DefaultDashboard/>}/> 
 
 
           <Route path="/" element={<Home />} />
@@ -43,7 +44,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/bookings" element={<Bookings />} />
           <Route path="/me/update" element={<UpdateProfile />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/dashboard" element={<DefaultDashboard />} />
           <Route path="/admin/users" element={<AllUsers />} />
           <Route path="/admin/hotels" element={<AllHotels />} />
           <Route path="/admin/bookings" element={<Allbookings />} />

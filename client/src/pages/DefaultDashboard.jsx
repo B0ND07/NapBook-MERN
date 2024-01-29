@@ -17,10 +17,10 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import MapsHomeWorkSharpIcon from "@mui/icons-material/MapsHomeWorkSharp";
 import AddHomeWorkSharpIcon from "@mui/icons-material/AddHomeWorkSharp";
 import BookmarkAddedSharpIcon from "@mui/icons-material/BookmarkAddedSharp";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import { NavLink } from "react-router-dom";
-
 
 const openedMixin = (theme) => ({
   width: 240,
@@ -42,13 +42,6 @@ const closedMixin = (theme) => ({
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
 });
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: "0 .5rem",
-}));
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -73,15 +66,11 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-const AdminDashboard = () => {
+const DefaultDashboard = () => {
   const [first, setfirst] = useState(true);
-const open=first
+  const open = first;
   const dispatch = useDispatch();
-  const isMobileDevice = useMediaQuery("(max-width:640px)");
-
-  const handleDrawerOpen = () => {
-    setfirst(!first);
-  };
+  const isMobileDevice = useMediaQuery("(max-width:0px)");
 
   useEffect(() => {
     if (isMobileDevice) {
@@ -90,18 +79,8 @@ const open=first
   }, [isMobileDevice, dispatch]);
 
   return (
-    <>
-      
-    <Drawer variant="permanent" open={first}>
-      {!isMobileDevice && (
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerOpen} className="!text-red-500">
-            {!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-      )}
-      <List className="!-mt-2">
-        
+    <div className="flex justify-center mt-[10%]">
+      <List>
         <ListItem disablePadding sx={{ display: "block" }}>
           <Tooltip title={open ? "" : "All Users"} placement="right">
             <NavLink to="/admin/users">
@@ -227,10 +206,8 @@ const open=first
           </Tooltip>
         </ListItem>
       </List>
-    </Drawer>
-
-    </>
+    </div>
   );
 };
 
-export default AdminDashboard;
+export default DefaultDashboard;

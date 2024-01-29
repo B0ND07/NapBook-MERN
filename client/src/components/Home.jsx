@@ -27,10 +27,10 @@ const Home = () => {
       dispatch(getSearchAction(query));
     }
   };
-  const handleBack=()=>{
-    dispatch(setHasSearched(false))
-    setQuery("")
-  }
+  const handleBack = () => {
+    dispatch(setHasSearched(false));
+    setQuery("");
+  };
 
   return (
     <>
@@ -63,8 +63,9 @@ const Home = () => {
         </div>
         {hasSearched ? (
           <>
-           <Link to="/" className="text-blue-500 hover:text-blue-700">
-              <ArrowBackIosNewIcon fontSize="small" /> <span onClick={handleBack}>Home</span>
+            <Link to="/" className="text-blue-500 hover:text-blue-700">
+              <ArrowBackIosNewIcon fontSize="small" />{" "}
+              <span onClick={handleBack}>Home</span>
             </Link>
             <h3 className="my-2">Search Results for {query}:</h3>
             {Array.isArray(searchHotel) && searchHotel.length > 0 ? (

@@ -20,8 +20,8 @@ exports.getBookings = async (req, res) => {
 
 
 exports.getAllBookings = async (req, res) => {
-    const { Booked } = req.params;
-    const bookings = await Booking.find({ Booked });
+    // const { Booked } = req.params;
+    const bookings = await Booking.find();
   
     if (!bookings) {
       return res.json(" no booking yet");

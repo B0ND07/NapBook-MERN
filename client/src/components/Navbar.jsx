@@ -14,7 +14,6 @@ const Navbar = () => {
     navigate("/");
   };
   const accountHandler = () => {
-    // setAnchorEl(null);
     navigate("/account");
   };
 

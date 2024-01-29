@@ -71,15 +71,6 @@ export const getAllHotelsAction=()=>async(dispatch)=>{
   }
 
 
-//   export const updateHotel = (formData, hotelId) => async (dispatch) => {
-    
-//         try {
-//             await axios.put(`http://localhost:5006/api/hotels/${hotelId}`, formData, { headers: { "Content-Type": "application/json" } });
-//             dispatch(setIsHotelUpdated(true));
-//         } catch (err) {
-//             dispatch(setError(err.response.data.message));
-        
-//         }
-//     }
+
   
 

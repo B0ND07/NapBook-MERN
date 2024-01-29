@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.route("/:user").get(getBookings);
 router.route("/book").post(createBooking);
-router.route("/allbookings/:booked").get(getAllBookings);
+router.route("/allbookings/booked").get(getAllBookings);
 
 module.exports = router;

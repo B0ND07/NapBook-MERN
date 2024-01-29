@@ -1,11 +1,11 @@
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-  } from "@mui/material";
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import React, { useEffect } from "react";
 import AdminDashboard from "./AdminDashboard";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,24 +41,25 @@ const Allbookings = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {Array.isArray(bookings) && bookings?.map((booking) => (
-                  <React.Fragment key={booking._id}>
-                    {booking.dates.map((date) => (
-                      <TableRow key={date._id}>
-                        <TableCell align="center">{booking._id}</TableCell>
-                        <TableCell align="center">{booking.user}</TableCell>
-                        <TableCell align="center">{booking.hotel}</TableCell>
-                        <TableCell align="center">{booking.roomno}</TableCell>
-                        <TableCell align="center">
-                          {new Date(date.startDate).toLocaleDateString()}
-                        </TableCell>
-                        <TableCell align="center">
-                          {new Date(date.endDate).toLocaleDateString()}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </React.Fragment>
-                ))}
+                {Array.isArray(bookings) &&
+                  bookings?.map((booking) => (
+                    <React.Fragment key={booking._id}>
+                      {booking.dates.map((date) => (
+                        <TableRow key={date._id}>
+                          <TableCell align="center">{booking._id}</TableCell>
+                          <TableCell align="center">{booking.user}</TableCell>
+                          <TableCell align="center">{booking.hotel}</TableCell>
+                          <TableCell align="center">{booking.roomno}</TableCell>
+                          <TableCell align="center">
+                            {new Date(date.startDate).toLocaleDateString()}
+                          </TableCell>
+                          <TableCell align="center">
+                            {new Date(date.endDate).toLocaleDateString()}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </React.Fragment>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>

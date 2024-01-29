@@ -7,9 +7,14 @@ exports.updateUser = async (req, res) => {
   res.json(updateUser);
 };
 
+// exports.deleteUser = async (req, res) => {
+//   const id = req.params.id;
+//   await User.findByIdAndDelete(id);
+//   res.json("deleted");
+// };
 exports.deleteUser = async (req, res) => {
-  const id = req.params.id;
-  await User.findByIdAndDelete(id);
+  const usernameToDelete = req.params.username;
+  await User.findOneAndDelete({ username: usernameToDelete });
   res.json("deleted");
 };
 
@@ -24,4 +29,22 @@ exports.getUsers = async (req, res) => {
   res.json(getUsers);
 };
 
+exports.updateUsers = async (req, res, next) => {
+  const { username, email } = req.body;
+  const oldusername = req.params.username;
 
+  const user = await User.findOneAndUpdate(
+    { username: oldusername },
+    {
+      $set: {
+        username,
+        email,
+      },
+    },
+    { new: true }
+  );
+
+  res.status(200).json({
+    user,
+  });
+};
