@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { registerAction } from '../redux/actions/userActions'
 import { useNavigate } from 'react-router-dom'
 
@@ -16,6 +16,13 @@ const Register = () => {
     dispatch(registerAction({username,password,email}))
     navigate("/")
   }
+
+  const {isAuthenticated} = useSelector((state) => state.userState);
+  useEffect(() => {
+   if (isAuthenticated) {
+       navigate('/');
+   }
+ }, [dispatch, isAuthenticated, navigate])
 
   return (
     <div>

@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setUser } from "./redux/slices/userSlice";
 import { getUserAction } from "./redux/actions/userActions";
@@ -19,8 +19,12 @@ import Allbookings from "./pages/Allbookings";
 import UpdateHotel from "./pages/UpdateHotel";
 import CreateHotel from "./pages/CreateHotel";
 import DefaultDashboard from "./pages/DefaultDashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./pages/NotFound";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserAction());
@@ -32,24 +36,87 @@ function App() {
         <Navbar />
         <hr className="border-t border-grey-400" />
         <Routes>
-
-           <Route path="/test" element={<DefaultDashboard/>}/> 
-
-
+          <Route
+            path="/test"
+            element={
+              <AdminRoute>
+                <DefaultDashboard />
+              </AdminRoute>
+            }
+          />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/hotel/:id" element={<Hotel />} />
-          <Route path="/room/:id/book" element={<><Booking /></>}/>
-          <Route path="/account" element={<Account />} />
-          <Route path="/bookings" element={<Bookings />} />
-          <Route path="/me/update" element={<UpdateProfile />} />
+          <Route
+            path="/room/:id/book"
+            element={
+              <>
+                <ProtectedRoute>
+                  <Booking />
+                </ProtectedRoute>
+              </>
+            }
+          />
+          <Route path="/account" element={ <ProtectedRoute><Account /></ProtectedRoute>} />
+          <Route
+            path="/bookings"
+            element={
+              <ProtectedRoute>
+                <Bookings />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/me/update"
+            element={
+              <ProtectedRoute>
+                <UpdateProfile />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/admin/dashboard" element={<DefaultDashboard />} />
-          <Route path="/admin/users" element={<AllUsers />} />
-          <Route path="/admin/hotels" element={<AllHotels />} />
-          <Route path="/admin/bookings" element={<Allbookings />} />
-          <Route path="/admin/hotel/:id/update" element={<UpdateHotel />} />
-          <Route path="/admin/hotel/create" element={<CreateHotel />} />
+          <Route
+            path="/admin/users"
+            element={
+              <AdminRoute>
+                <AllUsers />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/hotels"
+            element={
+              <AdminRoute>
+                <AllHotels />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/bookings"
+            element={
+              <AdminRoute>
+                <Allbookings />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/hotel/:id/update"
+            element={
+              <AdminRoute>
+                <UpdateHotel />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/hotel/create"
+            element={
+              <AdminRoute>
+                <CreateHotel />
+              </AdminRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </BrowserRouter>

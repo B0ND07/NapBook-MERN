@@ -60,7 +60,8 @@ export const getUserAction = () => async (dispatch) => {
   try {
     const { data } = await axios.get("http://localhost:5006/api/auth/me");
     console.log(data);
-    dispatch(setUser(data.user));
+    if(data.user){
+    dispatch(setUser(data.user));}
   } catch (err) {
     console.log(err);
   }

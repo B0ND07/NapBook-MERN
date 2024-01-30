@@ -7,12 +7,20 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const error = useSelector((state) => state.userState.error);
- 
-
+  const {error,isAuthenticated} = useSelector((state) => state.userState);
+ const navigate=useNavigate()
+ console.log("auth",isAuthenticated)
+ useEffect(() => {
+  if (isAuthenticated) {
+      navigate('/');
+  }
+}, [dispatch, isAuthenticated, navigate])
   const loginHandler = (e) => {
     e.preventDefault();
-    dispatch(loginAction({ username, password }));
+   dispatch(loginAction({ username, password }));
+   
+    
+
    
   };
  
