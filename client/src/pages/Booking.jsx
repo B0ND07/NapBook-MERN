@@ -24,7 +24,7 @@ const Booking = () => {
   const [dates, setDates] = useState([]);
 
   const [isDateOpen, setIsDateOpen] = useState(false);
-  const [disableDates, setDisableDates] = useState([]);
+  const [disableDates] = useState([]);
   const [dateRange, setDateRange] = useState([
     {
       startDate: new Date(),
@@ -79,7 +79,7 @@ const Booking = () => {
       })
     );
     alert("booked successfully");
-    navigate("/")
+    navigate("/");
     console.log("roomno", roomno);
   };
 
@@ -138,22 +138,20 @@ const Booking = () => {
                 <span className="font-mono">{hotel?.name}</span>
               </div>
               <div className="ml-8 flex mb-4">
-                <span className="font-medium inline-block  w-28">
-                  hotel No:
-                </span>
-                <span className="font-mono">{hotel?.number}</span>
+                <span className="font-medium inline-block  w-28">Rating:</span>
+                <span className="font-mono">Good</span>
               </div>
               <div className="ml-8 flex items-center mb-4">
                 <span className="font-medium inline-block  w-28">
                   hotel city:
                 </span>
-                <span className="font-mono">{hotel?.type}</span>
+                <span className="font-mono">{hotel?.city}</span>
               </div>
               <div className="ml-8 flex mb-4">
                 <span className="font-medium inline-block w-28">
-                  Price(per day):
+                  Restaurant:
                 </span>
-                <span className="font-mono">{hotel?.pricePerDay} taka</span>
+                <span className="font-mono"> Available</span>
               </div>
             </div>
           </div>
@@ -213,9 +211,7 @@ const Booking = () => {
                 </Modal>
               </div>
               <div className="ml-8 flex mb-4">
-                <span className="font-medium inline-block  w-28">
-                  Price({dates?.length}):
-                </span>
+                <span className="font-medium inline-block w-28">Price:</span>
                 <span className="font-mono">pricesss taka</span>
               </div>
               <div className="ml-8 flex mb-4">
@@ -242,8 +238,8 @@ const Booking = () => {
                 </select>
               </div>
               <div className="ml-8 flex mb-4">
-                <span className="font-medium inline-block w-28">
-                  Total Price:
+                <span className="font-medium inline-block  w-28">
+                  Total Price({dates?.length}Day):
                 </span>
                 <span className="font-mono">tootalpricee taka</span>
               </div>

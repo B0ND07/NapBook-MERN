@@ -24,7 +24,7 @@ const DisplayHotels = ({ hotel }) => {
             {hotel.name}
           </Link>
           <h4 className="font-medium">jt</h4>
-          <p className="my-3">{hotel.description}</p>
+          {/* <p className="my-3">{hotel.description}</p> */}
           <span className="font-medium text-gray-700">
             <LocationOnIcon className="mb-1" />
             {hotel.city}

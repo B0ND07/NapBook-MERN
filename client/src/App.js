@@ -4,15 +4,15 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { setUser } from "./redux/slices/userSlice";
+
 import { getUserAction } from "./redux/actions/userActions";
 import Booking from "./pages/Booking";
 import Account from "./pages/Account";
 import Bookings from "./pages/Bookings";
 import UpdateProfile from "./pages/UpdateProfile";
-import AdminDashboard from "./pages/AdminDashboard";
+
 import AllUsers from "./pages/AllUsers";
 import AllHotels from "./pages/AllHotels";
 import Allbookings from "./pages/Allbookings";
@@ -44,7 +44,7 @@ function App() {
               </AdminRoute>
             }
           />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<><Home /></>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/hotel/:id" element={<Hotel />} />

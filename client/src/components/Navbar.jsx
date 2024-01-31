@@ -23,7 +23,7 @@ const Navbar = () => {
         <Link to="/">
           <h3
             onClick={() => dispatch(setHasSearched(false))}
-            className="text-red-400 text-3xl font-bold cursor-pointer hover:text-red-500"
+            className="text-red-500 text-3xl font-bold cursor-pointer hover:text-red-400"
           >
             NapBook
           </h3>
@@ -52,7 +52,7 @@ const Navbar = () => {
             </div>
           </div>
         ) : (
-          <div className="text-red-400 font-medium cursor-pointer">
+          <div className="text-red-500 font-medium cursor-pointer">
             <Link to="/login">Sign In</Link>
           </div>
         )}
