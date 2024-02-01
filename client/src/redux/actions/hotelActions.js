@@ -54,7 +54,7 @@ export const getAllHotelsAction=()=>async(dispatch)=>{
   export const updateHotelAction=(id,url)=>async(dispatch)=>{
     const {data}=await axios.put(`http://localhost:5006/api/hotels/${id}`,url, { headers: { "Content-Type": "application/json" } });
     dispatch(setIsHotelUpdated(true));
-    console.log(data)
+    console.log("image upload",data)
   }
 
   export const deleteHotelAction=(id)=>async()=>{

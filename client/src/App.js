@@ -22,9 +22,12 @@ import DefaultDashboard from "./pages/DefaultDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import AdminRoute from "./components/AdminRoute";
+import Body from "./components/Body";
+import Search from "./components/Search";
+import Footer from "./components/Footer";
+import Carousels from "./components/Carousels";
 
 function App() {
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserAction());
@@ -39,12 +42,20 @@ function App() {
           <Route
             path="/test"
             element={
-              <AdminRoute>
-                <DefaultDashboard />
-              </AdminRoute>
+              
+                <Search />
+          
             }
           />
-          <Route path="/" element={<><Home /></>} />
+          <Route
+            path="/"
+            element={
+              <>
+                <Home />
+                <Body /><Footer/>
+              </>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/hotel/:id" element={<Hotel />} />
@@ -58,7 +69,14 @@ function App() {
               </>
             }
           />
-          <Route path="/account" element={ <ProtectedRoute><Account /></ProtectedRoute>} />
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/bookings"
             element={

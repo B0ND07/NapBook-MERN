@@ -79,7 +79,7 @@ const Login = () => {
             <div>
               <button
                 onClick={loginHandler}
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-red-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
               >
                 Login
               </button>
@@ -88,7 +88,7 @@ const Login = () => {
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{" "}
             <Link to="/register">
-              <span className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              <span className="font-semibold leading-6 text-red-500 hover:text-red-600">
                 Register Now
               </span>
             </Link>

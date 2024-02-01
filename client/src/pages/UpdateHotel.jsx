@@ -20,7 +20,7 @@ import { getHotelAction, updateHotelAction } from "../redux/actions/hotelActions
 
 import AdminDashboard from "./AdminDashboard";
 
-const availableSpecifications = ["Car Parking", "Restaurant", "Free Wi-fi"];
+const availableSpecifications = ["Parking", "Restaurant", "Wi-fi"];
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

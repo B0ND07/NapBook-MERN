@@ -19,10 +19,12 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Button,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import AdminDashboard from "./AdminDashboard";
 import {
+  deleteUserAction,
   getAllUsersAction,
   updateUserRoleAction,
 } from "../redux/actions/userActions";
@@ -43,6 +45,11 @@ const AllUsers = () => {
     dispatch(getAllUsersAction());
     setOpen(!open);
   };
+  const handleDelete = async (e) => {
+  console.log(userRef)
+    dispatch(deleteUserAction(userRef?.username));
+    dispatch(getAllUsersAction());
+  };
 
   return (
     <Fragment>
@@ -60,6 +67,7 @@ const AllUsers = () => {
                     <TableCell align="center">Name</TableCell>
                     <TableCell align="center">Email</TableCell>
                     <TableCell align="center">Admin Access</TableCell>
+                    <TableCell align="center">Delete</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -83,6 +91,11 @@ const AllUsers = () => {
                               <EditIcon fontSize="medium" />
                             </IconButton>
                           </Tooltip>
+                        </TableCell>
+                        <TableCell align="center">
+                          <Button onClick={(e)=>{setUserRef(user);handleDelete()
+                          }}>Remove</Button>
+
                         </TableCell>
                       </TableRow>
                     ))}

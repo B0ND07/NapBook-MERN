@@ -16,14 +16,11 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setIsHotelUpdated } from "../redux/slices/hotelSlice";
-import {
-
-  createHotelAction,
-} from "../redux/actions/hotelActions";
+import { createHotelAction } from "../redux/actions/hotelActions";
 
 import AdminDashboard from "./AdminDashboard";
 
-const availableSpecifications = ["Car Parking", "Restaurant", "Free Wi-fi"];
+const availableSpecifications = ["Parking", "Restaurant", "Wi-fi"];
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -58,7 +55,6 @@ const CreateHotel = () => {
   const { isHotelUpdated } = useSelector((state) => state.hotelState);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     if (isHotelUpdated) {

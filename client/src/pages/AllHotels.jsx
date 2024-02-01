@@ -98,7 +98,9 @@ const AllHotels = () => {
                     <TableRow key={hotel._id} style={{ height: 72.8 }}>
                       <TableCell align="center">{hotel._id}</TableCell>
                       <TableCell align="center">{hotel.name}</TableCell>
-                      <TableCell align="center">{hotel.rooms?hotel.rooms.length:0}</TableCell>
+                      <TableCell align="center">
+                        {hotel.rooms ? hotel.rooms.length : 0}
+                      </TableCell>
                       <TableCell align="center">
                         <IconButton
                           onClick={() => {
@@ -111,7 +113,9 @@ const AllHotels = () => {
                       </TableCell>
                       <TableCell align="center">
                         <IconButton>
-                        <Link to={`/admin/hotel/${hotel._id}/update`}><EditIcon /></Link>
+                          <Link to={`/admin/hotel/${hotel._id}/update`}>
+                            <EditIcon />
+                          </Link>
                         </IconButton>
                       </TableCell>
                       <TableCell align="center">
