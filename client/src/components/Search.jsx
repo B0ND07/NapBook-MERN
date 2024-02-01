@@ -10,7 +10,7 @@ function Search() {
   const dispatch = useDispatch();
   const handleBack = () => {
     dispatch(setHasSearched(false));
-    // setQuery("");
+   
   };
   return (
     <div className="w-full">

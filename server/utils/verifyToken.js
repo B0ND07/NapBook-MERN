@@ -14,7 +14,7 @@ const verifyToken = async(req, res, next) => {
      jwt.verify(accessToken, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
         if (err.name === "TokenExpiredError") {
-          // Handle token expiration by renewing it
+         
           renewToken(req, res)
             .then(() => next())
             .catch((renewError) =>

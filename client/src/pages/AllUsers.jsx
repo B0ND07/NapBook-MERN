@@ -46,7 +46,7 @@ const AllUsers = () => {
     setOpen(!open);
   };
   const handleDelete = async (e) => {
-  console.log(userRef)
+  
     dispatch(deleteUserAction(userRef?.username));
     dispatch(getAllUsersAction());
   };

@@ -9,7 +9,7 @@ const Hotel = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { hotel } = useSelector((state) => state.hotelState);
-  console.log(hotel);
+  
   useEffect(() => {
     dispatch(getHotelAction(id));
   }, [id, dispatch]);

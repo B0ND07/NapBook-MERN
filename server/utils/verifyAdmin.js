@@ -4,7 +4,7 @@ const verifyAdmin = async (req, res, next) => {
   try {
     await verifyToken(req, res, async () => {
       const user = req.user;
-      console.log("userfuck",user)
+  
 
       if (!user) {
         return res.json({ message: "User not found" });

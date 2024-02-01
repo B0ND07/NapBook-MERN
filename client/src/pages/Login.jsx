@@ -9,7 +9,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const {error,isAuthenticated} = useSelector((state) => state.userState);
  const navigate=useNavigate()
- console.log("auth",isAuthenticated)
+ 
  useEffect(() => {
   if (isAuthenticated) {
       navigate('/');

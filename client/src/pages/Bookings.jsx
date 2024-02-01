@@ -23,7 +23,7 @@ const Bookings = () => {
       
     }
   }, [user, dispatch]);
-  console.log("bookings",bookings)
+
 
   return (
     <div>

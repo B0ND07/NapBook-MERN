@@ -24,7 +24,7 @@ const DisplayHotels = ({ hotel }) => {
           >
             {hotel.name}
           </Link>
-          <h4 className="font-medium">jt</h4>
+         <br/>
      
       <Rating name="read-only" value={5} readOnly /><br/>
 

@@ -10,15 +10,13 @@ import {
   Tooltip,
   useMediaQuery,
 } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import MapsHomeWorkSharpIcon from "@mui/icons-material/MapsHomeWorkSharp";
 import AddHomeWorkSharpIcon from "@mui/icons-material/AddHomeWorkSharp";
 import BookmarkAddedSharpIcon from "@mui/icons-material/BookmarkAddedSharp";
 
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 

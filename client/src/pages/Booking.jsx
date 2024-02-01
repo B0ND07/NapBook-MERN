@@ -35,11 +35,11 @@ const Booking = () => {
 
   useEffect(() => {
     dispatch(getHotelAction(id));
-    console.log("sgsg", user);
+    
     setName(user?.username);
     setEmail(user?.email);
   }, [user, id, dispatch]);
-  console.log("hotel.rooms", hotel.rooms);
+ 
 
   useEffect(() => {
     if (hotel?.rooms) {
@@ -61,7 +61,7 @@ const Booking = () => {
   const dateRangeHanler = (item) => {
     setDateRange([item.selection]);
   };
-  console.log(dateRange);
+  
 
   const handleCheckout = () => {
     if (!roomno) {
@@ -75,12 +75,12 @@ const Booking = () => {
         hotel: hotel?.name,
         roomno: roomno,
         dates: dateRange,
-        // hotelname:hotel?.name
+        
       })
     );
     alert("booked successfully");
     navigate("/");
-    console.log("roomno", roomno);
+   
   };
 
   return (
@@ -96,7 +96,7 @@ const Booking = () => {
                   Name:
                 </label>
                 <input
-                  value={name}
+                  defaultValue={name}
                   disabled={true}
                   id="name"
                   type="text"
@@ -108,7 +108,7 @@ const Booking = () => {
                   Email:
                 </label>
                 <input
-                  value={email}
+                  defaultValue={email}
                   id="email"
                   type="email"
                   className="outline-none py-2 px-1 sm:px-2  rounded-md border border-solid border-gray-400 text-gray-700 font-mono"
@@ -170,7 +170,7 @@ const Booking = () => {
                 <span className="font-medium inline-block  w-28">Dates:</span>
                 <button onClick={() => setIsDateOpen(!isDateOpen)}>
                   <textarea
-                    value={dates?.toString()}
+                    defaultValue={dates?.toString()}
                     id="phone"
                     rows={dates.length + 1}
                     cols={10}
@@ -212,7 +212,7 @@ const Booking = () => {
               </div>
               <div className="ml-8 flex mb-4">
                 <span className="font-medium inline-block w-28">Price:</span>
-                <span className="font-mono">pricesss taka</span>
+                <span className="font-mono">billed</span>
               </div>
               <div className="ml-8 flex mb-4">
                 <label className="font-medium inline-block  w-28">
@@ -222,7 +222,7 @@ const Booking = () => {
                   value={roomno}
                   onChange={(e) => setRoomno(e.target.value)}
                 >
-                  <option className="font-mono" value="">
+                  <option className="font-mono" >
                     room no
                   </option>
                   {room.map((roomNumber) => (
@@ -241,7 +241,7 @@ const Booking = () => {
                 <span className="font-medium inline-block  w-28">
                   Total Price({dates?.length}Day):
                 </span>
-                <span className="font-mono">tootalpricee taka</span>
+                <span className="font-mono">billed</span>
               </div>
             </div>
             <div className="px-1 sm:px-3 py-20 flex justify-center sm:justify-end items-center ">

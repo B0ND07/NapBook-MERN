@@ -25,7 +25,7 @@ import AdminRoute from "./components/AdminRoute";
 import Body from "./components/Body";
 import Search from "./components/Search";
 import Footer from "./components/Footer";
-import Carousels from "./components/Carousels";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function App() {
         <hr className="border-t border-grey-400" />
         <Routes>
           <Route
-            path="/test"
+            path="/search"
             element={
               
                 <Search />
