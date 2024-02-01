@@ -58,7 +58,7 @@ export const logoutAction = () => async (dispatch) => {
 
 export const getUserAction = () => async (dispatch) => {
   try {
-    const { data } = await axios.get("http://localhost:5006/api/auth/me");
+    const { data } = await axios.get("project-api-indol.vercel.app/api/auth/me");
     console.log(data);
     if(data.user){
     dispatch(setUser(data.user));}
