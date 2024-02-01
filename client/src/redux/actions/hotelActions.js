@@ -6,7 +6,7 @@ axios.defaults.withCredentials = true;
 export const getFeturedHotels = () => async (dispatch) => {
     try {
        
-        const { data } = await axios.get('http://localhost:5006/api/hotels/');
+        const { data } = await axios.get('https://project-api-indol.vercel.app/api/hotels/');
         console.log("hotel",data)
         dispatch(setHotels(data));
        
@@ -18,7 +18,7 @@ export const getFeturedHotels = () => async (dispatch) => {
 export const getHotelAction = (id) => async (dispatch) => {
     try {
       
-        const { data } = await axios.get(`http://localhost:5006/api/hotels/${id}`);
+        const { data } = await axios.get(`https://project-api-indol.vercel.app/api/hotels/${id}`);
             console.log("hotel",data)
         dispatch(setHotel(data));
       
@@ -32,7 +32,7 @@ export const getHotelAction = (id) => async (dispatch) => {
 export const getSearchAction = (query) => async (dispatch) => {
     try {
       
-        const { data } = await axios.get(`http://localhost:5006/api/hotels/search/${query}`);
+        const { data } = await axios.get(`https://project-api-indol.vercel.app/api/hotels/search/${query}`);
             console.log("search",data)
         dispatch(SetSearch(data));
         dispatch(setHasSearched(true));
@@ -45,27 +45,27 @@ export const getSearchAction = (query) => async (dispatch) => {
 }
 
 export const getAllHotelsAction=()=>async(dispatch)=>{
-    const {data}=await axios.get("http://localhost:5006/api/hotels/");
+    const {data}=await axios.get("https://project-api-indol.vercel.app/api/hotels/");
     dispatch(setAllHotels(data))
     console.log(data)
   
   }
 
   export const updateHotelAction=(id,url)=>async(dispatch)=>{
-    const {data}=await axios.put(`http://localhost:5006/api/hotels/${id}`,url, { headers: { "Content-Type": "application/json" } });
+    const {data}=await axios.put(`https://project-api-indol.vercel.app/api/hotels/${id}`,url, { headers: { "Content-Type": "application/json" } });
     dispatch(setIsHotelUpdated(true));
     console.log("image upload",data)
   }
 
   export const deleteHotelAction=(id)=>async()=>{
-    const {data}=await axios.delete(`http://localhost:5006/api/hotels/${id}`)
+    const {data}=await axios.delete(`https://project-api-indol.vercel.app/api/hotels/${id}`)
     
     console.log(data)
   }
 
 
   export const createHotelAction=(url)=>async(dispatch)=>{
-    const {data}=await axios.post(`http://localhost:5006/api/hotels/`,url, { headers: { "Content-Type": "application/json" } });
+    const {data}=await axios.post(`https://project-api-indol.vercel.app/api/hotels/`,url, { headers: { "Content-Type": "application/json" } });
     dispatch(setIsHotelUpdated(true));
     console.log(data)
   }

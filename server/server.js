@@ -22,7 +22,7 @@ app.use(express.json());
 // );
 app.use(
   cors({
-    origin: ["https://project-client-azure.vercel.app"],
+    origin: ["https://napbook.vercel.app"],
     credentials: true,
   })
 );

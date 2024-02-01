@@ -19,13 +19,12 @@ import Allbookings from "./pages/Allbookings";
 import UpdateHotel from "./pages/UpdateHotel";
 import CreateHotel from "./pages/CreateHotel";
 import DefaultDashboard from "./pages/DefaultDashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./pages/ProtectedRoute";
 import NotFound from "./pages/NotFound";
-import AdminRoute from "./components/AdminRoute";
+import AdminRoute from "./pages/AdminRoute";
 import Body from "./components/Body";
 import Search from "./components/Search";
-import Footer from "./components/Footer";
-import Carousels from "./components/Carousels";
+import Footer from "./pages/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,20 +38,14 @@ function App() {
         <Navbar />
         <hr className="border-t border-grey-400" />
         <Routes>
-          <Route
-            path="/test"
-            element={
-              
-                <Search />
-          
-            }
-          />
+          <Route path="/test" element={<Search />} />
           <Route
             path="/"
             element={
               <>
                 <Home />
-                <Body /><Footer/>
+                <Body />
+                <Footer />
               </>
             }
           />

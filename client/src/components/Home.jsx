@@ -4,25 +4,20 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import DisplayHotels from "./DisplayHotels";
 import { useDispatch, useSelector } from "react-redux";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import {
   getFeturedHotels,
   getSearchAction,
 } from "../redux/actions/hotelActions";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { setHasSearched } from "../redux/slices/hotelSlice";
-import Carousels from "./Carousels";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { hotels, searchHotel, hasSearched } = useSelector(
-    (state) => state.hotelState
-  );
+  const { hotels } = useSelector((state) => state.hotelState);
   const [query, setQuery] = useState("");
   useEffect(() => {
     dispatch(getFeturedHotels(query));
-  }, [dispatch]);
+  }, [dispatch,query]);
 
   const handleSearch = () => {
     if (query) {
@@ -30,10 +25,7 @@ const Home = () => {
     }
     navigate("/test");
   };
-  const handleBack = () => {
-    dispatch(setHasSearched(false));
-    setQuery("");
-  };
+
 
   return (
     <div>
@@ -64,27 +56,6 @@ const Home = () => {
             </button>
           </div>
         </div>
-
-        {/* {hasSearched ? (
-          <div>
-            <Link to="/" className="text-blue-500 hover:text-blue-700">
-              <ArrowBackIosNewIcon fontSize="small" />{" "}
-              <span onClick={handleBack}>Home</span>
-            </Link> */}
-        {/* <h3 className="my-2">Search Results for {query}:</h3>
-            {Array.isArray(searchHotel) && searchHotel.length > 0 ? (
-              searchHotel.map((hotel) => (
-                <div key={hotel._id} className="w-full md:w-1/2 p-2">
-                  <DisplayHotels key={hotel._id} hotel={hotel} />
-                </div>
-              ))
-            ) : (
-              <p className="flex justify-center items-center h-[50vh] font-medium text-xl md:text-2xl">
-                No hotels found for the specified query.
-              </p>
-            )}
-          </div>
-        ) : ( */}
         <div
           className="rounded-3xl"
           style={{

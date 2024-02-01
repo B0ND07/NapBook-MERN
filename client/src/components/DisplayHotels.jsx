@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AddIcon from "@mui/icons-material/Add";
-import Rating from '@mui/material/Rating';
+import Rating from "@mui/material/Rating";
 
 const DisplayHotels = ({ hotel }) => {
   return (
@@ -25,10 +25,10 @@ const DisplayHotels = ({ hotel }) => {
             {hotel.name}
           </Link>
           <h4 className="font-medium">jt</h4>
-     
-      <Rating name="read-only" value={5} readOnly /><br/>
 
-          {/* <p className="my-3">{hotel.description}</p> */}
+          <Rating name="read-only" value={5} readOnly />
+          <br />
+
           <span className="font-medium text-gray-700">
             <LocationOnIcon className="mb-1" />
             {hotel.city}

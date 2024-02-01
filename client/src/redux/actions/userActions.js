@@ -18,7 +18,7 @@ export const loginAction = (formData) => async (dispatch) => {
 
   try {
     const { data } = await axios.post(
-      "http://localhost:5006/api/auth/login",
+      "https://project-api-indol.vercel.app/api/auth/login",
       formData
     );
     console.log(data.user);
@@ -38,7 +38,7 @@ export const loginAction = (formData) => async (dispatch) => {
 export const registerAction = (formData) => async (dispatch) => {
   try {
     const { data } = await axios.post(
-      "http://localhost:5006/api/auth/register",
+      "https://project-api-indol.vercel.app/api/auth/register",
       formData
     );
     console.log(data);
@@ -48,7 +48,7 @@ export const registerAction = (formData) => async (dispatch) => {
 //logout
 export const logoutAction = () => async (dispatch) => {
   try {
-    await axios.get("http://localhost:5006/api/auth/logout");
+    await axios.get("https://project-api-indol.vercel.app/api/auth/logout");
 
     dispatch(logoutUser());
   } catch (err) {
@@ -69,7 +69,7 @@ export const getUserAction = () => async (dispatch) => {
 
 export const newBookingAction = (formData) => async () => {
   const { data } = await axios.post(
-    `http://localhost:5006/api/bookings/book`,
+    `https://project-api-indol.vercel.app/api/bookings/book`,
     formData
   );
   console.log(data);
@@ -77,7 +77,7 @@ export const newBookingAction = (formData) => async () => {
 
 export const getBookingsAction = (username) => async (dispatch) => {
   const { data } = await axios.get(
-    `http://localhost:5006/api/bookings/${username}`
+    `https://project-api-indol.vercel.app/api/bookings/${username}`
   );
 
   dispatch(setBooking(data.bookings));
@@ -85,13 +85,13 @@ export const getBookingsAction = (username) => async (dispatch) => {
 };
 
 export const getAllUsersAction = () => async (dispatch) => {
-  const { data } = await axios.get("http://localhost:5006/api/users/");
+  const { data } = await axios.get("https://project-api-indol.vercel.app/api/users/");
   dispatch(setUsers(data));
   console.log(data);
 };
 
 export const updateUserRoleAction = (id, role) => async () => {
-  const { data } = await axios.put(`http://localhost:5006/api/users/${id}`, {
+  const { data } = await axios.put(`https://project-api-indol.vercel.app/api/users/${id}`, {
     isAdmin: role,
   });
   console.log(data);
@@ -99,7 +99,7 @@ export const updateUserRoleAction = (id, role) => async () => {
 
 export const getAllBookingsAction = () => async (dispatch) => {
   const { data } = await axios.get(
-    "http://localhost:5006/api/bookings/allbookings/booked"
+    "https://project-api-indol.vercel.app/api/bookings/allbookings/booked"
   );
   console.log("booked", data);
   dispatch(setAllBookings(data.bookings));
@@ -108,7 +108,7 @@ export const getAllBookingsAction = () => async (dispatch) => {
 export const updateUserAction =
   (oldusername, username, email) => async (dispatch) => {
     const { data } = await axios.put(
-      `http://localhost:5006/api/users/updateprofile/${oldusername}`,
+      `https://project-api-indol.vercel.app/api/users/updateprofile/${oldusername}`,
       {
         username: username,
         email: email,
@@ -121,7 +121,7 @@ export const updateUserAction =
   export const deleteUserAction =
   (username) => async (dispatch) => {
     const { data } = await axios.delete(
-      `http://localhost:5006/api/users/delete/${username}`,
+      `https://project-api-indol.vercel.app/api/users/delete/${username}`,
       
     );
     console.log("delete", data);

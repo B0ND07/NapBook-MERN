@@ -75,7 +75,6 @@ const Booking = () => {
         hotel: hotel?.name,
         roomno: roomno,
         dates: dateRange,
-        // hotelname:hotel?.name
       })
     );
     alert("booked successfully");

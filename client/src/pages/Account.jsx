@@ -19,7 +19,7 @@ const Account = () => {
       <div />
       <div className="mx-auto px-4 md:px-10 lg:px-20 xl:px-48 mt-4 flex flex-col md:flex-row justify-between pb-6 h-[calc(100vh-115px)]">
         <div className="w-full h-full mb-6 bg-slate-100 border border-solid border-gray-300 rounded flex flex-col">
-          {/* <img src='' alt="avatar" className="w-32 h-32 mx-auto mt-6" /> */}
+         
           <h2 className="capitalize text-center text-2xl font-semibold mt-6">
             {user?.name}
           </h2>

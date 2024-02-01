@@ -14,16 +14,13 @@ const Bookings = () => {
   const user = useSelector((state) => state.userState.user);
   const bookings = useSelector((state) => state.userState.bookings);
 
-
   const dispatch = useDispatch();
   useEffect(() => {
-  
     if (user?.username) {
       dispatch(getBookingsAction(user.username));
-      
     }
   }, [user, dispatch]);
-  console.log("bookings",bookings)
+  console.log("bookings", bookings);
 
   return (
     <div>
@@ -41,19 +38,23 @@ const Bookings = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-            {bookings?.map((booking) => (
-    <React.Fragment key={booking._id}>
-      {booking.dates.map((date) => (
-        <TableRow key={date._id}>
-          <TableCell align='center'>{booking._id}</TableCell>
-          <TableCell align='center'>{booking.hotel}</TableCell>
-          <TableCell align='center'>{booking.city}</TableCell>
-          <TableCell align='center'>{new Date(date.startDate).toLocaleDateString()}</TableCell>
-          <TableCell align='center'>{new Date(date.endDate).toLocaleDateString()}</TableCell>
-        </TableRow>
-      ))}
-    </React.Fragment>
-  ))}
+              {bookings?.map((booking) => (
+                <React.Fragment key={booking._id}>
+                  {booking.dates.map((date) => (
+                    <TableRow key={date._id}>
+                      <TableCell align="center">{booking._id}</TableCell>
+                      <TableCell align="center">{booking.hotel}</TableCell>
+                      <TableCell align="center">{booking.city}</TableCell>
+                      <TableCell align="center">
+                        {new Date(date.startDate).toLocaleDateString()}
+                      </TableCell>
+                      <TableCell align="center">
+                        {new Date(date.endDate).toLocaleDateString()}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </React.Fragment>
+              ))}
             </TableBody>
           </Table>
         </TableContainer>

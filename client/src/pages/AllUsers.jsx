@@ -46,7 +46,7 @@ const AllUsers = () => {
     setOpen(!open);
   };
   const handleDelete = async (e) => {
-  console.log(userRef)
+    console.log(userRef);
     dispatch(deleteUserAction(userRef?.username));
     dispatch(getAllUsersAction());
   };
@@ -93,9 +93,14 @@ const AllUsers = () => {
                           </Tooltip>
                         </TableCell>
                         <TableCell align="center">
-                          <Button onClick={(e)=>{setUserRef(user);handleDelete()
-                          }}>Remove</Button>
-
+                          <Button
+                            onClick={(e) => {
+                              setUserRef(user);
+                              handleDelete();
+                            }}
+                          >
+                            Remove
+                          </Button>
                         </TableCell>
                       </TableRow>
                     ))}
