@@ -55,9 +55,9 @@ const AllHotels = () => {
       { withCredentials: false }
     );
 
-    const { url } = uploadRes.data;
-    dispatch(updateHotelAction(hotelRef._id, { photos: url }));
-    console.log(url);
+    const { secure_url } = uploadRes.data;
+    dispatch(updateHotelAction(hotelRef._id, { photos: secure_url }));
+    console.log(secure_url);
     console.log(uploadRes.data);
     setOpen(!open);
   };
