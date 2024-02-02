@@ -33,6 +33,7 @@ const verifyToken = async(req, res, next) => {
 };
 
 const renewToken = async(req, res) => {
+  try{
   const refreshToken = req.cookies.refreshToken;
   
   if (!refreshToken) {
@@ -58,6 +59,9 @@ const renewToken = async(req, res) => {
       });
     });
   }
+}catch (error) {
+  res.status(500).json({ error: 'Internal Server Error' });
+}
 };
 
 module.exports = verifyToken;

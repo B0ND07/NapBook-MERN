@@ -1,43 +1,66 @@
 const Hotel = require("../models/HotelSchema");
 
 exports.createHotel = async (req, res) => {
-  const newHotel = req.body;
-  const savedHotel = await Hotel.create(newHotel);
-  res.json(savedHotel);
+  try {
+    const newHotel = req.body;
+    const savedHotel = await Hotel.create(newHotel);
+    res.json(savedHotel);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 exports.updateHotel = async (req, res) => {
-  const updatedHotel = await Hotel.findByIdAndUpdate(
-    req.params.id,
-    { $set: req.body },
-    { new: true }
-  );
-  res.json(updatedHotel);
+  try {
+    const updatedHotel = await Hotel.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true }
+    );
+    res.json(updatedHotel);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 exports.deleteHotel = async (req, res) => {
-  const id = req.params.id;
-  await Hotel.findByIdAndDelete(id);
-  res.json("deleted");
+  try {
+    const id = req.params.id;
+    await Hotel.findByIdAndDelete(id);
+    res.json("deleted");
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 exports.getHotel = async (req, res) => {
-  const id = req.params.id;
-  const getHotel = await Hotel.findById(id);
-  res.json(getHotel);
+  try {
+    const id = req.params.id;
+    const getHotel = await Hotel.findById(id);
+    res.json(getHotel);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 exports.getHotels = async (req, res) => {
-  const updateHotel = await Hotel.find();
-  res.json(updateHotel);
+  try {
+    const updateHotel = await Hotel.find();
+    res.json(updateHotel);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 exports.searchHotels = async (req, res) => {
-  const { query } = req.params;
-  const foundHotels = await Hotel.find({city:query});
-  if (foundHotels.length === 0) {
-    return res.json("No hotels found in the specified city");
+  try {
+    const { query } = req.params;
+    const foundHotels = await Hotel.find({ city: query });
+    if (foundHotels.length === 0) {
+      return res.json("No hotels found in the specified city");
+    }
+    res.json(foundHotels);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
   }
-  res.json(foundHotels);
 };
-

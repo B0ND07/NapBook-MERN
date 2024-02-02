@@ -10,11 +10,12 @@ const DisplayHotels = ({ hotel }) => {
       <div className="md:min-h-60 gap-8 bg-white border rounded-2xl my-4 md:items-center">
         <div className="md:w-2/6 h-full">
           <div className="h-60 w-[100%] md:w-[300%] md:-mr-[21.33px] ">
-            <img
+          <Link
+            to={`/hotel/${hotel._id}`}><img
               src={hotel.photos}
               alt="Not available"
               className="w-[108vw] h-full rounded-t-2xl"
-            />
+            /></Link>
           </div>
         </div>
         <div className="md:w-4/6 mx-4 md:my-6 mb-6">

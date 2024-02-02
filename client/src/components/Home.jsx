@@ -20,8 +20,13 @@ const Home = () => {
   );
   const [query, setQuery] = useState("");
   useEffect(() => {
-    dispatch(getFeturedHotels(query));
-  }, [dispatch]);
+    try {
+      dispatch(getFeturedHotels(query));
+    } catch (err) {
+      console.error('Error fetching featured hotels:', err.message);
+    }
+  }, [dispatch, query]);
+  
 
   const handleSearch = () => {
     if (query) {
@@ -34,7 +39,7 @@ const Home = () => {
   return (
     <div>
       <div className="mx-auto px-4 md:px-10 lg:px-20 xl:px-48 mt-4">
-        <h1 className="text-3xl text-red-500">Where are you Going?</h1>
+        <h1 className="text-4xl font-[500] text-red-500">Where are you Going?</h1>
         <div className="flex flex-col md:flex-row gap-4 mt-4 mb-6">
           <div className="md:w-full h-16 rounded border transition duration-200 cursor-pointer border-gray-400 flex items-center px-6 gap-4 hover:border-red-400 bg-white">
             <FmdGoodIcon
@@ -91,7 +96,7 @@ const Home = () => {
           </div>
         </div>
 
-        <h1 className="text-4xl font-[400] text-red-500 mt-4">
+        <h1 className="text-4xl font-[500] text-red-500 mt-4">
           Popular Hotels
         </h1>
         {hotels && (

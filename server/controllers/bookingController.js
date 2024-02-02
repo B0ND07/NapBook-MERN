@@ -1,12 +1,17 @@
 const Booking = require("../models/BookingSchema");
 
 exports.createBooking = async (req, res) => {
+  try{
   const newRoom = req.body;
   const savedRoom = await Booking.create(newRoom);
   res.json(savedRoom);
+}catch (error) {
+  res.status(500).json({ error: 'Internal Server Error' });
+}
 };
 
 exports.getBookings = async (req, res) => {
+  try{
   const { user } = req.params;
   const bookings = await Booking.find({ user });
 
@@ -15,11 +20,15 @@ exports.getBookings = async (req, res) => {
   }
 
   res.json({ bookings });
+}catch (error) {
+  res.status(500).json({ error: 'Internal Server Error' });
+}
 };
 
 
 
 exports.getAllBookings = async (req, res) => {
+  try{
     // const { Booked } = req.params;
     const bookings = await Booking.find();
   
@@ -28,7 +37,10 @@ exports.getAllBookings = async (req, res) => {
     }
   
     res.json({ bookings });
-  };
+  }catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
   
  
 

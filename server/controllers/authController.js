@@ -16,15 +16,15 @@ exports.register = async (req, res, next) => {
     
     const accessToken = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin,username: user.username, email: user.email },
-      process.env.JWT_SECRET, {expiresIn: '15m'}
+      process.env.JWT_SECRET, {expiresIn: '20m'}
     );
     const refreshToken = jwt.sign({id: user._id, isAdmin: user.isAdmin,username: user.username, email: user.email}, 
       process.env.JWT_REFRESH_SECRET, {expiresIn: '7d'})
 
     const { password, isAdmin, ...otherDetails } = user._doc;
-    res.cookie('accessToken', accessToken, {maxAge: 900000}) //15m
+    res.cookie('accessToken', accessToken, {maxAge: 900000, httpOnly: true, secure: true, sameSite: 'None'}) //15m
     res.cookie('refreshToken', refreshToken, 
-    {maxAge: 86400000, httpOnly: true, secure: true, sameSite: 'strict'}) //7d
+    {maxAge: 86400000, httpOnly: true, secure: true, sameSite: 'None'}) //7d
 return res.json({ user: user });
   } catch (err) {
     res.json(err)
@@ -44,15 +44,15 @@ exports.login = async (req, res, next) => {
 
     const accessToken = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin,username: user.username, email: user.email },
-      process.env.JWT_SECRET, {expiresIn: '10s'}
+      process.env.JWT_SECRET, {expiresIn: '20m'}
     );
     const refreshToken = jwt.sign({id: user._id, isAdmin: user.isAdmin,username: user.username, email: user.email}, 
       process.env.JWT_REFRESH_SECRET, {expiresIn: '50m'})
 
     const { password, isAdmin, ...otherDetails } = user._doc;
-    res.cookie('accessToken', accessToken, {maxAge: 60000})
+    res.cookie('accessToken', accessToken, {maxAge: 60000, httpOnly: true, secure: true, sameSite: 'None'})
     res.cookie('refreshToken', refreshToken, 
-    {maxAge: 300000, httpOnly: true, secure: true, sameSite: 'strict'})
+    {maxAge: 300000, httpOnly: true, secure: true, sameSite: 'None'})
 return res.json({ user: user });
   } catch (err) {
     res.json(err)
@@ -61,6 +61,7 @@ return res.json({ user: user });
 };
 
 exports.logoutUser=async(req,res)=>{
+  try{
   res.cookie("accessToken",null,{
     expires: new Date(Date.now()),
     httpOnly: true
@@ -73,14 +74,21 @@ exports.logoutUser=async(req,res)=>{
     success: true,
     message: "Logged Out"
 })
+}catch (error) {
+  res.status(500).json({ error: 'Internal Server Error' });
 }
+};
 
 exports.reUser = async (req, res, next) => {
+  try{
   res.status(200).json({
     
-      // success: true,
+    
       user: req.user
   })
   console.log("reUser")
+}catch (error) {
+  res.status(500).json({ error: 'Internal Server Error' });
 }
+};
 

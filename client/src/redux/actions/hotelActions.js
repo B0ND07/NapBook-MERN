@@ -13,8 +13,8 @@ axios.defaults.withCredentials = true;
 export const getFeturedHotels = () => async (dispatch) => {
   try {
     const { data } = await axios.get("http://localhost:5006/api/hotels/");
-
-    dispatch(setHotels(data));
+    const popular = data.slice(0, 4);
+    dispatch(setHotels(popular));
   } catch (err) {
     dispatch(setError(err.response.data.message));
   }

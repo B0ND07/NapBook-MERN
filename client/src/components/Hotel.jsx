@@ -56,7 +56,7 @@ const Hotel = () => {
        
 
        {" "}
-       <div className="flex gap-40 justify-center w-full">
+       <div className="flex gap-5 md:gap-40 justify-center w-full">
          <div className="">
            <h2 className="font-semibold text-xl">About Us</h2>
            <ul>
@@ -86,7 +86,7 @@ const Hotel = () => {
          </div>
        </div>
        <div
-         className="flex justify-center gap-20 my-6"
+         className="flex justify-center gap-15 md:gap-20 my-6"
         
        >
          <p>Privacy Notice</p>
