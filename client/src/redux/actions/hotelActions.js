@@ -67,3 +67,7 @@ export const createHotelAction = (url) => async (dispatch) => {
   });
   dispatch(setIsHotelUpdated(true));
 };
+
+export const bookedHotelAction=(formData)=>async()=>{
+  await axios.post('http://localhost:5006/api/hotels/booked',formData);
+}

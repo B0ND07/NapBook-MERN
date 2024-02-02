@@ -5,9 +5,10 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { getHotelAction } from "../redux/actions/hotelActions";
+import { bookedHotelAction, getHotelAction } from "../redux/actions/hotelActions";
 import { addDays, format } from "date-fns";
 import { newBookingAction } from "../redux/actions/userActions";
+import axios from "axios";
 
 const Booking = () => {
   const id = useParams().id;
@@ -78,6 +79,12 @@ const Booking = () => {
         
       })
     );
+
+    dispatch(bookedHotelAction({
+        hotelId: hotel?._id,
+        roomNumber: roomno,
+    }))
+    
     alert("booked successfully");
     navigate("/");
    
