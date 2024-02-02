@@ -67,46 +67,67 @@ export const getUserAction = () => async (dispatch) => {
   }
 };
 
-export const newBookingAction = (formData) => async () => {
-  const { data } = await axios.post(
+export const newBookingAction = (formData) => async (dispatch) => {
+  try{
+  await axios.post(
     `http://localhost:5006/api/bookings/book`,
     formData
   );
+} catch (err) {
+  dispatch(setError(err.response.data.message));
+}
   
 };
 
 export const getBookingsAction = (username) => async (dispatch) => {
+  try{
   const { data } = await axios.get(
     `http://localhost:5006/api/bookings/${username}`
   );
 
   dispatch(setBooking(data.bookings));
+} catch (err) {
+  dispatch(setError(err.response.data.message));
+}
  
 };
 
 export const getAllUsersAction = () => async (dispatch) => {
+  try{
   const { data } = await axios.get("http://localhost:5006/api/users/");
   dispatch(setUsers(data));
+} catch (err) {
+  dispatch(setError(err.response.data.message));
+}
   
 };
 
-export const updateUserRoleAction = (id, role) => async () => {
-  const { data } = await axios.put(`http://localhost:5006/api/users/${id}`, {
+export const updateUserRoleAction = (id, role) => async (dispatch) => {
+  try{
+  await axios.put(`http://localhost:5006/api/users/${id}`, {
     isAdmin: role,
   });
+} catch (err) {
+  dispatch(setError(err.response.data.message));
+}
   
 };
 
 export const getAllBookingsAction = () => async (dispatch) => {
+  try{
   const { data } = await axios.get(
     "http://localhost:5006/api/bookings/allbookings/booked"
   );
 
   dispatch(setAllBookings(data.bookings));
+} catch (err) {
+  dispatch(setError(err.response.data.message));
+}
 };
 
 export const updateUserAction =
   (oldusername, username, email) => async (dispatch) => {
+    try{
     const { data } = await axios.put(
       `http://localhost:5006/api/users/updateprofile/${oldusername}`,
       {
@@ -116,13 +137,20 @@ export const updateUserAction =
     );
     
     dispatch(setUser(data.user));
+  } catch (err) {
+    dispatch(setError(err.response.data.message));
+  }
   };
 
   export const deleteUserAction =
   (username) => async (dispatch) => {
-    const { data } = await axios.delete(
+    try{
+    await axios.delete(
       `http://localhost:5006/api/users/delete/${username}`,
       
     );
+  } catch (err) {
+    dispatch(setError(err.response.data.message));
+  }
    
   };
