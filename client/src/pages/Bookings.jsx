@@ -26,8 +26,11 @@ const Bookings = () => {
 
 
   return (
+ 
     <div>
+       
       <div className="mx-auto px-4 md:px-10 lg:px-20 xl:px-48 mt-4">
+       
         <h2 className="text-2xl font-medium text-center my-8">All Bookings</h2>
         <TableContainer>
           <Table className="">
@@ -36,6 +39,7 @@ const Bookings = () => {
                 <TableCell align="center">id</TableCell>
                 <TableCell align="center">name</TableCell>
                 <TableCell align="center">city</TableCell>
+                <TableCell align="center">room no</TableCell>
                 <TableCell align="center">From</TableCell>
                 <TableCell align="center">To</TableCell>
               </TableRow>
@@ -48,6 +52,7 @@ const Bookings = () => {
           <TableCell align='center'>{booking._id}</TableCell>
           <TableCell align='center'>{booking.hotel}</TableCell>
           <TableCell align='center'>{booking.city}</TableCell>
+          <TableCell align='center'>{booking.roomno}</TableCell>
           <TableCell align='center'>{new Date(date.startDate).toLocaleDateString()}</TableCell>
           <TableCell align='center'>{new Date(date.endDate).toLocaleDateString()}</TableCell>
         </TableRow>
@@ -58,6 +63,7 @@ const Bookings = () => {
           </Table>
         </TableContainer>
       </div>
+
     </div>
   );
 };
