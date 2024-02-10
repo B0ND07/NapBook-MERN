@@ -5,23 +5,24 @@ import "react-date-range/dist/theme/default.css";
 import DisplayHotels from "./DisplayHotels";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getFeturedHotels,
+  getFeaturedHotels,
   getSearchAction,
 } from "../redux/actions/hotelActions";
 import {  useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 
 
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { hotels } = useSelector(
+  const { hotels,isLoading } = useSelector(
     (state) => state.hotelState
   );
   const [query, setQuery] = useState("");
   useEffect(() => {
     try {
-      dispatch(getFeturedHotels(query));
+      dispatch(getFeaturedHotels());
     } catch (err) {
       console.error('Error fetching featured hotels:', err.message);
     }
@@ -99,6 +100,7 @@ const Home = () => {
         <h1 className="text-4xl font-[500] text-red-500 mt-4">
           Popular Hotels
         </h1>
+        {isLoading?<Loader/>:(<>
         {hotels && (
           <div className="flex flex-wrap">
             {hotels.map((hotel) => (
@@ -107,7 +109,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-        )}
+        )}</>)}
       </div>
     </div>
   );

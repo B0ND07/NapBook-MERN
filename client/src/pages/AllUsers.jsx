@@ -28,10 +28,12 @@ import {
   getAllUsersAction,
   updateUserRoleAction,
 } from "../redux/actions/userActions";
+import Loader from "../components/Loader";
 
 const AllUsers = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.userState);
+  const { isLoading } = useSelector((state) => state.hotelState);
   const [open, setOpen] = useState(false);
   const [role, setRole] = useState("");
   const [userRef, setUserRef] = useState(undefined);
@@ -57,6 +59,7 @@ const AllUsers = () => {
       <div className="flex">
         <AdminDashboard />
         <Fragment>
+        
           <div className="w-[80%] sm:w-[60%] md:w-[70%] mx-auto mt-3">
             <h2 className="text-2xl font-medium text-center my-8">All Users</h2>
             <TableContainer component={Paper}>
@@ -70,6 +73,7 @@ const AllUsers = () => {
                     <TableCell align="center">Delete</TableCell>
                   </TableRow>
                 </TableHead>
+                {isLoading?<Loader/>:
                 <TableBody>
                   {Array.isArray(users) &&
                     users?.map((user) => (
@@ -99,7 +103,7 @@ const AllUsers = () => {
                         </TableCell>
                       </TableRow>
                     ))}
-                </TableBody>
+                </TableBody>}
                 <TableFooter>
                   <TableRow></TableRow>
                 </TableFooter>

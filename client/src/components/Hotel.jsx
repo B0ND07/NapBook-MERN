@@ -4,18 +4,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getHotelAction } from "../redux/actions/hotelActions";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import Loader from "./Loader";
 
 const Hotel = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { hotel } = useSelector((state) => state.hotelState);
+  const { hotel,isLoading } = useSelector((state) => state.hotelState);
   
   useEffect(() => {
     dispatch(getHotelAction(id));
   }, [id, dispatch]);
   const navigate = useNavigate();
   return (
+    
     <div className="h-[89vh] bg-gray-200">
+      {isLoading?<Loader/>:(<>
       <div className=" flex flex-col md:min-h-60 gap-8 bg-gray-200 pt-4 md:items-center pb-36">
         <div className="h-60 md:w-7/12">
           <div className="h-60 -mr-[22.34px]">
@@ -49,7 +52,7 @@ const Hotel = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div></>)}
 
 
       <div className=" bg-gray-200 mx-auto px-4 md:px-10 lg:px-20 xl:px-48  ">

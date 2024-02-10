@@ -23,7 +23,7 @@ function Search() {
       <div className="w-full flex flex-wrap">
         {Array.isArray(searchHotel) && searchHotel.length > 0 ? (
           searchHotel.map((hotel) => (
-            <div className="w-full md:w-1/2 p-2">
+            <div key={hotel._id} className="w-full md:w-1/2 p-2">
               <DisplayHotels key={hotel._id} hotel={hotel} />
             </div>
           ))

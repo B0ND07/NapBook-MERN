@@ -4,6 +4,12 @@ const User = require("../models/UserSchema");
 
 exports.register = async (req, res, next) => {
   try {
+    const existingUser = await User.findOne({
+      $or: [{ email: req.body.email }, { username: req.body.username }],
+    });
+    if (existingUser) {
+      return res.status(400).json({ error: 'User with this email or username already exists' });
+    }
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
@@ -56,7 +62,7 @@ exports.login = async (req, res, next) => {
 return res.json({ user: user });
   } catch (err) {
     res.json(err)
-    console.log(err);
+    console.log("fuckyou",err);
   }
 };
 

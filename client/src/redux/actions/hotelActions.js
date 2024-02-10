@@ -7,24 +7,33 @@ import {
   setHotel,
   setHotels,
   setIsHotelUpdated,
+  setLoading,
 } from "../slices/hotelSlice";
 axios.defaults.withCredentials = true;
 
-export const getFeturedHotels = () => async (dispatch) => {
+export const getFeaturedHotels = () => async (dispatch) => {
   try {
+    dispatch(setLoading(true))
     const { data } = await axios.get("http://localhost:5006/api/hotels/");
+    if(data){
     const popular = data.slice(0, 4);
     dispatch(setHotels(popular));
+    dispatch(setLoading(false))
+  
+  }
   } catch (err) {
-    dispatch(setError(err.response.data.message));
+    // dispatch(setError(err.response.data.message));
+    console.log(err)
   }
 };
 
 export const getHotelAction = (id) => async (dispatch) => {
   try {
+    dispatch(setLoading(true))
     const { data } = await axios.get(`http://localhost:5006/api/hotels/${id}`);
 
     dispatch(setHotel(data));
+    dispatch(setLoading(false))
   } catch (err) {
     dispatch(setError(err.response.data.message));
   }
@@ -32,21 +41,25 @@ export const getHotelAction = (id) => async (dispatch) => {
 
 export const getSearchAction = (query) => async (dispatch) => {
   try {
+    dispatch(setLoading(true))
     const { data } = await axios.get(
       `http://localhost:5006/api/hotels/search/${query}`
     );
 
     dispatch(SetSearch(data));
+    dispatch(setLoading(false))
     dispatch(setHasSearched(true));
   } catch (err) {
-    dispatch(setError(err.response.data.message));
+    // dispatch(setError(err.response.data.message));
   }
 };
 
 export const getAllHotelsAction = () => async (dispatch) => {
   try {
+    dispatch(setLoading(true))
     const { data } = await axios.get("http://localhost:5006/api/hotels/");
     dispatch(setAllHotels(data));
+    dispatch(setLoading(false))
   } catch (err) {
     dispatch(setError(err.response.data.message));
   }

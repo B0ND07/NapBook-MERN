@@ -8,6 +8,7 @@ import {
   setUser,
   setUsers,
 } from "../slices/userSlice";
+import { setLoading } from "../slices/hotelSlice";
 
 
 
@@ -17,15 +18,17 @@ axios.defaults.withCredentials = true;
 export const loginAction = (formData) => async (dispatch) => {
 
   try {
+    
     const { data } = await axios.post(
       "http://localhost:5006/api/auth/login",
       formData
     );
     
     if (data.user) {
-
+      dispatch(setLoading(true))
       dispatch(setUser(data.user));
       dispatch(clearError());
+      dispatch(setLoading(false))
 
     } else {
       dispatch(setError("Incorrect username or password"));
@@ -37,20 +40,26 @@ export const loginAction = (formData) => async (dispatch) => {
 //register
 export const registerAction = (formData) => async (dispatch) => {
   try {
+    dispatch(setLoading(true))
     const { data } = await axios.post(
       "http://localhost:5006/api/auth/register",
       formData
     );
- 
+      if(data.user){
     dispatch(setUser(data.user));
-  } catch (err) {}
+    dispatch(setLoading(false))}
+  } catch (err) {
+    dispatch(setError("User already exists"));
+  }
 };
 //logout
 export const logoutAction = () => async (dispatch) => {
   try {
+    dispatch(setLoading(true))
     await axios.get("http://localhost:5006/api/auth/logout");
 
     dispatch(logoutUser());
+    dispatch(setLoading(false))
   } catch (err) {
     console.log(err);
   }
@@ -81,11 +90,13 @@ export const newBookingAction = (formData) => async (dispatch) => {
 
 export const getBookingsAction = (username) => async (dispatch) => {
   try{
+    dispatch(setLoading(true))
   const { data } = await axios.get(
     `http://localhost:5006/api/bookings/${username}`
   );
 
   dispatch(setBooking(data.bookings));
+  dispatch(setLoading(false))
 } catch (err) {
   dispatch(setError(err.response.data.message));
 }
@@ -94,8 +105,10 @@ export const getBookingsAction = (username) => async (dispatch) => {
 
 export const getAllUsersAction = () => async (dispatch) => {
   try{
+    dispatch(setLoading(true))
   const { data } = await axios.get("http://localhost:5006/api/users/");
   dispatch(setUsers(data));
+  dispatch(setLoading(false))
 } catch (err) {
   dispatch(setError(err.response.data.message));
 }
@@ -115,11 +128,13 @@ export const updateUserRoleAction = (id, role) => async (dispatch) => {
 
 export const getAllBookingsAction = () => async (dispatch) => {
   try{
+    dispatch(setLoading(true))
   const { data } = await axios.get(
     "http://localhost:5006/api/bookings/allbookings/booked"
   );
 
   dispatch(setAllBookings(data.bookings));
+  dispatch(setLoading(false))
 } catch (err) {
   dispatch(setError(err.response.data.message));
 }

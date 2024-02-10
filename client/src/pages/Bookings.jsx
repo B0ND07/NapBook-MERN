@@ -9,9 +9,11 @@ import {
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookingsAction } from "../redux/actions/userActions";
+import Loader from "../components/Loader";
 
 const Bookings = () => {
   const user = useSelector((state) => state.userState.user);
+  const {isLoading} = useSelector((state) => state.hotelState);
   const bookings = useSelector((state) => state.userState.bookings);
 
 
@@ -44,6 +46,7 @@ const Bookings = () => {
                 <TableCell align="center">To</TableCell>
               </TableRow>
             </TableHead>
+            {isLoading?<Loader/>:
             <TableBody>
             {bookings?.map((booking) => (
     <React.Fragment key={booking._id}>
@@ -59,7 +62,7 @@ const Bookings = () => {
       ))}
     </React.Fragment>
   ))}
-            </TableBody>
+            </TableBody>}
           </Table>
         </TableContainer>
       </div>

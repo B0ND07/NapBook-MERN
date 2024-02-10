@@ -10,9 +10,11 @@ import React, { useEffect } from "react";
 import AdminDashboard from "./AdminDashboard";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBookingsAction } from "../redux/actions/userActions";
+import Loader from "../components/Loader";
 
 const Allbookings = () => {
   const bookings = useSelector((state) => state.userState.allbookings);
+  const {isLoading} = useSelector((state) => state.hotelState);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,6 +42,7 @@ const Allbookings = () => {
                   <TableCell align="center">To</TableCell>
                 </TableRow>
               </TableHead>
+              {isLoading?<Loader/>:
               <TableBody>
                 {Array.isArray(bookings) &&
                   bookings?.map((booking) => (
@@ -60,7 +63,7 @@ const Allbookings = () => {
                       ))}
                     </React.Fragment>
                   ))}
-              </TableBody>
+              </TableBody>}
             </Table>
           </TableContainer>
         </div>

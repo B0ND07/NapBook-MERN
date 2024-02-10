@@ -2,30 +2,40 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../redux/actions/userActions";
+import Loader from "../components/Loader";
+import { setLoading } from "../redux/slices/hotelSlice";
+import { setError } from "../redux/slices/userSlice";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const {error,isAuthenticated} = useSelector((state) => state.userState);
+  const {isLoading} = useSelector((state) => state.hotelState);
  const navigate=useNavigate()
  
  useEffect(() => {
   if (isAuthenticated) {
       navigate('/');
   }
+  dispatch(setLoading(false))
 }, [dispatch, isAuthenticated, navigate])
   const loginHandler = (e) => {
     e.preventDefault();
    dispatch(loginAction({ username, password }));
-   
+
+   const timeout = setTimeout(() => {
+    dispatch(setError(undefined));
     
+  }, 5000);
+  return () => clearTimeout(timeout);
 
    
   };
  
   return (
     <div>
+      {isLoading?<Loader/>:
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900 md:text-3xl">
@@ -34,7 +44,7 @@ const Login = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={loginHandler}>
             {error && (
               <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
                 <p>{error}</p>
@@ -78,7 +88,7 @@ const Login = () => {
 
             <div>
               <button
-                onClick={loginHandler}
+                type="submit"
                 className="flex w-full justify-center rounded-md bg-red-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
               >
                 Login
@@ -94,7 +104,7 @@ const Login = () => {
             </Link>
           </p>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

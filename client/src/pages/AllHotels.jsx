@@ -29,10 +29,11 @@ import {
   updateHotelAction,
 } from "../redux/actions/hotelActions";
 import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
 
 const AllHotels = () => {
   const [file, setFile] = useState("");
-  const allhotels = useSelector((state) => state.hotelState.allhotels);
+  const {allhotels, isLoading} = useSelector((state) => state.hotelState);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -93,6 +94,7 @@ const AllHotels = () => {
                     <TableCell align="center">Details</TableCell>
                   </TableRow>
                 </TableHead>
+                {isLoading?<Loader/>:
                 <TableBody>
                   {allhotels?.map((hotel) => (
                     <TableRow key={hotel._id} style={{ height: 72.8 }}>
@@ -138,7 +140,7 @@ const AllHotels = () => {
                       </TableCell>
                     </TableRow>
                   ))}
-                </TableBody>
+                </TableBody>}
               </Table>
             </TableContainer>
             <Dialog
