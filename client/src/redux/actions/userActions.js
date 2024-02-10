@@ -34,7 +34,7 @@ export const loginAction = (formData) => async (dispatch) => {
       dispatch(setError("Incorrect username or password"));
     }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 //register
@@ -72,7 +72,7 @@ export const getUserAction = () => async (dispatch) => {
     if(data.user){
     dispatch(setUser(data.user));}
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 

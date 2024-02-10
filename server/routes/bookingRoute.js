@@ -4,10 +4,11 @@ const {
   createBooking,
   getAllBookings,
 } = require("../controllers/bookingController");
+const isAuthenticated = require("../utils/isAuthenticated");
 const router = express.Router();
 
-router.route("/:user").get(getBookings);
-router.route("/book").post(createBooking);
-router.route("/allbookings/booked").get(getAllBookings);
+router.route("/:user").get(isAuthenticated, getBookings);
+router.route("/book").post(isAuthenticated, createBooking);
+router.route("/allbookings/booked").get(isAuthenticated, getAllBookings);
 
 module.exports = router;

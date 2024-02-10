@@ -1,15 +1,15 @@
 const express=require("express")
 
 const { createHotel, updateHotel, deleteHotel, getHotel, getHotels, searchHotels, bookedRoom } = require("../controllers/hotelController")
-const verifyAdmin = require("../utils/verifyAdmin")
+const isAuthenticated = require("../utils/isAuthenticated")
 
 const router=express.Router()
 
-router.post("/",verifyAdmin,createHotel)
+router.post("/",isAuthenticated,createHotel)
 
-router.put("/:id",verifyAdmin,updateHotel)
+router.put("/:id",isAuthenticated,updateHotel)
 
-router.delete("/:id",verifyAdmin,deleteHotel)
+router.delete("/:id",isAuthenticated,deleteHotel)
 
 router.get("/:id",getHotel)
 

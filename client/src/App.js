@@ -93,7 +93,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/admin/dashboard" element={<DefaultDashboard />} />
+          <Route path="/admin/dashboard" element={<AdminRoute><DefaultDashboard /></AdminRoute>} />
           <Route
             path="/admin/users"
             element={

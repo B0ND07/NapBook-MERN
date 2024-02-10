@@ -18,12 +18,12 @@ export const getFeaturedHotels = () => async (dispatch) => {
     if(data){
     const popular = data.slice(0, 4);
     dispatch(setHotels(popular));
-    dispatch(setLoading(false))
   
   }
+  dispatch(setLoading(false))
   } catch (err) {
     // dispatch(setError(err.response.data.message));
-    console.log(err)
+    // console.log(err)
   }
 };
 

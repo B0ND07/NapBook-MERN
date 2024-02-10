@@ -17,13 +17,13 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import MapsHomeWorkSharpIcon from "@mui/icons-material/MapsHomeWorkSharp";
 import AddHomeWorkSharpIcon from "@mui/icons-material/AddHomeWorkSharp";
 import BookmarkAddedSharpIcon from "@mui/icons-material/BookmarkAddedSharp";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 
 
 const openedMixin = (theme) => ({
-  width: 240,
+  width: 240,height:"89vh",
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,

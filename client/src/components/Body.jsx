@@ -7,9 +7,14 @@ const Body = () => {
     <div className='flex flex-col justify-center items-center md:flex-row  '>
         <div className='w-1/2 md:py-10 '>
         <img alt=""
-              src="https://cdn.sanity.io/images/czqk28jt/prod_bk_us/57382e9feb53d08237fa988a570efdff1602d6ff-912x1267.png?w=650&q=80&fit=max&auto=format" className='h-[60vh] md:mx-28'
+              src="https://cdn.sanity.io/images/czqk28jt/prod_bk_us/57382e9feb53d08237fa988a570efdff1602d6ff-912x1267.png?w=650&q=80&fit=max&auto=format" className='h-[60vh] md:mx-28 hidden md:block'
               
-            ></img></div>
+            ></img>
+            <img alt=""
+              src="https://appinventiv.com/wp-content/uploads/2022/07/How-to-Develop-a-Hotel-Booking-App.webp" height={190} className='h-[40vh] md:mx-28 md:hidden object-cover '
+              
+            ></img>
+            </div>
             <div className='w-1/2  md:py-20'>
             <h1 className='text-[50px] font-bold text-red-600'>
               Save $$$
