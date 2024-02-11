@@ -42,7 +42,6 @@ const AllHotels = () => {
   useEffect(() => {
     dispatch(getAllHotelsAction());
   }, [dispatch]);
-  console.log(allhotels);
 
   const handleUpload = async (e) => {
     e.preventDefault();
