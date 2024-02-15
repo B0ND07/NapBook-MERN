@@ -94,8 +94,13 @@ export const getBookingsAction = (username) => async (dispatch) => {
   const { data } = await axios.get(
     `http://localhost:5006/api/bookings/${username}`
   );
+  const sortedData = data.bookings.sort((a, b) => {
+    const dateAInMillis = (new Date(a.createdAt)).getTime();
+    const dateBInMillis = (new Date(b.createdAt)).getTime();
+    return dateBInMillis - dateAInMillis;
+  });
 
-  dispatch(setBooking(data.bookings));
+  dispatch(setBooking(sortedData));
   dispatch(setLoading(false))
 } catch (err) {
   dispatch(setError(err.response.data.message));
@@ -127,17 +132,24 @@ export const updateUserRoleAction = (id, role) => async (dispatch) => {
 };
 
 export const getAllBookingsAction = () => async (dispatch) => {
-  try{
-    dispatch(setLoading(true))
-  const { data } = await axios.get(
-    "http://localhost:5006/api/bookings/allbookings/booked"
-  );
+  try {
+    dispatch(setLoading(true));
 
-  dispatch(setAllBookings(data.bookings));
-  dispatch(setLoading(false))
-} catch (err) {
-  dispatch(setError(err.response.data.message));
-}
+    const { data } = await axios.get("http://localhost:5006/api/bookings/allbookings/booked");
+
+    
+    const sortedData = data.bookings.sort((a, b) => {
+      const dateAInMillis = (new Date(a.createdAt)).getTime();
+      const dateBInMillis = (new Date(b.createdAt)).getTime();
+      return dateBInMillis - dateAInMillis;
+    });
+
+   
+    dispatch(setAllBookings(sortedData));
+    dispatch(setLoading(false));
+  } catch (err) {
+    dispatch(setError(err.response.data.message));
+  }
 };
 
 export const updateUserAction =
