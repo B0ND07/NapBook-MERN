@@ -1,4 +1,5 @@
 const Booking = require("../models/BookingSchema");
+const Stripe = require('stripe');
 
 exports.createBooking = async (req, res) => {
   try{
@@ -41,6 +42,34 @@ exports.getAllBookings = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+exports.getCheckOutSession=async(req,res)=>{
+  const stripe=new Stripe(process.env.STRIPE_SECRET_KEY)
+
+
+  const session=await stripe.checkout.sessions.create({
+    payment_method_types:['card'],
+    mode:'payment',
+    success_url:`${process.env.CLIENT_URL}`,
+    cancel_url:`${process.env.CLIENT_URL}`,
+    customer_email:"user.email@gmail.com",
+    line_items:[
+      {
+        price_data:{
+          currency:'inr',
+          unit_amount:500*100,
+          product_data:{
+            name:"Hotel",
+            description:"Book your room",
+          }
+        },
+        quantity:1
+      }
+    ]
+
+  })
+  res.json({message:"success",session})
+}
   
  
 

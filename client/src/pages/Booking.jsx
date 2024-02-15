@@ -18,7 +18,7 @@ const Booking = () => {
   const [roomno, setRoomno] = useState();
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -64,11 +64,20 @@ const Booking = () => {
   };
   
 
-  const handleCheckout = () => {
+  const handleCheckout = async() => {
     if (!roomno) {
       alert("Please select a room number before checkout");
       return;
     }
+    //stripe
+    const res=await axios.post("http://localhost:5006/api/bookings/payment")
+    console.log(res);
+    
+
+    if(res.data.session.url){
+      window.location.href=res.data.session.url
+    }
+
     dispatch(
       newBookingAction({
         user: name,
@@ -85,8 +94,8 @@ const Booking = () => {
         roomNumber: roomno,
     }))
     
-    alert("booked successfully");
-    navigate("/");
+    // alert("booked successfully");
+    // navigate("/");
    
   };
 

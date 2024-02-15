@@ -30,7 +30,7 @@ exports.register = async (req, res, next) => {
 
     const options = {
       expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
-      httpOnly: true,
+      httpOnly: true,secure: true, sameSite: 'None'
     };
     res.cookie("token", token, options);
 
@@ -59,7 +59,7 @@ exports.login = async (req, res, next) => {
 
     const options = {
       expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
-      httpOnly: true,
+      httpOnly: true,secure: true, sameSite: 'None'
     };
     res.cookie("token", token, options);
 

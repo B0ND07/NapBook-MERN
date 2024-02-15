@@ -11,7 +11,7 @@ const Body = () => {
               
             ></img>
             <img alt=""
-              src="https://appinventiv.com/wp-content/uploads/2022/07/How-to-Develop-a-Hotel-Booking-App.webp" height={190} className='h-[40vh] md:mx-28 md:hidden object-cover '
+              src="https://appinventiv.com/wp-content/uploads/2022/07/How-to-Develop-a-Hotel-Booking-App.webp" height={190}  className='h-[40vh] md:mx-28 md:hidden'
               
             ></img>
             </div>
@@ -30,12 +30,12 @@ const Body = () => {
             
     </div>
     <div className='mb-10 h-[250px] flex justify-center items-center  bg-red-500 pb-4'>
-          <div>
-        <h1 className="text-2xl mx-28 md:mx-0 md:text-4xl font-semibold  ">Save time, save money!</h1>
-        <p className="my-2 mx-28 md:mx-10">Sign up and we'll send the best deals to you</p>
+          <div className='flex flex-col justify-center items-center'>
+        <h1 className="text-2xl  md:text-4xl font-semibold">Save time, save money!</h1>
+        <p className="my-2 ">Sign up and we'll send the best deals to you</p>
         <div className="h-10">
-        <input className="h-10 mx-20 md:mx-0 border-neutral-600 rounded px-2" type="text" placeholder="Email address"/>
-        <button className=" bg-black rounded font-medium w-24 !text-white md:w-24 lg:w-32 md:h-full h-10 mx-40 md:mx-2 mt-1">Subscribe </button>
+        <input className="h-10 border-neutral-600 rounded px-2" type="text" placeholder="Email address"/>
+        <button className=" bg-black rounded font-medium w-24 !text-white md:w-24 lg:w-32 md:h-full h-10  mt-1 mx-2">Subscribe </button>
         </div>
 
         </div>
