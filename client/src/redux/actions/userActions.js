@@ -76,17 +76,17 @@ export const getUserAction = () => async (dispatch) => {
   }
 };
 
-export const newBookingAction = (formData) => async (dispatch) => {
-  try{
-  await axios.post(
-    `http://localhost:5006/api/bookings/book`,
-    formData
-  );
-} catch (err) {
-  dispatch(setError(err.response.data.message));
-}
+// export const newBookingAction = (formData) => async (dispatch) => {
+//   try{
+//   await axios.post(
+//     `http://localhost:5006/api/bookings/book`,
+//     formData
+//   );
+// } catch (err) {
+//   dispatch(setError(err.response.data.message));
+// }
   
-};
+// };
 
 export const getBookingsAction = (username) => async (dispatch) => {
   try{

@@ -10,6 +10,7 @@ import { addDays, format } from "date-fns";
 import { newBookingAction } from "../redux/actions/userActions";
 import axios from "axios";
 
+
 const Booking = () => {
   const id = useParams().id;
   const user = useSelector((state) => state.userState.user);
@@ -18,7 +19,7 @@ const Booking = () => {
   const [roomno, setRoomno] = useState();
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -69,30 +70,36 @@ const Booking = () => {
       alert("Please select a room number before checkout");
       return;
     }
-    //stripe
-    const res=await axios.post("http://localhost:5006/api/bookings/payment")
+    // stripe
+    const res=await axios.post(`http://localhost:5006/api/bookings/payment/${hotel._id}`,{user: name,
+        hotelId:hotel?._id,
+        city: hotel?.city,
+        hotel: hotel?.name,
+        roomno: roomno,
+        dates: dateRange})
     console.log(res);
     
 
     if(res.data.session.url){
       window.location.href=res.data.session.url
     }
+   
 
-    dispatch(
-      newBookingAction({
-        user: name,
-        city: hotel?.city,
-        hotel: hotel?.name,
-        roomno: roomno,
-        dates: dateRange,
+    // dispatch(
+    //   newBookingAction({
+    //     user: name,
+    //     city: hotel?.city,
+    //     hotel: hotel?.name,
+    //     roomno: roomno,
+    //     dates: dateRange,
         
-      })
-    );
+    //   })
+    // );
 
-    dispatch(bookedHotelAction({
-        hotelId: hotel?._id,
-        roomNumber: roomno,
-    }))
+    // dispatch(bookedHotelAction({
+    //     hotelId: hotel?._id,
+    //     roomNumber: roomno,
+    // }))
     
     // alert("booked successfully");
     // navigate("/");

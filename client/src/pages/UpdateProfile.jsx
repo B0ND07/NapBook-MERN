@@ -12,7 +12,6 @@ const UpdateProfile = () => {
   const [username, setUsername] = useState("");
   const [oldusername, setOldusername] = useState("")
   const [email, setEmail] = useState("");
-  console.log(user);
   const navigate=useNavigate()
   const handleUpdate = () => {
    

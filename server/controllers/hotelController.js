@@ -65,16 +65,16 @@ exports.searchHotels = async (req, res) => {
   }
 };
 
-exports.bookedRoom=async(req,res)=>{
-  const { hotelId, roomNumber } = req.body;
-  try{
-    const hotel = await Hotel.findById(hotelId);
-    hotel.rooms = hotel.rooms.filter(room => room !== roomNumber);
-    await hotel.save();
-    res.json({ message: 'Room removed successfully' });
+// exports.bookedRoom=async(req,res)=>{
+//   const { hotelId, roomNumber } = req.body;
+//   try{
+//     const hotel = await Hotel.findById(hotelId);
+//     hotel.rooms = hotel.rooms.filter(room => room !== roomNumber);
+//     await hotel.save();
+//     res.json({ message: 'Room removed successfully' });
 
-  }catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}
+//   }catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// }

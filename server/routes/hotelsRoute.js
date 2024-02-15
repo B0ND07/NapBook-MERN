@@ -18,7 +18,7 @@ router.get("/",getHotels)
 
 router.get("/search/:query",searchHotels)
 
-router.post("/booked",bookedRoom)
+// router.post("/booked",bookedRoom)
 
 
 
