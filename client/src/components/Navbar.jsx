@@ -11,6 +11,8 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     dispatch(logoutAction());
+    if(user){
+    window.open("http://localhost:5006/logout","_self")}
     navigate("/");
   };
   const accountHandler = () => {

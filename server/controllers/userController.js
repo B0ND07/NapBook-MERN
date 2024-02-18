@@ -1,3 +1,4 @@
+const Booking = require("../models/BookingSchema");
 const User = require("../models/UserSchema");
 
 exports.updateUser = async (req, res) => {
@@ -20,6 +21,8 @@ exports.deleteUser = async (req, res) => {
   try{
   const usernameToDelete = req.params.username;
   await User.findOneAndDelete({ username: usernameToDelete });
+  await Booking.findOneAndDelete({ user: usernameToDelete });
+  await 
   res.json("deleted");
 }catch (error) {
   res.status(500).json({ error: 'Internal Server Error' });

@@ -12,7 +12,7 @@ router.delete("/:id",verifyAdmin,deleteUser)
 router.get("/:id",isAuthenticated,getUser)   
 router.get("/",verifyAdmin,getUsers)
 router.put("/updateprofile/:username",isAuthenticated,updateUsers)
-router.delete("/delete/:username",isAuthenticated,deleteUser)
+router.delete("/delete/:username",deleteUser)
 
 
 
