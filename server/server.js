@@ -110,3 +110,4 @@ app.use("/api/users", usersRoute);
 app.use("/api/bookings", bookingRoute);
 
 app.listen(5006, console.log("server is running on http://localhost:5006"));
+
