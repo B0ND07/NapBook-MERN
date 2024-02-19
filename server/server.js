@@ -43,7 +43,7 @@ passport.use(
   new OAuth2Strategy({
       clientID:process.env.CLIENT_ID,
       clientSecret:process.env.CLIENT_SECRET,
-      callbackURL:"/auth/google/callback",
+      callbackURL:process.env.MY_URL+"/auth/google/callback",
       scope:["profile","email"]
   }, async(accessToken,refreshToken,profile,done)=>{
     try {
@@ -81,7 +81,7 @@ app.get('/auth/google',
       [ 'email', 'profile' ] }
 ));
 
-app.get( '/auth/google/callback',
+app.get('/auth/google/callback',
     passport.authenticate( 'google', {
         successRedirect: 'http://localhost:3000',
         failureRedirect: 'http://localhost:3000/login'

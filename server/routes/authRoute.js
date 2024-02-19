@@ -9,7 +9,7 @@ const router=express.Router()
 router.post("/register", register)
 router.post("/login", login)
 router.get("/logout",logoutUser)
-router.get("/me",reUser)
+router.get("/me",isAuthenticated,reUser)
 
 
 
