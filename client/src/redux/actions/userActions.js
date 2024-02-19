@@ -56,7 +56,7 @@ export const registerAction = (formData) => async (dispatch) => {
 export const logoutAction = () => async (dispatch) => {
   try {
     dispatch(setLoading(true))
-    await axios.get("http://localhost:5006/api/auth/logout");
+    await axios.post("http://localhost:5006/api/auth/logout");
 
     dispatch(logoutUser());
     dispatch(setLoading(false))

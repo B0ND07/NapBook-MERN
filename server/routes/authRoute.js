@@ -8,7 +8,7 @@ const router=express.Router()
 
 router.post("/register", register)
 router.post("/login", login)
-router.get("/logout",logoutUser)
+router.post("/logout",logoutUser)
 router.get("/me",isAuthenticated,reUser)
 
 
