@@ -52,6 +52,32 @@ export const registerAction = (formData) => async (dispatch) => {
     dispatch(setError("User already exists"));
   }
 };
+
+//gauth
+export const GloginAction = (formData) => async (dispatch) => {
+
+  try {
+    
+    const { data } = await axios.post(
+      "http://localhost:5006/api/auth/gauth",
+      formData
+    );
+    
+    if (data.user) {
+      dispatch(setLoading(true))
+      dispatch(setUser(data.user));
+      dispatch(clearError());
+      dispatch(setLoading(false))
+
+    } else {
+      dispatch(setError("Incorrect username or password"));
+    }
+  } catch (err) {
+    // console.log(err);
+  }
+};
+
+
 //logout
 export const logoutAction = () => async (dispatch) => {
   try {

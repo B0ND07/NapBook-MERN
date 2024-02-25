@@ -74,6 +74,40 @@ exports.login = async (req, res, next) => {
   }
 };
 
+exports.googleAuth=async(req,res)=>{
+ try{
+  let user = await User.findOne({ email: req.body.email })
+  if (!user) {
+   
+    user = new User({
+      email:req.body.email,
+      username:req.body.email,
+    });
+    await user.save();
+
+  }
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "2d",
+    });
+
+    //expire in two day (that 2 indicates day)
+
+    const options = {
+      expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    };
+    res.cookie("token", token, options);
+
+    res.json({ user });}catch(err){
+      console.log(err);
+    }
+  }
+
+  
+
 exports.logoutUser = async (req, res) => {
   try {
     res.cookie("token", null, {
