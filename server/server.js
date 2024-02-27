@@ -27,4 +27,4 @@ app.use("/api/rooms", roomsRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/bookings", bookingRoute);
 
-app.listen(5006, console.log("server is running on http://localhost:5006"));
+app.listen(process.env.PORT||5006, console.log("server is running on http://localhost:5006"));
