@@ -13,14 +13,13 @@ axios.defaults.withCredentials = true;
 
 export const getFeaturedHotels = () => async (dispatch) => {
   try {
-    dispatch(setLoading(true))
-    const { data } = await axios.get("http://localhost:5006/api/hotels/");
-    if(data){
-    const popular = data.slice(0, 4);
-    dispatch(setHotels(popular));
-  
-  }
-  dispatch(setLoading(false))
+    dispatch(setLoading(true));
+    const { data } = await axios.get("/api/hotels/");
+    if (data) {
+      const popular = data.slice(0, 4);
+      dispatch(setHotels(popular));
+    }
+    dispatch(setLoading(false));
   } catch (err) {
     // dispatch(setError(err.response.data.message));
     // console.log(err)
@@ -29,11 +28,11 @@ export const getFeaturedHotels = () => async (dispatch) => {
 
 export const getHotelAction = (id) => async (dispatch) => {
   try {
-    dispatch(setLoading(true))
-    const { data } = await axios.get(`http://localhost:5006/api/hotels/${id}`);
+    dispatch(setLoading(true));
+    const { data } = await axios.get(`/api/hotels/${id}`);
 
     dispatch(setHotel(data));
-    dispatch(setLoading(false))
+    dispatch(setLoading(false));
   } catch (err) {
     dispatch(setError(err.response.data.message));
   }
@@ -41,13 +40,11 @@ export const getHotelAction = (id) => async (dispatch) => {
 
 export const getSearchAction = (query) => async (dispatch) => {
   try {
-    dispatch(setLoading(true))
-    const { data } = await axios.get(
-      `http://localhost:5006/api/hotels/search/${query}`
-    );
+    dispatch(setLoading(true));
+    const { data } = await axios.get(`/api/hotels/search/${query}`);
 
     dispatch(SetSearch(data));
-    dispatch(setLoading(false))
+    dispatch(setLoading(false));
     dispatch(setHasSearched(true));
   } catch (err) {
     // dispatch(setError(err.response.data.message));
@@ -56,10 +53,10 @@ export const getSearchAction = (query) => async (dispatch) => {
 
 export const getAllHotelsAction = () => async (dispatch) => {
   try {
-    dispatch(setLoading(true))
-    const { data } = await axios.get("http://localhost:5006/api/hotels/");
+    dispatch(setLoading(true));
+    const { data } = await axios.get("/api/hotels/");
     dispatch(setAllHotels(data));
-    dispatch(setLoading(false))
+    dispatch(setLoading(false));
   } catch (err) {
     dispatch(setError(err.response.data.message));
   }
@@ -67,7 +64,7 @@ export const getAllHotelsAction = () => async (dispatch) => {
 
 export const updateHotelAction = (id, url) => async (dispatch) => {
   try {
-    await axios.put(`http://localhost:5006/api/hotels/${id}`, url, {
+    await axios.put(`/api/hotels/${id}`, url, {
       headers: { "Content-Type": "application/json" },
     });
     dispatch(setIsHotelUpdated(true));
@@ -78,7 +75,7 @@ export const updateHotelAction = (id, url) => async (dispatch) => {
 
 export const deleteHotelAction = (id) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:5006/api/hotels/${id}`);
+    await axios.delete(`/api/hotels/${id}`);
   } catch (err) {
     dispatch(setError(err.response.data.message));
   }
@@ -86,7 +83,7 @@ export const deleteHotelAction = (id) => async (dispatch) => {
 
 export const createHotelAction = (url) => async (dispatch) => {
   try {
-    await axios.post(`http://localhost:5006/api/hotels/`, url, {
+    await axios.post(`/api/hotels/`, url, {
       headers: { "Content-Type": "application/json" },
     });
     dispatch(setIsHotelUpdated(true));
@@ -97,7 +94,7 @@ export const createHotelAction = (url) => async (dispatch) => {
 
 // export const bookedHotelAction = (formData) => async (dispatch) => {
 //   try {
-//     await axios.post("http://localhost:5006/api/hotels/booked", formData);
+//     await axios.post("/api/hotels/booked", formData);
 //   } catch (err) {
 //     dispatch(setError(err.response.data.message));
 //   }

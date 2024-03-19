@@ -13,10 +13,15 @@ import {
   styled,
 } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { setIsHotelUpdated } from "../redux/slices/hotelSlice";
-import { getHotelAction, updateHotelAction } from "../redux/actions/hotelActions";
+import {
+  getHotelAction,
+  updateHotelAction,
+} from "../redux/actions/hotelActions";
+import axios from "axios";
 
 import AdminDashboard from "./AdminDashboard";
 
@@ -47,6 +52,7 @@ const CustomSelect = styled(Select)(() => ({
 }));
 
 const UpdateHotel = () => {
+  const [file, setFile] = useState("");
   const [specification, setSpecification] = useState([]);
   const [name, setName] = useState("");
   const [city, setcity] = useState("");
@@ -88,8 +94,20 @@ const UpdateHotel = () => {
     setSpecification(typeof value === "string" ? value.split(",") : value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const formDataFile = new FormData();
+    formDataFile.append("file", file);
+    formDataFile.append("upload_preset", "upload");
+
+    const uploadRes = await axios.post(
+      "https://api.cloudinary.com/v1_1/db6qtb2bu/image/upload",
+      formDataFile,
+      { withCredentials: false }
+    );
+
+    const { secure_url } = uploadRes.data;
 
     const formData = {
       name,
@@ -97,9 +115,10 @@ const UpdateHotel = () => {
       rooms,
       description,
       specification,
+      photos: secure_url,
     };
 
-    dispatch(updateHotelAction(id,formData));
+    dispatch(updateHotelAction(id, formData));
   };
 
   const setRoomValue = (value) => {
@@ -187,6 +206,14 @@ const UpdateHotel = () => {
               onChange={(e) => setDescription(e.target.value)}
               className="border border-solid border-gray-400 py-3 px-5 rounded resize-none focus:outline-none bg-transparent"
             />
+            <Button component="label">
+              <FileUploadIcon color="action" fontSize="large" />
+              <input
+                multiple
+                type="file"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+            </Button>
             <Button
               variant="contained"
               type="submit"

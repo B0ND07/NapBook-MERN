@@ -5,11 +5,13 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { bookedHotelAction, getHotelAction } from "../redux/actions/hotelActions";
+import {
+  bookedHotelAction,
+  getHotelAction,
+} from "../redux/actions/hotelActions";
 import { addDays, format } from "date-fns";
 import { newBookingAction } from "../redux/actions/userActions";
 import axios from "axios";
-
 
 const Booking = () => {
   const id = useParams().id;
@@ -37,11 +39,10 @@ const Booking = () => {
 
   useEffect(() => {
     dispatch(getHotelAction(id));
-    
+
     setName(user?.username);
     setEmail(user?.email);
   }, [user, id, dispatch]);
- 
 
   useEffect(() => {
     if (hotel?.rooms) {
@@ -63,27 +64,26 @@ const Booking = () => {
   const dateRangeHanler = (item) => {
     setDateRange([item.selection]);
   };
-  
 
-  const handleCheckout = async() => {
+  const handleCheckout = async () => {
     if (!roomno) {
       alert("Please select a room number before checkout");
       return;
     }
     // stripe
-    const res=await axios.post(`http://localhost:5006/api/bookings/payment/${hotel._id}`,{user: name,
-        hotelId:hotel?._id,
-        city: hotel?.city,
-        hotel: hotel?.name,
-        roomno: roomno,
-        dates: dateRange})
+    const res = await axios.post(`/api/bookings/payment/${hotel._id}`, {
+      user: name,
+      hotelId: hotel?._id,
+      city: hotel?.city,
+      hotel: hotel?.name,
+      roomno: roomno,
+      dates: dateRange,
+    });
     console.log(res);
-    
 
-    if(res.data.session.url){
-      window.location.href=res.data.session.url
+    if (res.data.session.url) {
+      window.location.href = res.data.session.url;
     }
-   
 
     // dispatch(
     //   newBookingAction({
@@ -92,7 +92,7 @@ const Booking = () => {
     //     hotel: hotel?.name,
     //     roomno: roomno,
     //     dates: dateRange,
-        
+
     //   })
     // );
 
@@ -100,10 +100,9 @@ const Booking = () => {
     //     hotelId: hotel?._id,
     //     roomNumber: roomno,
     // }))
-    
+
     // alert("booked successfully");
     // navigate("/");
-   
   };
 
   return (
@@ -245,9 +244,7 @@ const Booking = () => {
                   value={roomno}
                   onChange={(e) => setRoomno(e.target.value)}
                 >
-                  <option className="font-mono" >
-                    room no
-                  </option>
+                  <option className="font-mono">room no</option>
                   {room.map((roomNumber) => (
                     <option
                       className="font-mono"
