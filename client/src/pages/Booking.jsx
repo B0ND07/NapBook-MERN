@@ -12,6 +12,7 @@ import {
 import { addDays, format } from "date-fns";
 import { newBookingAction } from "../redux/actions/userActions";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Booking = () => {
   const id = useParams().id;
@@ -71,6 +72,7 @@ const Booking = () => {
       return;
     }
     // stripe
+    toast.loading("loading payment page", { id: "payment" });
     const res = await axios.post(`/api/bookings/payment/${hotel._id}`, {
       user: name,
       hotelId: hotel?._id,

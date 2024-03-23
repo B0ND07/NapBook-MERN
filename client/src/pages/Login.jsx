@@ -26,10 +26,10 @@ const Login = () => {
   const loginHandler = (e) => {
     e.preventDefault();
     dispatch(loginAction({ username, password }));
-
+   
     const timeout = setTimeout(() => {
       dispatch(setError(undefined));
-    }, 5000);
+    }, 2000);
     return () => clearTimeout(timeout);
   };
 

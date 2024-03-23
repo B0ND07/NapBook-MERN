@@ -22,6 +22,7 @@ import {
   updateHotelAction,
 } from "../redux/actions/hotelActions";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 import AdminDashboard from "./AdminDashboard";
 
@@ -96,18 +97,20 @@ const UpdateHotel = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let secure_url = null;
+    if (file) {
+      const formDataFile = new FormData();
+      formDataFile.append("file", file);
+      formDataFile.append("upload_preset", "upload");
 
-    const formDataFile = new FormData();
-    formDataFile.append("file", file);
-    formDataFile.append("upload_preset", "upload");
+      var uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/db6qtb2bu/image/upload",
+        formDataFile,
+        { withCredentials: false }
+      );
+    }
 
-    const uploadRes = await axios.post(
-      "https://api.cloudinary.com/v1_1/db6qtb2bu/image/upload",
-      formDataFile,
-      { withCredentials: false }
-    );
-
-    const { secure_url } = uploadRes.data;
+    secure_url  = uploadRes?.data;
 
     const formData = {
       name,

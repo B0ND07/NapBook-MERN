@@ -9,12 +9,14 @@ import {
   setUsers,
 } from "../slices/userSlice";
 import { setLoading } from "../slices/hotelSlice";
+import toast from "react-hot-toast";
 
 axios.defaults.withCredentials = true;
 
 //login
 export const loginAction = (formData) => async (dispatch) => {
   try {
+    toast.loading("signing in", { id: "login" });
     const { data } = await axios.post("/api/auth/login", formData);
 
     if (data.user) {
@@ -22,24 +24,30 @@ export const loginAction = (formData) => async (dispatch) => {
       dispatch(setUser(data.user));
       dispatch(clearError());
       dispatch(setLoading(false));
+      toast.success("signed in success", { id: "login" });
     } else {
       dispatch(setError("Incorrect username or password"));
     }
   } catch (err) {
+    toast.error("signing error", { id: "login" });
     // console.log(err);
   }
 };
 //register
 export const registerAction = (formData) => async (dispatch) => {
   try {
+    toast.loading("signing up", { id: "login" });
     dispatch(setLoading(true));
     const { data } = await axios.post("/api/auth/register", formData);
     if (data.user) {
       dispatch(setUser(data.user));
       dispatch(setLoading(false));
+      toast.success("signup success", { id: "login" });
+    }else{
+      dispatch(setError("User already exists"));
     }
   } catch (err) {
-    dispatch(setError("User already exists"));
+    toast.error("signing error", { id: "login" });
   }
 };
 
@@ -53,10 +61,12 @@ export const GloginAction = (formData) => async (dispatch) => {
       dispatch(setUser(data.user));
       dispatch(clearError());
       dispatch(setLoading(false));
+      toast.success("signed in success", { id: "login" });
     } else {
       dispatch(setError("Incorrect username or password"));
     }
   } catch (err) {
+    toast.error("signing error", { id: "login" });
     // console.log(err);
   }
 };
@@ -69,6 +79,7 @@ export const logoutAction = () => async (dispatch) => {
 
     dispatch(logoutUser());
     dispatch(setLoading(false));
+    toast.success("logged out", { id: "login" });
   } catch (err) {
     console.log(err);
   }

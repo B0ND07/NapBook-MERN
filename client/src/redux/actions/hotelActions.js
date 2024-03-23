@@ -9,6 +9,7 @@ import {
   setIsHotelUpdated,
   setLoading,
 } from "../slices/hotelSlice";
+import toast from "react-hot-toast";
 axios.defaults.withCredentials = true;
 
 export const getFeaturedHotels = () => async (dispatch) => {
@@ -62,14 +63,17 @@ export const getAllHotelsAction = () => async (dispatch) => {
   }
 };
 
-export const updateHotelAction = (id, url) => async (dispatch) => {
+export const updateHotelAction = (id, formData) => async (dispatch) => {
   try {
-    await axios.put(`/api/hotels/${id}`, url, {
+    toast.loading("updating", { id: "hotel" });
+    await axios.put(`/api/hotels/${id}`, formData, {
       headers: { "Content-Type": "application/json" },
     });
     dispatch(setIsHotelUpdated(true));
+    toast.success("success", { id: "hotel" });
   } catch (err) {
     dispatch(setError(err.response.data.message));
+    toast.error("error", { id: "hotel" });
   }
 };
 
@@ -83,12 +87,15 @@ export const deleteHotelAction = (id) => async (dispatch) => {
 
 export const createHotelAction = (url) => async (dispatch) => {
   try {
+    toast.loading("updating", { id: "hotel" });
     await axios.post(`/api/hotels/`, url, {
       headers: { "Content-Type": "application/json" },
     });
     dispatch(setIsHotelUpdated(true));
+    toast.success("success", { id: "hotel" });
   } catch (err) {
     dispatch(setError(err.response.data.message));
+    toast.error("error", { id: "hotel" });
   }
 };
 
