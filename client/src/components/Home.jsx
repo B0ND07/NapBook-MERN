@@ -8,26 +8,21 @@ import {
   getFeaturedHotels,
   getSearchAction,
 } from "../redux/actions/hotelActions";
-import {  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loader from "./Loader";
-
-
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { hotels,isLoading } = useSelector(
-    (state) => state.hotelState
-  );
+  const { hotels, isLoading } = useSelector((state) => state.hotelState);
   const [query, setQuery] = useState("");
   useEffect(() => {
     try {
       dispatch(getFeaturedHotels());
     } catch (err) {
-      console.error('Error fetching featured hotels:', err.message);
+      console.error("Error fetching featured hotels:", err.message);
     }
   }, [dispatch, query]);
-  
 
   const handleSearch = () => {
     if (query) {
@@ -36,11 +31,12 @@ const Home = () => {
     navigate("/search");
   };
 
-
   return (
     <div>
       <div className="mx-auto px-4 md:px-10 lg:px-20 xl:px-48 mt-4">
-        <h1 className="text-4xl font-[500] text-red-500">Where are you Going?</h1>
+        <h1 className="text-4xl font-[500] text-red-500">
+          Where are you Going?
+        </h1>
         <div className="flex flex-col md:flex-row gap-4 mt-4 mb-6">
           <div className="md:w-full h-16 rounded border transition duration-200 cursor-pointer border-gray-400 flex items-center px-6 gap-4 hover:border-red-400 bg-white">
             <FmdGoodIcon
@@ -66,7 +62,6 @@ const Home = () => {
             </button>
           </div>
         </div>
-
 
         <div
           className="rounded-3xl"
@@ -100,17 +95,27 @@ const Home = () => {
         <h1 className="text-4xl font-[500] text-red-500 mt-4">
           Popular Hotels
         </h1>
-        {isLoading?<Loader/>:(<>
-        {hotels && (
-          <div className="flex flex-wrap">
-            {hotels.map((hotel) => (
-              <div key={hotel._id} className="w-full md:w-1/2 p-2">
-                <DisplayHotels hotel={hotel} />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            {hotels && (
+              <div className="flex flex-wrap">
+                {hotels.map((hotel) => (
+                  <div key={hotel._id} className="w-full md:w-1/2 p-2">
+                    <DisplayHotels hotel={hotel} />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        )}</>)}
+            )}
+          </>
+        )}
+        <div className="flex justify-center mb-16">
+         <Link to="/hotels"><button className="bg-red-500  rounded font-medium hover:bg-red-600 w-72 !text-orange-50 md:w-24 lg:w-32 h-12">
+        View More
+      </button></Link></div>
       </div>
+     
     </div>
   );
 };

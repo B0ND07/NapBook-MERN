@@ -25,6 +25,7 @@ import AdminRoute from "./components/AdminRoute";
 import Body from "./components/Body";
 import Search from "./components/Search";
 import Footer from "./components/Footer";
+import Hotels from "./components/Hotels";
 
 
 function App() {
@@ -44,6 +45,14 @@ function App() {
             element={
               
                 <Search />
+          
+            }
+          />
+          <Route
+            path="/hotels"
+            element={
+              
+                <Hotels />
           
             }
           />
