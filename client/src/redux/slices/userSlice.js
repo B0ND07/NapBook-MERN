@@ -1,22 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState={
-    user:undefined,
+const initialState = {
+    user: undefined,
     isAuthenticated: false,
 
     error: undefined,
     success: undefined,
     bookings: undefined,
-    allbookings:undefined,
-    users:undefined
+    allbookings: undefined,
+    users: undefined
 }
 
-const userSlice=createSlice({
-    name:'user',
+const userSlice = createSlice({
+    name: 'user',
     initialState,
-    reducers:{
-        setUser: (state,action)=>{
-            state.user=action.payload;
+    reducers: {
+        setUser: (state, action) => {
+            state.user = action.payload;
             state.isAuthenticated = true;
         },
         setError: (state, action) => {
@@ -32,14 +32,14 @@ const userSlice=createSlice({
         setBooking: (state, action) => {
             state.bookings = action.payload;
         },
-        setUsers:(state,action)=>{
-            state.users=action.payload;
+        setUsers: (state, action) => {
+            state.users = action.payload;
         },
         setAllBookings: (state, action) => {
             state.allbookings = action.payload;
         }
-       
+
     }
 })
-export const { setUser,setError,clearError,logoutUser,setBooking,setAllBookings,setUsers } = userSlice.actions;
+export const { setUser, setError, clearError, logoutUser, setBooking, setAllBookings, setUsers } = userSlice.actions;
 export default userSlice.reducer;

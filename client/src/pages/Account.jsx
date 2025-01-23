@@ -23,16 +23,20 @@ const Account = () => {
           <h2 className="capitalize text-center text-2xl font-semibold mt-6">
             {user?.name}
           </h2>
+          
           <p className="text-center">
             <span className="font-semibold">Email:</span> {user?.email}
           </p>
+
           <hr className="mt-3 border-b border-dashed border-gray-300 mx-2" />
+
           <div className="h-12 flex items-center justify-between px-6 border-b border-solid border-gray-400">
             <Link to="/me/update" className=" text-blue-600">
               Account Setting
             </Link>
             <ArrowForwardIosIcon fontSize="small" className="text-blue-600" />
           </div>
+
           <div className="h-12 flex items-center justify-between px-6 border-b border-solid border-gray-400">
             <Link to="/admin/dashboard">
               <button
@@ -42,17 +46,21 @@ const Account = () => {
                 Admin Panel
               </button>
             </Link>
+
             <ArrowForwardIosIcon
               fontSize="small"
               className={user?.isAdmin ? "text-blue-600" : "text-blue-400"}
             />
           </div>
+
           <div className="h-12 flex items-center justify-between px-6 border-b border-solid border-gray-400 mb-2">
             <Link to="/bookings" className=" text-blue-600">
               Your Bookings
             </Link>
+
             <ArrowForwardIosIcon fontSize="small" className="text-blue-600" />
           </div>
+          
           <div className="mt-auto self-center mb-2 sm:mb-2 md:mb-6">
             <button
               onClick={logoutHandler}

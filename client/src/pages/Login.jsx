@@ -23,10 +23,11 @@ const Login = () => {
     }
     dispatch(setLoading(false));
   }, [dispatch, isAuthenticated, navigate]);
+
   const loginHandler = (e) => {
     e.preventDefault();
     dispatch(loginAction({ username, password }));
-   
+
     const timeout = setTimeout(() => {
       dispatch(setError(undefined));
     }, 2000);
@@ -46,11 +47,13 @@ const Login = () => {
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <GoogleLogin type="standard" width={384}
+            <GoogleLogin
+              type="standard"
+              width={384}
               onSuccess={(credentialResponse) => {
-                const token = credentialResponse.credential; 
+                const token = credentialResponse.credential;
                 const decoded = jwtDecode(token);
-                const email = decoded.email; 
+                const email = decoded.email;
                 dispatch(GloginAction({ email }));
               }}
               onError={() => {
@@ -58,7 +61,6 @@ const Login = () => {
               }}
             />
             <span className="flex justify-center mt-2">OR</span>
-            
 
             <form className="space-y-6" onSubmit={loginHandler}>
               {error && (
@@ -70,6 +72,7 @@ const Login = () => {
                 <label className="block text-sm font-medium leading-6 text-gray-900">
                   Username
                 </label>
+
                 <div className="mt-2">
                   <input
                     value={username}
@@ -89,6 +92,7 @@ const Login = () => {
                     Password
                   </label>
                 </div>
+
                 <div className="mt-2">
                   <input
                     value={password}
@@ -111,6 +115,7 @@ const Login = () => {
                 </button>
               </div>
             </form>
+            
             <p className="mt-10 text-center text-sm text-gray-500">
               Not a member?{" "}
               <Link to="/register">

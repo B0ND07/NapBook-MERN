@@ -23,12 +23,15 @@ const NotFound = () => {
               />
             </svg>
           </p>
+
           <h1 className="mt-3 text-2xl font-semibold text-gray-800">
             Page not found
           </h1>
+
           <p className="mt-4 text-gray-500">
             The page you are looking for doesn't exist.
           </p>
+
           <div className="mt-6 flex w-full shrink-0 items-center gap-x-3 sm:w-auto">
             <button className="flex w-1/2 items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 sm:w-auto">
               <svg
@@ -45,8 +48,10 @@ const NotFound = () => {
                   d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
                 />
               </svg>
+
               <span onClick={() => navigate(-1)}>Go back</span>
             </button>
+            
             <button className="w-1/2 shrink-0 rounded-lg bg-red-500 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-red-600 sm:w-auto">
               <Link to="/">Take me home</Link>
             </button>

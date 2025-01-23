@@ -43,31 +43,31 @@ function App() {
           <Route
             path="/search"
             element={
-              
-                <Search />
-          
+              <Search />
             }
           />
+
           <Route
             path="/hotels"
             element={
-              
-                <Hotels />
-          
+              <Hotels />
             }
           />
+
           <Route
             path="/"
             element={
               <>
                 <Home />
-                <Body /><Footer/>
+                <Body /><Footer />
               </>
             }
           />
+
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/hotel/:id" element={<Hotel />} />
+
           <Route
             path="/room/:id/book"
             element={
@@ -78,6 +78,7 @@ function App() {
               </>
             }
           />
+
           <Route
             path="/account"
             element={
@@ -86,6 +87,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/bookings"
             element={
@@ -94,6 +96,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/me/update"
             element={
@@ -102,7 +105,9 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route path="/admin/dashboard" element={<AdminRoute><DefaultDashboard /></AdminRoute>} />
+
           <Route
             path="/admin/users"
             element={
@@ -111,6 +116,7 @@ function App() {
               </AdminRoute>
             }
           />
+
           <Route
             path="/admin/hotels"
             element={
@@ -119,6 +125,7 @@ function App() {
               </AdminRoute>
             }
           />
+
           <Route
             path="/admin/bookings"
             element={
@@ -127,6 +134,7 @@ function App() {
               </AdminRoute>
             }
           />
+
           <Route
             path="/admin/hotel/:id/update"
             element={
@@ -135,6 +143,7 @@ function App() {
               </AdminRoute>
             }
           />
+
           <Route
             path="/admin/hotel/create"
             element={
@@ -143,6 +152,7 @@ function App() {
               </AdminRoute>
             }
           />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

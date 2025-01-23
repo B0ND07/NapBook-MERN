@@ -22,7 +22,6 @@ import {
   updateHotelAction,
 } from "../redux/actions/hotelActions";
 import axios from "axios";
-import toast from "react-hot-toast";
 
 import AdminDashboard from "./AdminDashboard";
 
@@ -56,7 +55,7 @@ const UpdateHotel = () => {
   const [file, setFile] = useState("");
   const [specification, setSpecification] = useState([]);
   const [name, setName] = useState("");
-  const [city, setcity] = useState("");
+  const [city, setCity] = useState("");
   const [rooms, setRoom] = useState("");
   const [description, setDescription] = useState("");
   const { isHotelUpdated, hotel } = useSelector((state) => state.hotelState);
@@ -73,7 +72,7 @@ const UpdateHotel = () => {
   useEffect(() => {
     if (hotel) {
       setName(hotel.name);
-      setcity(hotel.city);
+      setCity(hotel.city);
       setRoom(hotel.rooms);
       setDescription(hotel.description);
       setSpecification(hotel.specification);
@@ -110,7 +109,7 @@ const UpdateHotel = () => {
       );
     }
 
-    secure_url  = uploadRes?.data;
+    secure_url = uploadRes?.data;
 
     const formData = {
       name,
@@ -139,6 +138,7 @@ const UpdateHotel = () => {
           <h2 className="text-2xl font-medium text-center my-8">
             Update Hotel
           </h2>
+
           <form
             className="flex flex-col gap-4"
             onSubmit={(e) => handleSubmit(e)}
@@ -154,17 +154,19 @@ const UpdateHotel = () => {
                 className="w-40 sm:w-60 md:w-80 ml-3 outline-none bg-transparent"
               />
             </div>
+
             <div className="border border-solid border-gray-400 py-3 px-5 rounded">
               <LocationOnIcon className="text-gray-600" />
               <input
                 type="text"
                 required={true}
                 value={city}
-                onChange={(e) => setcity(e.target.value)}
+                onChange={(e) => setCity(e.target.value)}
                 placeholder="city"
                 className="w-40 sm:w-60 md:w-80 ml-3 outline-none bg-transparent"
               />
             </div>
+
             <div className="border border-solid border-gray-400 py-3 px-5 rounded">
               <AirlineStopsIcon className="text-gray-600" />
               <input
@@ -176,6 +178,7 @@ const UpdateHotel = () => {
                 className="w-40 sm:w-60 md:w-80 ml-3 outline-none bg-transparent"
               />
             </div>
+
             <FormControl className="md:w-[25rem] w-60 sm:w-80">
               <InputLabel
                 id="demo-multiple-checkbox-label"
@@ -183,6 +186,7 @@ const UpdateHotel = () => {
               >
                 Specifications
               </InputLabel>
+
               <CustomSelect
                 labelId="demo-multiple-checkbox-label"
                 id="demo-multiple-checkbox"
@@ -201,6 +205,7 @@ const UpdateHotel = () => {
                 ))}
               </CustomSelect>
             </FormControl>
+
             <textarea
               required={true}
               placeholder="Hotel Description"
@@ -209,14 +214,17 @@ const UpdateHotel = () => {
               onChange={(e) => setDescription(e.target.value)}
               className="border border-solid border-gray-400 py-3 px-5 rounded resize-none focus:outline-none bg-transparent"
             />
+
             <Button component="label">
               <FileUploadIcon color="action" fontSize="large" />
+
               <input
                 multiple
                 type="file"
                 onChange={(e) => setFile(e.target.files[0])}
               />
             </Button>
+
             <Button
               variant="contained"
               type="submit"

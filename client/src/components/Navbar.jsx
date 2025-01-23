@@ -36,6 +36,7 @@ const Navbar = () => {
               </h2>
               <span>Email: {user.email}</span>
             </div>
+
             <div>
               <button
                 onClick={accountHandler}
@@ -43,6 +44,7 @@ const Navbar = () => {
               >
                 Account
               </button>
+              
               <button
                 onClick={logoutHandler}
                 className="  text-gray-50 bg-red-500 hover:text-white-50 hover:bg-red-600 border-solid border py-2 px-2 rounded-lg w-18 text-center transition duration-200 box-border font-medium"

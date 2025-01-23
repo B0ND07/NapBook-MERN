@@ -30,7 +30,7 @@ export const loginAction = (formData) => async (dispatch) => {
     }
   } catch (err) {
     toast.error("signing error", { id: "login" });
-    // console.log(err);
+    console.error(err);
   }
 };
 //register
@@ -43,11 +43,12 @@ export const registerAction = (formData) => async (dispatch) => {
       dispatch(setUser(data.user));
       dispatch(setLoading(false));
       toast.success("signup success", { id: "login" });
-    }else{
+    } else {
       dispatch(setError("User already exists"));
     }
   } catch (err) {
     toast.error("signing error", { id: "login" });
+    console.error(err);
   }
 };
 
@@ -67,7 +68,7 @@ export const GloginAction = (formData) => async (dispatch) => {
     }
   } catch (err) {
     toast.error("signing error", { id: "login" });
-    // console.log(err);
+    console.error(err);
   }
 };
 
@@ -81,7 +82,7 @@ export const logoutAction = () => async (dispatch) => {
     dispatch(setLoading(false));
     toast.success("logged out", { id: "login" });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -93,7 +94,7 @@ export const getUserAction = () => async (dispatch) => {
       dispatch(setUser(data.user));
     }
   } catch (err) {
-    // console.log(err);
+    console.error(err);
   }
 };
 
@@ -123,6 +124,7 @@ export const getBookingsAction = (username) => async (dispatch) => {
     dispatch(setLoading(false));
   } catch (err) {
     dispatch(setError(err.response.data.message));
+    console.error(err);
   }
 };
 
@@ -134,6 +136,7 @@ export const getAllUsersAction = () => async (dispatch) => {
     dispatch(setLoading(false));
   } catch (err) {
     dispatch(setError(err.response.data.message));
+    console.error(err);
   }
 };
 
@@ -144,6 +147,7 @@ export const updateUserRoleAction = (id, role) => async (dispatch) => {
     });
   } catch (err) {
     dispatch(setError(err.response.data.message));
+    console.error(err);
   }
 };
 
@@ -163,6 +167,7 @@ export const getAllBookingsAction = () => async (dispatch) => {
     dispatch(setLoading(false));
   } catch (err) {
     dispatch(setError(err.response.data.message));
+    console.error(err);
   }
 };
 
@@ -180,6 +185,7 @@ export const updateUserAction =
       dispatch(setUser(data.user));
     } catch (err) {
       dispatch(setError(err.response.data.message));
+      console.error(err);
     }
   };
 
@@ -188,5 +194,6 @@ export const deleteUserAction = (username) => async (dispatch) => {
     await axios.delete(`/api/users/delete/${username}`);
   } catch (err) {
     dispatch(setError(err.response.data.message));
+    console.error(err);
   }
 };

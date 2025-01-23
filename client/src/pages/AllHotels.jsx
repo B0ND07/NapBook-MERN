@@ -15,7 +15,6 @@ import {
   DialogContent,
   DialogTitle,
   DialogActions,
-  Button,
   DialogContentText,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
@@ -23,15 +22,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import {
   deleteHotelAction,
   getAllHotelsAction,
-  updateHotelAction,
 } from "../redux/actions/hotelActions";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 
 const AllHotels = () => {
-  const {allhotels, isLoading} = useSelector((state) => state.hotelState);
+  const { allhotels, isLoading } = useSelector((state) => state.hotelState);
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [hotelRef, setHotelRef] = useState(undefined);
 
@@ -64,53 +61,55 @@ const AllHotels = () => {
                     <TableCell align="center">Id</TableCell>
                     <TableCell align="center">Name</TableCell>
                     <TableCell align="center">Rooms</TableCell>
-                  
                     <TableCell align="center">Update</TableCell>
                     <TableCell align="center">Delete</TableCell>
                     <TableCell align="center">Details</TableCell>
                   </TableRow>
                 </TableHead>
-                {isLoading?<Loader/>:
-                <TableBody>
-                  {allhotels?.map((hotel) => (
-                    <TableRow key={hotel._id} style={{ height: 72.8 }}>
-                      <TableCell align="center">{hotel._id}</TableCell>
-                      <TableCell align="center">{hotel.name}</TableCell>
-                      <TableCell align="center">
-                        {hotel.rooms ? hotel.rooms.length : 0}
-                      </TableCell>
-                     
-                      <TableCell align="center">
-                        <IconButton>
-                          <Link to={`/admin/hotel/${hotel._id}/update`}>
-                            <EditIcon />
-                          </Link>
-                        </IconButton>
-                      </TableCell>
-                      <TableCell align="center">
-                        <IconButton
-                          onClick={() => {
-                            setIsDeleteOpen(!isDeleteOpen);
-                            setHotelRef(hotel);
-                          }}
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </TableCell>
+                {isLoading ? (
+                  <Loader />
+                ) : (
+                  <TableBody>
+                    {allhotels?.map((hotel) => (
+                      <TableRow key={hotel._id} style={{ height: 72.8 }}>
+                        <TableCell align="center">{hotel._id}</TableCell>
+                        <TableCell align="center">{hotel.name}</TableCell>
+                        <TableCell align="center">
+                          {hotel.rooms ? hotel.rooms.length : 0}
+                        </TableCell>
 
-                      <TableCell align="center">
-                        <IconButton>
-                          <Link to={`/hotel/${hotel._id}`}>
-                            <LaunchIcon />
-                          </Link>
-                        </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>}
+                        <TableCell align="center">
+                          <IconButton>
+                            <Link to={`/admin/hotel/${hotel._id}/update`}>
+                              <EditIcon />
+                            </Link>
+                          </IconButton>
+                        </TableCell>
+                        <TableCell align="center">
+                          <IconButton
+                            onClick={() => {
+                              setIsDeleteOpen(!isDeleteOpen);
+                              setHotelRef(hotel);
+                            }}
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        </TableCell>
+
+                        <TableCell align="center">
+                          <IconButton>
+                            <Link to={`/hotel/${hotel._id}`}>
+                              <LaunchIcon />
+                            </Link>
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                )}
               </Table>
             </TableContainer>
-          
+
             <Dialog open={isDeleteOpen}>
               <DialogTitle className="text-center">Delete Hotel?</DialogTitle>
               <DialogContent className="m-8">
@@ -118,6 +117,7 @@ const AllHotels = () => {
                   This will delete hotel's room and room's booking details also.
                 </DialogContentText>
               </DialogContent>
+
               <DialogActions className="m-4">
                 <button
                   onClick={() => {
@@ -128,6 +128,7 @@ const AllHotels = () => {
                 >
                   Cancel
                 </button>
+
                 <button
                   className=" border-red-400 text-red-400 hover:text-red-500 hover:border-red-500 hover:bg-red-200 border-solid border py-2 rounded-lg w-24 text-center transition duration-200 box-border"
                   onClick={handleDelete}

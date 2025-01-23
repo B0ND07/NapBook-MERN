@@ -10,7 +10,6 @@ function Search() {
   const dispatch = useDispatch();
   const handleBack = () => {
     dispatch(setHasSearched(false));
-   
   };
   return (
     <div className="w-full">
@@ -18,6 +17,7 @@ function Search() {
         <ArrowBackIosNewIcon fontSize="small" />{" "}
         <span onClick={handleBack}>Home</span>
       </Link>
+      
       <h3 className="my-2">Search Results:</h3>
 
       <div className="w-full flex flex-wrap">

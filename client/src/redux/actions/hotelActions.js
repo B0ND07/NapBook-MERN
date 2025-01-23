@@ -23,7 +23,7 @@ export const getFeaturedHotels = () => async (dispatch) => {
     dispatch(setLoading(false));
   } catch (err) {
     // dispatch(setError(err.response.data.message));
-    // console.log(err)
+    console.error(err)
   }
 };
 
@@ -49,6 +49,7 @@ export const getSearchAction = (query) => async (dispatch) => {
     dispatch(setHasSearched(true));
   } catch (err) {
     // dispatch(setError(err.response.data.message));
+    console.error(err)
   }
 };
 
@@ -60,6 +61,7 @@ export const getAllHotelsAction = () => async (dispatch) => {
     dispatch(setLoading(false));
   } catch (err) {
     dispatch(setError(err.response.data.message));
+    console.error(err)
   }
 };
 

@@ -37,12 +37,14 @@ const Home = () => {
         <h1 className="text-4xl font-[500] text-red-500">
           Where are you Going?
         </h1>
+
         <div className="flex flex-col md:flex-row gap-4 mt-4 mb-6">
           <div className="md:w-full h-16 rounded border transition duration-200 cursor-pointer border-gray-400 flex items-center px-6 gap-4 hover:border-red-400 bg-white">
             <FmdGoodIcon
               fontSize="large"
               className="rounded-full text-red-500 cursor-pointer hover:bg-neutral-200 transition duration-200 p-1 "
             />
+
             <input
               value={query}
               onChange={(e) => {
@@ -53,6 +55,7 @@ const Home = () => {
               placeholder="Search Location"
             />
           </div>
+          
           <div className="flex justify-center mt-3 md:mt-0 items-center">
             <button
               onClick={handleSearch}
@@ -111,11 +114,13 @@ const Home = () => {
           </>
         )}
         <div className="flex justify-center mb-16">
-         <Link to="/hotels"><button className="bg-red-500  rounded font-medium hover:bg-red-600 w-72 !text-orange-50 md:w-24 lg:w-32 h-12">
-        View More
-      </button></Link></div>
+          <Link to="/hotels">
+            <button className="bg-red-500  rounded font-medium hover:bg-red-600 w-72 !text-orange-50 md:w-24 lg:w-32 h-12">
+              View More
+            </button>
+          </Link>
+        </div>
       </div>
-     
     </div>
   );
 };

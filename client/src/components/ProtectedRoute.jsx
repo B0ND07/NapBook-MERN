@@ -16,7 +16,7 @@ const ProtectedRoute = ({ children }) => {
   }, [dispatch]);
 
   if (loading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   if (!isAuthenticated) {

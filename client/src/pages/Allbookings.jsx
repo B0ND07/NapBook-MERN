@@ -14,7 +14,7 @@ import Loader from "../components/Loader";
 
 const Allbookings = () => {
   const bookings = useSelector((state) => state.userState.allbookings);
-  const {isLoading} = useSelector((state) => state.hotelState);
+  const { isLoading } = useSelector((state) => state.hotelState);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,6 +30,7 @@ const Allbookings = () => {
           <h2 className="text-2xl font-medium text-center my-8">
             All Bookings
           </h2>
+
           <TableContainer>
             <Table className="">
               <TableHead>
@@ -42,28 +43,36 @@ const Allbookings = () => {
                   <TableCell align="center">To</TableCell>
                 </TableRow>
               </TableHead>
-              {isLoading?<Loader/>:
-              <TableBody>
-                {Array.isArray(bookings) &&
-                  bookings?.map((booking) => (
-                    <React.Fragment key={booking._id}>
-                      {booking.dates.map((date) => (
-                        <TableRow key={date._id}>
-                          <TableCell align="center">{booking._id}</TableCell>
-                          <TableCell align="center">{booking.user}</TableCell>
-                          <TableCell align="center">{booking.hotel}</TableCell>
-                          <TableCell align="center">{booking.roomno}</TableCell>
-                          <TableCell align="center">
-                            {new Date(date.startDate).toLocaleDateString()}
-                          </TableCell>
-                          <TableCell align="center">
-                            {new Date(date.endDate).toLocaleDateString()}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </React.Fragment>
-                  ))}
-              </TableBody>}
+              
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <TableBody>
+                  {Array.isArray(bookings) &&
+                    bookings?.map((booking) => (
+                      <React.Fragment key={booking._id}>
+                        {booking.dates.map((date) => (
+                          <TableRow key={date._id}>
+                            <TableCell align="center">{booking._id}</TableCell>
+                            <TableCell align="center">{booking.user}</TableCell>
+                            <TableCell align="center">
+                              {booking.hotel}
+                            </TableCell>
+                            <TableCell align="center">
+                              {booking.roomno}
+                            </TableCell>
+                            <TableCell align="center">
+                              {new Date(date.startDate).toLocaleDateString()}
+                            </TableCell>
+                            <TableCell align="center">
+                              {new Date(date.endDate).toLocaleDateString()}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </React.Fragment>
+                    ))}
+                </TableBody>
+              )}
             </Table>
           </TableContainer>
         </div>

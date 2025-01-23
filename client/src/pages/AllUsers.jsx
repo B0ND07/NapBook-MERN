@@ -48,7 +48,6 @@ const AllUsers = () => {
     setOpen(!open);
   };
   const handleDelete = async (e) => {
-  
     dispatch(deleteUserAction(userRef?.username));
     dispatch(getAllUsersAction());
   };
@@ -59,7 +58,6 @@ const AllUsers = () => {
       <div className="flex">
         <AdminDashboard />
         <Fragment>
-        
           <div className="w-[80%] sm:w-[60%] md:w-[70%] mx-auto mt-3">
             <h2 className="text-2xl font-medium text-center my-8">All Users</h2>
             <TableContainer component={Paper}>
@@ -73,37 +71,48 @@ const AllUsers = () => {
                     <TableCell align="center">Delete</TableCell>
                   </TableRow>
                 </TableHead>
-                {isLoading?<Loader/>:
-                <TableBody>
-                  {Array.isArray(users) &&
-                    users?.map((user) => (
-                      <TableRow key={user._id} style={{ height: 72.8 }}>
-                        <TableCell align="center">{user._id}</TableCell>
-                        <TableCell align="center">{user.username}</TableCell>
-                        <TableCell align="center">{user.email}</TableCell>
-                        <TableCell align="center">
-                          {role || user.isAdmin.toString()}
-                          <Tooltip placement="top" className="!ml-2">
-                            <IconButton
-                              onClick={() => {
-                                setOpen(!open);
-                                setRole(user.isAdmin.toString());
-                                setUserRef(user);
-                              }}
-                              className="disabled:text-gray-600"
-                            >
-                              <EditIcon fontSize="medium" />
-                            </IconButton>
-                          </Tooltip>
-                        </TableCell>
-                        <TableCell align="center">
-                          <Button onClick={(e)=>{setUserRef(user);handleDelete()
-                          }}>Remove</Button>
+                {isLoading ? (
+                  <Loader />
+                ) : (
+                  <TableBody>
+                    {Array.isArray(users) &&
+                      users?.map((user) => (
+                        <TableRow key={user._id} style={{ height: 72.8 }}>
+                          <TableCell align="center">{user._id}</TableCell>
+                          <TableCell align="center">{user.username}</TableCell>
+                          <TableCell align="center">{user.email}</TableCell>
 
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                </TableBody>}
+                          <TableCell align="center">
+                            {role || user.isAdmin.toString()}
+                            <Tooltip placement="top" className="!ml-2">
+                              <IconButton
+                                onClick={() => {
+                                  setOpen(!open);
+                                  setRole(user.isAdmin.toString());
+                                  setUserRef(user);
+                                }}
+                                className="disabled:text-gray-600"
+                              >
+                                <EditIcon fontSize="medium" />
+                              </IconButton>
+                            </Tooltip>
+                          </TableCell>
+
+                          <TableCell align="center">
+                            <Button
+                              onClick={(e) => {
+                                setUserRef(user);
+                                handleDelete();
+                              }}
+                            >
+                              Remove
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                  </TableBody>
+                )}
+
                 <TableFooter>
                   <TableRow></TableRow>
                 </TableFooter>
@@ -117,6 +126,7 @@ const AllUsers = () => {
                 <DialogTitle className="text-center">
                   Change User's Role
                 </DialogTitle>
+
                 <DialogContent className="m-4 !overflow-visible">
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Role</InputLabel>
@@ -132,6 +142,7 @@ const AllUsers = () => {
                     </Select>
                   </FormControl>
                 </DialogContent>
+
                 <DialogActions className="mt-4">
                   <button
                     onClick={() => setOpen(!open)}
@@ -139,6 +150,7 @@ const AllUsers = () => {
                   >
                     Cancel
                   </button>
+                  
                   <button
                     disabled={role === userRef?.role ? true : false}
                     onClick={editHandler}

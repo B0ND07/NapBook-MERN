@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
- 
+
     hotels: undefined,
     hotel: undefined,
-    searchHotel:undefined,
-    hasSearched:false,
-    allhotels:undefined,
+    searchHotel: undefined,
+    hasSearched: false,
+    allhotels: undefined,
     isHotelUpdated: false,
-   isLoading:true
+    isLoading: true
 }
 
 const hotelSlice = createSlice({
@@ -33,13 +33,13 @@ const hotelSlice = createSlice({
         setIsHotelUpdated: (state, action) => {
             state.isHotelUpdated = action.payload;
         },
-        setLoading: (state,action)=>{
-            state.isLoading=action.payload
+        setLoading: (state, action) => {
+            state.isLoading = action.payload
         }
 
     }
 });
 
-export const {  setHotels,setHotel,SetSearch,setHasSearched,setAllHotels,setIsHotelUpdated,setLoading} = hotelSlice.actions;
+export const { setHotels, setHotel, SetSearch, setHasSearched, setAllHotels, setIsHotelUpdated, setLoading } = hotelSlice.actions;
 
 export default hotelSlice.reducer;

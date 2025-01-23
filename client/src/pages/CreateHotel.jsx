@@ -74,9 +74,8 @@ const CreateHotel = () => {
     setSpecification(typeof value === "string" ? value.split(",") : value);
   };
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
 
     const formDataFile = new FormData();
     formDataFile.append("file", file);
@@ -110,6 +109,7 @@ const CreateHotel = () => {
   return (
     <Fragment>
       <div title="Update Hotel" />
+
       <div className="flex">
         <AdminDashboard />
 
@@ -117,12 +117,14 @@ const CreateHotel = () => {
           <h2 className="text-2xl font-medium text-center my-8">
             Create Hotel
           </h2>
+
           <form
             className="flex flex-col gap-4"
             onSubmit={(e) => handleSubmit(e)}
           >
             <div className="border border-solid border-gray-400 py-3 px-5 rounded">
               <FormatColorTextIcon className="text-gray-600" />
+
               <input
                 type="text"
                 required={true}
@@ -132,8 +134,10 @@ const CreateHotel = () => {
                 className="w-40 sm:w-60 md:w-80 ml-3 outline-none bg-transparent"
               />
             </div>
+
             <div className="border border-solid border-gray-400 py-3 px-5 rounded">
               <LocationOnIcon className="text-gray-600" />
+
               <input
                 type="text"
                 required={true}
@@ -143,8 +147,10 @@ const CreateHotel = () => {
                 className="w-40 sm:w-60 md:w-80 ml-3 outline-none bg-transparent"
               />
             </div>
+
             <div className="border border-solid border-gray-400 py-3 px-5 rounded">
               <AirlineStopsIcon className="text-gray-600" />
+
               <input
                 type="text"
                 required={true}
@@ -154,6 +160,7 @@ const CreateHotel = () => {
                 className="w-40 sm:w-60 md:w-80 ml-3 outline-none bg-transparent"
               />
             </div>
+
             <FormControl className="md:w-[25rem] w-60 sm:w-80">
               <InputLabel
                 id="demo-multiple-checkbox-label"
@@ -161,6 +168,7 @@ const CreateHotel = () => {
               >
                 Specifications
               </InputLabel>
+
               <CustomSelect
                 labelId="demo-multiple-checkbox-label"
                 id="demo-multiple-checkbox"
@@ -179,6 +187,7 @@ const CreateHotel = () => {
                 ))}
               </CustomSelect>
             </FormControl>
+
             <textarea
               required={true}
               placeholder="Hotel Description"
@@ -195,6 +204,7 @@ const CreateHotel = () => {
                 onChange={(e) => setFile(e.target.files[0])}
               />
             </Button>
+            
             <Button
               variant="contained"
               type="submit"

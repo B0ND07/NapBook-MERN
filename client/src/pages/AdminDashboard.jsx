@@ -21,9 +21,9 @@ import { useDispatch } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 
-
 const openedMixin = (theme) => ({
-  width: 240,height:"89vh",
+  width: 240,
+  height: "89vh",
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -75,7 +75,7 @@ const Drawer = styled(MuiDrawer, {
 
 const AdminDashboard = () => {
   const [first, setfirst] = useState(true);
-const open=first
+  const open = first;
   const dispatch = useDispatch();
   const isMobileDevice = useMediaQuery("(max-width:640px)");
 
@@ -91,144 +91,149 @@ const open=first
 
   return (
     <>
-      
-    <Drawer variant="permanent" open={first}>
-      {!isMobileDevice && (
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerOpen} className="!text-red-500">
-            {!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-      )}
-      <List className="!-mt-2">
-        
-        <ListItem disablePadding sx={{ display: "block" }}>
-          <Tooltip title={open ? "" : "All Users"} placement="right">
-            <NavLink to="/admin/users">
-              {({ isActive }) => (
-                <ListItemButton
-                  selected={isActive}
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <PeopleAltIcon className="text-red-400" />
-                  </ListItemIcon>
-                  <ListItemText
-                    className="text-red-400 font-semibold"
-                    primary="All Users"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              )}
-            </NavLink>
-          </Tooltip>
-        </ListItem>
-        <ListItem disablePadding sx={{ display: "block" }}>
-          <Tooltip title={open ? "" : "All Hotels"} placement="right">
-            <NavLink to="/admin/hotels">
-              {({ isActive }) => (
-                <ListItemButton
-                  selected={isActive}
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <MapsHomeWorkSharpIcon className="text-red-400" />
-                  </ListItemIcon>
-                  <ListItemText
-                    className="text-red-400 font-semibold"
-                    primary="All Hotels"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              )}
-            </NavLink>
-          </Tooltip>
-        </ListItem>
-        <ListItem disablePadding sx={{ display: "block" }}>
-          <Tooltip title={open ? "" : "Create Hotel"} placement="right">
-            <NavLink to="/admin/hotel/create">
-              {({ isActive }) => (
-                <ListItemButton
-                  selected={isActive}
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <AddHomeWorkSharpIcon className="text-red-400" />
-                  </ListItemIcon>
-                  <ListItemText
-                    className="text-red-400 font-semibold"
-                    primary="Create Hotel"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              )}
-            </NavLink>
-          </Tooltip>
-        </ListItem>
-        <ListItem disablePadding sx={{ display: "block" }}>
-          <Tooltip title={open ? "" : "Bookings"} placement="right">
-            <NavLink to="/admin/bookings">
-              {({ isActive }) => (
-                <ListItemButton
-                  selected={isActive}
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <BookmarkAddedSharpIcon className="text-red-400" />
-                  </ListItemIcon>
-                  <ListItemText
-                    className="text-red-400 font-semibold"
-                    primary="All Bookings"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              )}
-            </NavLink>
-          </Tooltip>
-        </ListItem>
-      </List>
-    </Drawer>
+      <Drawer variant="permanent" open={first}>
+        {!isMobileDevice && (
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerOpen} className="!text-red-500">
+              {!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            </IconButton>
+          </DrawerHeader>
+        )}
 
+        <List className="!-mt-2">
+          <ListItem disablePadding sx={{ display: "block" }}>
+            <Tooltip title={open ? "" : "All Users"} placement="right">
+              <NavLink to="/admin/users">
+                {({ isActive }) => (
+                  <ListItemButton
+                    selected={isActive}
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <PeopleAltIcon className="text-red-400" />
+                    </ListItemIcon>
+
+                    <ListItemText
+                      className="text-red-400 font-semibold"
+                      primary="All Users"
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                )}
+              </NavLink>
+            </Tooltip>
+          </ListItem>
+
+          <ListItem disablePadding sx={{ display: "block" }}>
+            <Tooltip title={open ? "" : "All Hotels"} placement="right">
+              <NavLink to="/admin/hotels">
+                {({ isActive }) => (
+                  <ListItemButton
+                    selected={isActive}
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <MapsHomeWorkSharpIcon className="text-red-400" />
+                    </ListItemIcon>
+
+                    <ListItemText
+                      className="text-red-400 font-semibold"
+                      primary="All Hotels"
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                )}
+              </NavLink>
+            </Tooltip>
+          </ListItem>
+
+          <ListItem disablePadding sx={{ display: "block" }}>
+            <Tooltip title={open ? "" : "Create Hotel"} placement="right">
+              <NavLink to="/admin/hotel/create">
+                {({ isActive }) => (
+                  <ListItemButton
+                    selected={isActive}
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <AddHomeWorkSharpIcon className="text-red-400" />
+                    </ListItemIcon>
+
+                    <ListItemText
+                      className="text-red-400 font-semibold"
+                      primary="Create Hotel"
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                )}
+              </NavLink>
+            </Tooltip>
+          </ListItem>
+
+          <ListItem disablePadding sx={{ display: "block" }}>
+            <Tooltip title={open ? "" : "Bookings"} placement="right">
+              <NavLink to="/admin/bookings">
+                {({ isActive }) => (
+                  <ListItemButton
+                    selected={isActive}
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <BookmarkAddedSharpIcon className="text-red-400" />
+                    </ListItemIcon>
+                    
+                    <ListItemText
+                      className="text-red-400 font-semibold"
+                      primary="All Bookings"
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                )}
+              </NavLink>
+            </Tooltip>
+          </ListItem>
+        </List>
+      </Drawer>
     </>
   );
 };

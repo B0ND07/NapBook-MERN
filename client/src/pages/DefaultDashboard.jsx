@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
-import MuiDrawer from "@mui/material/Drawer";
 import {
   List,
   ListItem,
@@ -16,63 +14,19 @@ import MapsHomeWorkSharpIcon from "@mui/icons-material/MapsHomeWorkSharp";
 import AddHomeWorkSharpIcon from "@mui/icons-material/AddHomeWorkSharp";
 import BookmarkAddedSharpIcon from "@mui/icons-material/BookmarkAddedSharp";
 
-import {  useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 
-const openedMixin = (theme) => ({
-  width: 240,
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: "hidden",
-});
-
-const closedMixin = (theme) => ({
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
-
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  position: "relative",
-  width: 240,
-  ".MuiDrawer-paper": {
-    zIndex: 1,
-    top: "auto",
-    position: "relative",
-  },
-  flexShrink: 0,
-  whiteSpace: "nowrap",
-  boxSizing: "border-box",
-  ...(open && {
-    ...openedMixin(theme),
-    "& .MuiDrawer-paper": openedMixin(theme),
-  }),
-  ...(!open && {
-    ...closedMixin(theme),
-    "& .MuiDrawer-paper": closedMixin(theme),
-  }),
-}));
-
 const DefaultDashboard = () => {
-  const [first, setfirst] = useState(true);
+  const [first, setFirst] = useState(true);
   const open = first;
   const dispatch = useDispatch();
   const isMobileDevice = useMediaQuery("(max-width:0px)");
 
   useEffect(() => {
     if (isMobileDevice) {
-      setfirst(false);
+      setFirst(false);
     }
   }, [isMobileDevice, dispatch]);
 
@@ -100,6 +54,7 @@ const DefaultDashboard = () => {
                   >
                     <PeopleAltIcon className="text-red-400" />
                   </ListItemIcon>
+
                   <ListItemText
                     className="text-red-400 font-semibold"
                     primary="All Users"
@@ -110,6 +65,7 @@ const DefaultDashboard = () => {
             </NavLink>
           </Tooltip>
         </ListItem>
+
         <ListItem disablePadding sx={{ display: "block" }}>
           <Tooltip title={open ? "" : "All Hotels"} placement="right">
             <NavLink to="/admin/hotels">
@@ -141,6 +97,7 @@ const DefaultDashboard = () => {
             </NavLink>
           </Tooltip>
         </ListItem>
+
         <ListItem disablePadding sx={{ display: "block" }}>
           <Tooltip title={open ? "" : "Create Hotel"} placement="right">
             <NavLink to="/admin/hotel/create">
@@ -172,6 +129,7 @@ const DefaultDashboard = () => {
             </NavLink>
           </Tooltip>
         </ListItem>
+
         <ListItem disablePadding sx={{ display: "block" }}>
           <Tooltip title={open ? "" : "Bookings"} placement="right">
             <NavLink to="/admin/bookings">
