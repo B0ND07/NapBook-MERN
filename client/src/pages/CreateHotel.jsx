@@ -20,7 +20,7 @@ import { createHotelAction } from "../redux/actions/hotelActions";
 import axios from "axios";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-import AdminDashboard from "./AdminDashboard";
+import AdminDashboard from "./admin/AdminDashboard";
 
 const availableSpecifications = ["Parking", "Restaurant", "Wi-fi"];
 
@@ -204,7 +204,7 @@ const CreateHotel = () => {
                 onChange={(e) => setFile(e.target.files[0])}
               />
             </Button>
-            
+
             <Button
               variant="contained"
               type="submit"

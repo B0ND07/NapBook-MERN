@@ -13,18 +13,18 @@ const UpdateProfile = () => {
   const { user } = useSelector((state) => state.userState);
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
-  const [oldusername, setOldusername] = useState("");
+  const [oldUsername, setOldUsername] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const handleUpdate = () => {
-    dispatch(updateUserAction(oldusername, username, email));
+    dispatch(updateUserAction(oldUsername, username, email));
   };
 
   useEffect(() => {
     if (user) {
       setUsername(user.username);
       setEmail(user.email);
-      setOldusername(user.username);
+      setOldUsername(user.username);
     }
   }, [user]);
   const handleDelete = () => {
@@ -86,6 +86,7 @@ const UpdateProfile = () => {
             <button className=" text-blue-600" onClick={handleDelete}>
               Delete Account
             </button>
+            
             <ArrowForwardIosIcon fontSize="small" className="text-blue-600" />
           </div>
         </div>

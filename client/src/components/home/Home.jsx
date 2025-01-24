@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getFeaturedHotels,
   getSearchAction,
-} from "../redux/actions/hotelActions";
+} from "../../redux/actions/hotelActions";
 import { Link, useNavigate } from "react-router-dom";
-import Loader from "./Loader";
+import Loader from "../app/Loader";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const Home = () => {
               placeholder="Search Location"
             />
           </div>
-          
+
           <div className="flex justify-center mt-3 md:mt-0 items-center">
             <button
               onClick={handleSearch}

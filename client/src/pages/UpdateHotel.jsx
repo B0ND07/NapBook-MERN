@@ -23,7 +23,7 @@ import {
 } from "../redux/actions/hotelActions";
 import axios from "axios";
 
-import AdminDashboard from "./AdminDashboard";
+import AdminDashboard from "./admin/AdminDashboard";
 
 const availableSpecifications = ["Parking", "Restaurant", "Wi-fi"];
 

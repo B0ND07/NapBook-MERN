@@ -9,8 +9,8 @@ import {
 import React, { useEffect } from "react";
 import AdminDashboard from "./AdminDashboard";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBookingsAction } from "../redux/actions/userActions";
-import Loader from "../components/Loader";
+import { getAllBookingsAction } from "../../redux/actions/userActions";
+import Loader from "../../components/app/Loader";
 
 const Allbookings = () => {
   const bookings = useSelector((state) => state.userState.allbookings);
@@ -43,7 +43,7 @@ const Allbookings = () => {
                   <TableCell align="center">To</TableCell>
                 </TableRow>
               </TableHead>
-              
+
               {isLoading ? (
                 <Loader />
               ) : (

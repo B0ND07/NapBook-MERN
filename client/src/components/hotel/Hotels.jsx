@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DisplayHotels from "./DisplayHotels";
-import Loader from "./Loader";
-import { getAllHotelsAction } from "../redux/actions/hotelActions";
+import DisplayHotels from "../home/DisplayHotels";
+import Loader from "../app/Loader";
+import { getAllHotelsAction } from "../../redux/actions/hotelActions";
 
 const Hotels = () => {
   const { allhotels, isLoading } = useSelector((state) => state.hotelState);

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerAction } from "../redux/actions/userActions";
+import { registerAction } from "../../redux/actions/userActions";
 import { useNavigate } from "react-router-dom";
-import { setError } from "../redux/slices/userSlice";
+import { setError } from "../../redux/slices/userSlice";
 
 const Register = () => {
   const [username, setUsername] = useState("");

@@ -27,8 +27,8 @@ import {
   deleteUserAction,
   getAllUsersAction,
   updateUserRoleAction,
-} from "../redux/actions/userActions";
-import Loader from "../components/Loader";
+} from "../../redux/actions/userActions";
+import Loader from "../../components/app/Loader";
 
 const AllUsers = () => {
   const dispatch = useDispatch();
@@ -150,7 +150,7 @@ const AllUsers = () => {
                   >
                     Cancel
                   </button>
-                  
+
                   <button
                     disabled={role === userRef?.role ? true : false}
                     onClick={editHandler}

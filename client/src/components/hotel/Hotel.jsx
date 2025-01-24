@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getHotelAction } from "../redux/actions/hotelActions";
+import { getHotelAction } from "../../redux/actions/hotelActions";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Loader from "./Loader";
+import Loader from "../app/Loader";
 
 const Hotel = () => {
   const { id } = useParams();
@@ -99,17 +99,14 @@ const Hotel = () => {
             </ul>
           </div>
         </div>
-
         <div className="flex justify-center gap-15 md:gap-20 my-6">
           <p>Privacy Notice</p>
           <p>Terms of use</p>
           <p>CA Supply Chain</p>
           <p>Cookie Preference</p>
         </div>
-
         <hr />
         <br></br>
-        
         <p className="text-center pb-6">
           © 2024 NapBook Company. All rights reserved.
         </p>

@@ -22,9 +22,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import {
   deleteHotelAction,
   getAllHotelsAction,
-} from "../redux/actions/hotelActions";
+} from "../../redux/actions/hotelActions";
 import { Link } from "react-router-dom";
-import Loader from "../components/Loader";
+import Loader from "../../components/app/Loader";
 
 const AllHotels = () => {
   const { allhotels, isLoading } = useSelector((state) => state.hotelState);

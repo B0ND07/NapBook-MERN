@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DisplayHotels from "./DisplayHotels";
+import DisplayHotels from "../home/DisplayHotels";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Link } from "react-router-dom";
-import { setHasSearched } from "../redux/slices/hotelSlice";
+import { setHasSearched } from "../../redux/slices/hotelSlice";
 
 function Search() {
   const { searchHotel } = useSelector((state) => state.hotelState);

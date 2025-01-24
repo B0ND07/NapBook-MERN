@@ -1,9 +1,9 @@
-import Home from "./components/Home";
-import Hotel from "./components/Hotel";
-import Navbar from "./components/Navbar";
+import Home from "./components/home/Home";
+import Hotel from "./components/hotel/Hotel";
+import Navbar from "./components/app/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
@@ -13,19 +13,19 @@ import Account from "./pages/Account";
 import Bookings from "./pages/Bookings";
 import UpdateProfile from "./pages/UpdateProfile";
 
-import AllUsers from "./pages/AllUsers";
-import AllHotels from "./pages/AllHotels";
-import Allbookings from "./pages/Allbookings";
+import AllUsers from "./pages/admin/AllUsers";
+import AllHotels from "./pages/admin/AllHotels";
+import AllBookings from "./pages/admin/AllBookings";
 import UpdateHotel from "./pages/UpdateHotel";
 import CreateHotel from "./pages/CreateHotel";
 import DefaultDashboard from "./pages/DefaultDashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/app/ProtectedRoute";
 import NotFound from "./pages/NotFound";
-import AdminRoute from "./components/AdminRoute";
-import Body from "./components/Body";
-import Search from "./components/Search";
-import Footer from "./components/Footer";
-import Hotels from "./components/Hotels";
+import AdminRoute from "./components/admin/AdminRoute";
+import Body from "./components/home/Body";
+import Search from "./components/app/Search";
+import Footer from "./components/app/Footer";
+import Hotels from "./components/hotel/Hotels";
 
 
 function App() {
@@ -130,7 +130,7 @@ function App() {
             path="/admin/bookings"
             element={
               <AdminRoute>
-                <Allbookings />
+                <AllBookings />
               </AdminRoute>
             }
           />

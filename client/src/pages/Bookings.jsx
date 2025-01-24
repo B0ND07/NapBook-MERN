@@ -9,7 +9,7 @@ import {
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookingsAction } from "../redux/actions/userActions";
-import Loader from "../components/Loader";
+import Loader from "../components/app/Loader";
 
 const Bookings = () => {
   const user = useSelector((state) => state.userState.user);

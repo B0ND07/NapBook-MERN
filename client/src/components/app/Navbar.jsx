@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logoutAction } from "../redux/actions/userActions";
-import { setHasSearched } from "../redux/slices/hotelSlice";
+import { logoutAction } from "../../redux/actions/userActions";
+import { setHasSearched } from "../../redux/slices/hotelSlice";
 
 const Navbar = () => {
   const navigate = useNavigate();

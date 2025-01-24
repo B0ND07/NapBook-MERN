@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { GloginAction, loginAction } from "../redux/actions/userActions";
-import Loader from "../components/Loader";
-import { setLoading } from "../redux/slices/hotelSlice";
-import { setError } from "../redux/slices/userSlice";
+import { GloginAction, loginAction } from "../../redux/actions/userActions";
+import Loader from "../../components/app/Loader";
+import { setLoading } from "../../redux/slices/hotelSlice";
+import { setError } from "../../redux/slices/userSlice";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
@@ -115,7 +115,7 @@ const Login = () => {
                 </button>
               </div>
             </form>
-            
+
             <p className="mt-10 text-center text-sm text-gray-500">
               Not a member?{" "}
               <Link to="/register">
