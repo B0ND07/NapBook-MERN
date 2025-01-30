@@ -1,4 +1,4 @@
-const mongoose=require("mongoose")
+const mongoose = require("mongoose")
 const roomSchema = new mongoose.Schema({
   number: {
     type: String,
@@ -7,11 +7,11 @@ const roomSchema = new mongoose.Schema({
   isBooked: {
     type: Boolean,
     default: false,
-  }},
-    { timestamps: true }
-  );
+  }
+},
+  { timestamps: true }
+);
 
-  const Room=mongoose.model("Rooms",roomSchema)
+const Room = mongoose.model("Rooms", roomSchema)
 
-module.exports=Room
-  
+module.exports = Room

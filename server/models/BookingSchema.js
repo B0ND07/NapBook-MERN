@@ -26,7 +26,7 @@ const bookingSchema = new mongoose.Schema(
     // phone: {
     //   type: Number,
     // },
-    roomno: {
+    roomNo: {
       type: Number,
     },
   },

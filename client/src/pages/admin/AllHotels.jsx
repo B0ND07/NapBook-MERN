@@ -27,7 +27,7 @@ import { Link } from "react-router-dom";
 import Loader from "../../components/app/Loader";
 
 const AllHotels = () => {
-  const { allhotels, isLoading } = useSelector((state) => state.hotelState);
+  const { allHotels, isLoading } = useSelector((state) => state.hotelState);
   const dispatch = useDispatch();
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [hotelRef, setHotelRef] = useState(undefined);
@@ -70,7 +70,7 @@ const AllHotels = () => {
                   <Loader />
                 ) : (
                   <TableBody>
-                    {allhotels?.map((hotel) => (
+                    {allHotels?.map((hotel) => (
                       <TableRow key={hotel._id} style={{ height: 72.8 }}>
                         <TableCell align="center">{hotel._id}</TableCell>
                         <TableCell align="center">{hotel.name}</TableCell>

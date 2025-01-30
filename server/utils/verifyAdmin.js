@@ -13,11 +13,7 @@ const verifyAdmin = async (req, res, next) => {
     const user = await User.findById(decodedData.id)
 
     if (user.isAdmin) {
-       
-  
-
-   
-    next();
+        next();
+    }
 }
-}
-module.exports=verifyAdmin
+module.exports = verifyAdmin

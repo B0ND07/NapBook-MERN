@@ -54,7 +54,7 @@ exports.getCheckOutSession = async (req, res) => {
       mode: "payment",
       success_url: `${process.env.CLIENT_URL}`,
       cancel_url: `${process.env.CLIENT_URL}`,
-      customer_email: user.email, 
+      customer_email: user.email,
       billing_address_collection: "required",
       line_items: [
         {

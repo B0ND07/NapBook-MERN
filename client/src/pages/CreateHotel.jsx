@@ -82,7 +82,7 @@ const CreateHotel = () => {
     formDataFile.append("upload_preset", "upload");
 
     const uploadRes = await axios.post(
-      "https://api.cloudinary.com/v1_1/db6qtb2bu/image/upload",
+      process.env.REACT_APP_CLOUDINARY_API_URL,
       formDataFile,
       { withCredentials: false }
     );

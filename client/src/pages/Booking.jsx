@@ -15,7 +15,7 @@ const Booking = () => {
   const user = useSelector((state) => state.userState.user);
   const { hotel } = useSelector((state) => state.hotelState);
   const [room, setRoom] = useState([]);
-  const [roomno, setRoomno] = useState();
+  const [roomNo, setRoomNo] = useState();
 
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -62,7 +62,7 @@ const Booking = () => {
   };
 
   const handleCheckout = async () => {
-    if (!roomno) {
+    if (!roomNo) {
       alert("Please select a room number before checkout");
       return;
     }
@@ -73,7 +73,7 @@ const Booking = () => {
       hotelId: hotel?._id,
       city: hotel?.city,
       hotel: hotel?.name,
-      roomno: roomno,
+      roomNo: roomNo,
       dates: dateRange,
     });
     console.log(res);
@@ -262,14 +262,14 @@ const Booking = () => {
                 </label>
 
                 <select
-                  value={roomno}
-                  onChange={(e) => setRoomno(e.target.value)}
+                  value={roomNo}
+                  onChange={(e) => setRoomNo(e.target.value)}
                 >
                   <option className="font-mono">room no</option>
                   {room.map((roomNumber) => (
                     <option
                       className="font-mono"
-                      onChange={(e) => setRoomno(e.target.value)}
+                      onChange={(e) => setRoomNo(e.target.value)}
                       key={roomNumber}
                       value={roomNumber}
                     >

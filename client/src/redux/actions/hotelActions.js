@@ -31,7 +31,6 @@ export const getHotelAction = (id) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     const { data } = await axios.get(`/api/hotels/${id}`);
-
     dispatch(setHotel(data));
     dispatch(setLoading(false));
   } catch (err) {
@@ -43,7 +42,6 @@ export const getSearchAction = (query) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     const { data } = await axios.get(`/api/hotels/search/${query}`);
-
     dispatch(SetSearch(data));
     dispatch(setLoading(false));
     dispatch(setHasSearched(true));

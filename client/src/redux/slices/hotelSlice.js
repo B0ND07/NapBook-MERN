@@ -6,7 +6,7 @@ const initialState = {
     hotel: undefined,
     searchHotel: undefined,
     hasSearched: false,
-    allhotels: undefined,
+    allHotels: undefined,
     isHotelUpdated: false,
     isLoading: true
 }
@@ -28,7 +28,7 @@ const hotelSlice = createSlice({
             state.hasSearched = action.payload;
         },
         setAllHotels: (state, action) => {
-            state.allhotels = action.payload;
+            state.allHotels = action.payload;
         },
         setIsHotelUpdated: (state, action) => {
             state.isHotelUpdated = action.payload;
