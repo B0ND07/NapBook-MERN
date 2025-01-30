@@ -7,7 +7,7 @@ const initialState = {
     error: undefined,
     success: undefined,
     bookings: undefined,
-    allbookings: undefined,
+    allBookings: undefined,
     users: undefined
 }
 

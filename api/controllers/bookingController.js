@@ -49,38 +49,38 @@ exports.getCheckOutSession = async (req, res) => {
     const user = await User.findById(req.user);
     const hotel = await Hotel.findById(req.params.hotelId);
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      mode: "payment",
-      success_url: `${process.env.CLIENT_URL}`,
-      cancel_url: `${process.env.CLIENT_URL}`,
-      customer_email: user.email,
-      billing_address_collection: "required",
-      line_items: [
-        {
-          price_data: {
-            currency: "inr",
-            unit_amount: 500 * 100,
-            product_data: {
-              name: hotel.name,
-              description: hotel.city,
-              images: [hotel.photos],
-            },
-          },
-          quantity: 1,
-        },
-      ],
-    });
+    // const session = await stripe.checkout.sessions.create({
+    //   payment_method_types: ["card"],
+    //   mode: "payment",
+    //   success_url: `${process.env.CLIENT_URL}`,
+    //   cancel_url: `${process.env.CLIENT_URL}`,
+    //   customer_email: user.email,
+    //   billing_address_collection: "required",
+    //   line_items: [
+    //     {
+    //       price_data: {
+    //         currency: "inr",
+    //         unit_amount: 500 * 100,
+    //         product_data: {
+    //           name: hotel.name,
+    //           description: hotel.city,
+    //           images: [hotel.photos],
+    //         },
+    //       },
+    //       quantity: 1,
+    //     },
+    //   ],
+    // });
 
     //book room
     const newRoom = req.body;
     await Booking.create(newRoom);
 
     //detach room
-    hotel.rooms = hotel.rooms.filter((room) => room !== newRoom.roomno);
+    hotel.rooms = hotel.rooms.filter((room) => room !== newRoom.roomNo);
     await hotel.save();
 
-    res.json({ message: "success", session });
+    res.json({ message: "success", hotel });
   } catch (err) {
     console.log(err);
   }
