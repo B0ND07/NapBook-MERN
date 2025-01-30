@@ -50,7 +50,7 @@ const Bookings = () => {
                         <TableCell align="center">{booking._id}</TableCell>
                         <TableCell align="center">{booking.hotel}</TableCell>
                         <TableCell align="center">{booking.city}</TableCell>
-                        <TableCell align="center">{booking.roomno}</TableCell>
+                        <TableCell align="center">{booking.roomNo}</TableCell>
                         <TableCell align="center">
                           {new Date(date.startDate).toLocaleDateString()}
                         </TableCell>

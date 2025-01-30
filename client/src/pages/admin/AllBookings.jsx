@@ -59,7 +59,7 @@ const Allbookings = () => {
                               {booking.hotel}
                             </TableCell>
                             <TableCell align="center">
-                              {booking.roomno}
+                              {booking.roomNo}
                             </TableCell>
                             <TableCell align="center">
                               {new Date(date.startDate).toLocaleDateString()}

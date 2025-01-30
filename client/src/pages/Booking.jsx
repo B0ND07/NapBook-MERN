@@ -3,7 +3,7 @@ import { Button, Modal } from "@mui/material";
 import { DateRange } from "react-date-range";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { getHotelAction } from "../redux/actions/hotelActions";
 import { addDays, format } from "date-fns";
@@ -32,6 +32,8 @@ const Booking = () => {
       key: "selection",
     },
   ]);
+  
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getHotelAction(id));
@@ -67,8 +69,8 @@ const Booking = () => {
       return;
     }
     // stripe
-    toast.loading("loading payment page", { id: "payment" });
-    const res = await axios.post(`/api/bookings/payment/${hotel._id}`, {
+    // toast.loading("loading payment page", { id: "payment" });
+    await axios.post(`/api/bookings/payment/${hotel._id}`, {
       user: name,
       hotelId: hotel?._id,
       city: hotel?.city,
@@ -76,11 +78,10 @@ const Booking = () => {
       roomNo: roomNo,
       dates: dateRange,
     });
-    console.log(res);
 
-    if (res.data.session.url) {
-      window.location.href = res.data.session.url;
-    }
+    // if (res.data.session.url) {
+    //   window.location.href = res.data.session.url;
+    // }
 
     // dispatch(
     //   newBookingAction({
@@ -99,7 +100,8 @@ const Booking = () => {
     // }))
 
     // alert("booked successfully");
-    // navigate("/");
+    toast.success("booked successfully");
+    navigate("/");
   };
 
   return (
